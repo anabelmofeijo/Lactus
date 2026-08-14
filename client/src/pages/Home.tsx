@@ -23,7 +23,6 @@ import {
 
 const STORAGE = "/manus-storage/";
 const heroImage = `${STORAGE}lactus-hero-roots_abc84794.jpg`;
-const lumiImage = `${STORAGE}lactus-lumi-product_0de7c59e.jpg`;
 const communityImage = `${STORAGE}lactus-community_f52f747d.jpg`;
 const contourImage = `${STORAGE}lactus-topography_de3fb0ce.jpg`;
 const markImage = `${STORAGE}lactus-logo-mark_7cd71d3c.png`;
@@ -140,7 +139,7 @@ export default function Home() {
         </section>
 
         <section className="lumi-section section-pad" id="lumi">
-          <div className="lumi-image-panel"><img src={lumiImage} alt="Protótipo Lumi integrado num vaso com planta e luz LED" /><div className="image-stamp"><span>LUMI</span><small>bioenergia de baixo consumo</small></div></div>
+          <div className="lumi-media"><div className="lumi-image-panel"><img src="/manus-storage/lumi-exhibition-detail_f6f88876.jpeg" alt="Protótipo Lumi num vaso de plantas ligado a uma luz LED durante uma exposição" /><div className="image-stamp"><span>LUMI</span><small>vaso de plantas que gera energia</small></div></div><div className="lumi-gallery" aria-label="Fotografias reais do Lumi"><figure><img src="/manus-storage/lumi-working-prototype_8f300466.jpeg" alt="Equipa a trabalhar no protótipo Lumi sobre uma mesa" /><figcaption>Em desenvolvimento</figcaption></figure><figure><img src="/manus-storage/lumi-exhibition_626e7ff6.jpeg" alt="Protótipo Lumi apresentado numa exposição" /><figcaption>Em exposição</figcaption></figure><figure><img src="/manus-storage/lumi-development_c859ad61.jpeg" alt="Equipa a testar o vaso Lumi com instrumentos electrónicos" /><figcaption>A testar ideias</figcaption></figure></div></div>
           <div className="lumi-copy"><FieldLabel light>03 / O PRIMEIRO PASSO</FieldLabel><h2>Conheça o <em>Lumi</em>.</h2><p className="section-lead section-lead--light">O Lumi é um vaso de plantas que gera energia.</p><p className="body-light">Dentro do vaso, as raízes das plantas interagem naturalmente com os microrganismos do solo para produzir electricidade. Sem prejudicar a planta, o sistema foi pensado para alimentar LEDs de sinalização e sensores ambientais — necessidades pequenas, mas decisivas em lugares onde as alternativas convencionais são caras ou pouco adequadas.</p><a className="button button--outline-light" href="#pilotos">Ver o caminho do piloto <ArrowUpRight size={16} /></a></div>
         </section>
 

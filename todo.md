@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Integração das fotografias do Lumi
+
+- [x] Preparar e carregar as quatro fotografias reais do Lumi no armazenamento web.
+- [x] Integrar uma galeria do Lumi na secção do produto com imagens completas e legendas.
+- [x] Rever os enquadramentos verticais em desktop e mobile, sem cortes agressivos.
+- [x] Guardar um novo checkpoint depois da validação final.
+
 ## Simplificação da secção do Lumi
 
 - [x] Retirar os indicadores “5V por planta”, “4 LEDs de alto brilho” e “01 protótipo em validação”.
