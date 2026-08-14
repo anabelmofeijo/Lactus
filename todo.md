@@ -1,5 +1,11 @@
 # Actualização de activos visuais
 
+## Simplificação da secção do Lumi
+
+- [x] Retirar os indicadores “5V por planta”, “4 LEDs de alto brilho” e “01 protótipo em validação”.
+- [x] Confirmar que a secção mantém a frase principal sobre o vaso de plantas que gera energia.
+- [x] Validar o equilíbrio visual em desktop e mobile e guardar um novo checkpoint.
+
 ## Correcção da apresentação dos reconhecimentos e do Lumi
 
 - [x] Reenquadrar as fotografias dos prémios para mostrar as pessoas e os troféus por completo.
