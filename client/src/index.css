@@ -40,8 +40,7 @@ button { border: 0; cursor: pointer; }
 .lactus-site { overflow: hidden; background: var(--paper); }
 .site-header { position: absolute; z-index: 20; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 25px 5.2vw; color: var(--ink); }
 .brand { display: inline-flex; align-items: center; gap: 10px; letter-spacing: .13em; }
-.brand-mark { width: 34px; height: 34px; object-fit: contain; }
-.brand-name { font-size: 17px; font-weight: 800; letter-spacing: .18em; }
+.brand-logo-full { display: block; width: 148px; height: auto; max-height: 42px; object-fit: contain; object-position: left center; }
 .desktop-nav { display: flex; align-items: center; gap: 33px; margin-left: 7vw; font-size: 11px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
 .desktop-nav a, .footer-bottom a { transition: color .2s ease; }
 .desktop-nav a:hover, .footer-bottom a:hover { color: var(--clay); }
@@ -197,6 +196,12 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .awards div { display: flex; flex-direction: column; gap: 8px; }
 .awards strong { color: var(--clay); font-family: var(--serif); font-size: 26px; font-weight: 400; }
 .awards span { color: var(--muted); font-size: 10px; font-weight: 700; line-height: 1.4; }
+.award-gallery { display: grid; grid-template-columns: 1.12fr .88fr; gap: 12px; margin-top: 37px; }
+.award-gallery figure { margin: 0; }
+.award-gallery img { display: block; width: 100%; height: 155px; object-fit: cover; filter: saturate(.88); }
+.award-gallery figure:first-child img { object-position: center 30%; }
+.award-gallery figure:nth-child(2) img { object-position: center 22%; }
+.award-gallery figcaption { margin-top: 8px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 
 .team { display: grid; grid-template-columns: .9fr 1.1fr; gap: 10vw; background: var(--ivory); }
 .team-heading p { max-width: 350px; color: var(--muted); font-size: 14px; line-height: 1.7; }
@@ -219,7 +224,7 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .site-footer { color: var(--paper); background: #052c25; }
 .footer-top { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: start; gap: 4vw; padding: 64px 10.5vw 54px; }
 .brand--footer { color: var(--paper); align-self: start; }
-.brand--footer .brand-mark { width: 42px; height: 42px; }
+.brand--footer .brand-logo-full { width: 164px; max-height: 52px; }
 .footer-top p { margin: 2px 0 0; color: rgba(244,241,232,.56); font-size: 13px; line-height: 1.65; }
 .footer-email { display: inline-flex; align-items: center; justify-self: end; gap: 9px; color: var(--lime); font-size: 12px; font-weight: 800; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding: 19px 10.5vw; border-top: 1px solid rgba(244,241,232,.15); color: rgba(244,241,232,.48); font-size: 10px; }
