@@ -124,7 +124,6 @@ export default function Home() {
           <div className="hero-visual">
             <div className="hero-photo-wrap"><img src={heroImage} alt="Raízes de uma planta em solo rico, com uma pequena luz" className="hero-photo" /><span className="photo-caption">Estudo Lumi · 2026</span></div>
             <div className="hero-note hero-note--top"><Sprout size={18} /><span>inovação<br /><strong>enraizada</strong></span></div>
-            <div className="hero-note hero-note--bottom"><span className="note-number">5V</span><span>por planta<br /><strong>protótipo validado</strong></span></div>
             <span className="hero-orbit orbit-one" /><span className="hero-orbit orbit-two" />
           </div>
         </section>
