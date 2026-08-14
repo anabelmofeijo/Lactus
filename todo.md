@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Auditoria do conteúdo institucional
+
+- [x] Comparar a homepage com o documento institucional completo enviado.
+- [x] Identificar omissões de missão, visão, modelo de negócio, processo de parceria, equipa e reconhecimentos.
+- [x] Corrigir as divergências prioritárias sem perder a direcção visual actual.
+- [x] Validar a versão revista e reportar claramente o grau de conformidade.
+
 ## Integração das fotografias do Lumi
 
 - [x] Preparar e carregar as quatro fotografias reais do Lumi no armazenamento web.
