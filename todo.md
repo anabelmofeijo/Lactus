@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Correcção da responsividade
+
+- [x] Auditar a homepage em mobile estreito, mobile largo, tablet e desktop.
+- [x] Corrigir overflow horizontal, hierarquia, espaçamento e tamanhos de texto.
+- [x] Melhorar navegação mobile, galerias, grelhas, botões e secções com conteúdo longo.
+- [x] Validar todos os breakpoints e guardar um novo checkpoint.
+
 ## Auditoria do conteúdo institucional
 
 - [x] Comparar a homepage com o documento institucional completo enviado.
