@@ -1,5 +1,11 @@
 # Actualização de activos visuais
 
+## Organização do projecto Lactus
+
+- [x] Confirmar como o nome visível do projecto pode ser actualizado para “Lactus”.
+- [x] Registar as decisões e alterações desta conversa num resumo dentro do projecto.
+- [x] Confirmar ao utilizador onde continuar a conversa e o desenvolvimento da página.
+
 ## Correcção da responsividade
 
 - [x] Auditar a homepage em mobile estreito, mobile largo, tablet e desktop.
