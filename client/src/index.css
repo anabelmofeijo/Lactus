@@ -287,6 +287,8 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .who-story { max-width: 615px; padding-top: 4px; }
 .who-lead { max-width: 510px; margin-bottom: 20px; color: var(--ink); font-family: var(--serif); font-size: 28px; line-height: 1.1; }
 .who-story > p:not(.who-lead) { max-width: 545px; color: var(--muted); font-size: 14px; line-height: 1.72; }
+.who-story > .who-problem { max-width: 565px; margin: 24px 0 19px; padding: 15px 0 15px 17px; color: var(--forest); border-left: 2px solid var(--clay); background: linear-gradient(90deg, rgba(199,243,107,.18), transparent 82%); font-size: 13px; line-height: 1.67; }
+.who-problem strong { display: block; margin-bottom: 4px; color: var(--clay); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .who-signals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; margin-top: 31px; padding-top: 18px; border-top: 1px solid var(--line); }
 .who-signals div { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; min-width: 0; }
 .who-signals svg { color: var(--clay); }

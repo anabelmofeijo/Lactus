@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Revisão factual da secção Quem somos
+
+- [x] Rever o conteúdo institucional enviado para recuperar a origem, a missão e os factos concretos da Lactus.
+- [x] Reescrever a secção Quem somos com uma explicação curta e precisa da equipa e da criação da startup.
+- [x] Tornar explícito, em uma ou duas frases, o problema de acesso à electricidade que a Lactus procura ajudar a resolver.
+- [x] Validar a nova redacção no layout; o checkpoint segue como passo final.
+
 ## Expansão institucional e página Momentos
 
 - [x] Preparar e carregar as fotografias enviadas, agrupando-as por prémio, desafio e marco da equipa.
