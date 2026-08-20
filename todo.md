@@ -1,5 +1,11 @@
 # Actualização de activos visuais
 
+## Limpeza dos enquadramentos fotográficos
+
+- [x] Eliminar as sobras laterais geradas pelo enquadramento das fotos em Momentos Lumi.
+- [x] Preservar a visualização integral das fotografias, sem cortes agressivos.
+- [x] Verificar o resultado em desktop e mobile e guardar um checkpoint.
+
 ## Galeria Momentos Lumi
 
 - [x] Retirar as três fotografias de desenvolvimento da secção principal do Lumi.
