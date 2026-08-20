@@ -1,5 +1,11 @@
 # Actualização de activos visuais
 
+## Repositório GitHub do projecto Lactus
+
+- [ ] Verificar o estado Git e confirmar que não existem dados sensíveis a enviar.
+- [ ] Criar um repositório privado com o nome Lactus no GitHub.
+- [ ] Enviar o código actual e confirmar o URL do repositório remoto.
+
 ## Organização do projecto Lactus
 
 - [x] Confirmar como o nome visível do projecto pode ser actualizado para “Lactus”.
