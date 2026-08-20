@@ -87,3 +87,6 @@ Um símbolo sem texto formado por duas folhas arqueadas que se encontram numa pe
 - Não apresentar testemunhos, avaliações ou métricas de impacto que não tenham sido fornecidos.
 - Falar do Lumi como protótipo em validação; manter explícitos os limites de uso de baixo consumo.
 - Dar prioridade a uma conversão principal: **Seja nosso parceiro**.
+- Tratar cada fotografia como evidência de campo: enquadrar, legendar e sequenciar imagens para revelar aprendizagem, validação, parceria ou o caminho do Lumi, nunca como decoração de evento.
+- Reservar o verde broto `#C7F36B` para acções principais, marcos de avanço, ênfase editorial e sinais de energia; não o usar como fundo decorativo genérico.
+- Apresentar prémios, encontros e desafios como provas de percurso que desbloqueiam aprendizagem ou validação do Lumi, e não como uma galeria autónoma de celebração institucional.

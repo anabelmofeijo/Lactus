@@ -1,5 +1,13 @@
 # Actualização de activos visuais
 
+## Expansão institucional e página Momentos
+
+- [x] Preparar e carregar as fotografias enviadas, agrupando-as por prémio, desafio e marco da equipa.
+- [x] Criar uma secção “Quem somos” breve logo após o hero e identificar Israel, Catarina e Anabelmo na fotografia dos fundadores.
+- [x] Reforçar a identidade de energia sustentável com sinais visuais coerentes na landing page.
+- [x] Criar a página “Momentos” com registos do Prémio Tigra Nova Garra, NASA Space Apps Luanda 2025, Desafio Genial e Huawei.
+- [x] Ligar a navegação e validar visualmente a composição em desktop, tablet e telemóvel; o checkpoint segue como passo final.
+
 ## Destaque dos fundadores no hero
 
 - [x] Reorganizar o hero para apresentar a fotografia dos três fundadores logo no início.

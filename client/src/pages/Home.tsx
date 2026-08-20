@@ -4,6 +4,7 @@
  * proof and partnership. Every section earns its place; secondary detail is intentionally quiet.
  */
 import { useEffect, useState } from "react";
+import { Link } from "wouter";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -65,6 +66,7 @@ export default function Home() {
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal">
           <a href="#lumi">Lumi</a>
+          <Link href="/momentos">Momentos</Link>
           <a href="#parcerias">Parcerias</a>
           <a href="#sobre">Sobre nós</a>
         </nav>
@@ -77,6 +79,7 @@ export default function Home() {
         </div>
         <div className="mobile-nav">
           <a href="#lumi">Lumi</a>
+          <Link href="/momentos" onClick={() => setMenuOpen(false)}>Momentos</Link>
           <a href="#parcerias">Parcerias</a>
           <a href="#sobre">Sobre nós</a>
           <a href="#contacto">Contacto</a>
@@ -96,18 +99,18 @@ export default function Home() {
             <div className="hero-meta"><span><span className="dot" />Luanda, Angola</span><span>Bioenergia · Impacto local</span></div>
           </div>
           <div className="hero-visual">
-            <div className="hero-photo-wrap hero-photo-wrap--founders"><img src={awardTeamImage} alt="Os três fundadores da Lactus juntos durante os Prémios Nova Garra" className="hero-photo hero-photo--founders" /><span className="photo-caption">Fundadores Lactus · Luanda</span></div>
+            <div className="hero-photo-wrap hero-photo-wrap--founders"><img src={awardTeamImage} alt="Israel Pedro, Catarina Monteiro e Anabelmo Feijó, fundadores da Lactus, juntos durante os Prémios Nova Garra" className="hero-photo hero-photo--founders" /><span className="photo-caption"><strong>Israel Pedro · Catarina Monteiro · Anabelmo Feijó</strong><small>Fundadores Lactus · Luanda</small></span></div>
             <div className="hero-note hero-note--top"><Sprout size={18} /><span>uma ideia<br /><strong>em equipa</strong></span></div>
             <span className="hero-orbit orbit-one" /><span className="hero-orbit orbit-two" />
           </div>
         </section>
 
-        <div className="ticker" aria-label="Valores da Lactus"><div className="ticker-track"><span>Inovação local</span><b>✦</b><span>Bioenergia</span><b>✦</b><span>Impacto social</span><b>✦</b><span>Parcerias com propósito</span><b>✦</b><span>Inovação local</span></div></div>
-
-        <section className="compact-intro section-pad" id="sobre">
-          <div><FieldLabel>02 / PORQUÊ EXISTIMOS</FieldLabel><h2>Uma resposta local<br /><em>a um desafio real.</em></h2></div>
-          <div className="compact-intro-copy"><p className="compact-lead">Ainda existem comunidades onde a energia regular não chega — e onde uma solução pequena, robusta e adaptada pode fazer diferença.</p><p>A Lactus desenvolve tecnologias de energia sustentável para necessidades específicas de baixo consumo, com o contexto angolano no centro.</p><div className="compact-principles"><span><strong>51,1%</strong> acesso à electricidade em Angola, 2023</span><span><strong>Local</strong> pensada para solos, pessoas e lugares reais</span></div></div>
+        <section className="who-section section-pad" id="sobre">
+          <div className="who-heading"><FieldLabel>02 / QUEM SOMOS</FieldLabel><h2>Uma equipa que vê<br /><em>energia onde há vida.</em></h2></div>
+          <div className="who-story"><p className="who-lead">A Lactus nasceu da vontade de transformar curiosidade científica numa resposta concreta para comunidades angolanas.</p><p>Depois da vitória no NASA Space Apps Challenge Luanda 2025, Israel Pedro, Catarina Monteiro e Anabelmo Feijó deram forma à Lactus em novembro desse ano. Hoje, desenvolvem o Lumi e aprendem com cada passo no terreno.</p><div className="who-signals" aria-label="Princípios de energia sustentável da Lactus"><div><Sprout size={21} /><strong>Solo vivo</strong><span>Raízes e microrganismos no ponto de partida.</span></div><div><CircuitBoard size={21} /><strong>Energia gentil</strong><span>Electricidade para necessidades de baixo consumo.</span></div><div><Leaf size={21} /><strong>Impacto local</strong><span>Tecnologia desenhada para lugares e pessoas reais.</span></div></div></div>
         </section>
+
+        <div className="ticker" aria-label="Valores da Lactus"><div className="ticker-track"><span>Inovação local</span><b>✦</b><span>Bioenergia</span><b>✦</b><span>Impacto social</span><b>✦</b><span>Parcerias com propósito</span><b>✦</b><span>Inovação local</span></div></div>
 
         <section className="lumi-section section-pad" id="lumi">
           <div className="lumi-media"><div className="lumi-image-panel"><img src="/manus-storage/lumi-exhibition-detail_f6f88876.jpeg" alt="Protótipo Lumi num vaso de plantas ligado a uma luz LED durante uma exposição" /><div className="image-stamp"><span>LUMI</span><small>vaso de plantas que gera energia</small></div></div></div>
@@ -132,7 +135,7 @@ export default function Home() {
         <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>07 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Tem uma comunidade.<br /><em>Nós temos um próximo teste.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos criar um projecto-piloto juntos.</p><div className="contact-actions"><a className="button button--lime" href="mailto:hello@lactus.ao?subject=Quero%20ser%20parceiro%20da%20Lactus">Seja nosso parceiro <ArrowUpRight size={17} /></a><a className="text-link text-link--light" href="mailto:hello@lactus.ao">Fale connosco <Mail size={16} /></a></div></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:hello@lactus.ao"><Mail size={16} /> hello@lactus.ao</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
+      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:hello@lactus.ao"><Mail size={16} /> hello@lactus.ao</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
     </div>
   );
 }
