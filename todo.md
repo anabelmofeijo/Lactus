@@ -2,9 +2,9 @@
 
 ## Repositório GitHub do projecto Lactus
 
-- [ ] Verificar o estado Git e confirmar que não existem dados sensíveis a enviar.
-- [ ] Criar um repositório privado com o nome Lactus no GitHub.
-- [ ] Enviar o código actual e confirmar o URL do repositório remoto.
+- [x] Verificar o estado Git e confirmar que não existem dados sensíveis a enviar.
+- [x] Criar um repositório privado com o nome Lactus no GitHub.
+- [x] Enviar o código actual e confirmar o URL do repositório remoto.
 
 ## Organização do projecto Lactus
 
