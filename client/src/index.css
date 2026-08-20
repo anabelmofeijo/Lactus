@@ -303,7 +303,8 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .proof-awards span { color: var(--muted); font-size: 10px; font-weight: 700; line-height: 1.55; }
 .proof-awards strong { display: block; margin-bottom: 6px; color: var(--clay); font-family: var(--serif); font-size: 25px; font-weight: 400; }
 .proof-image { position: relative; justify-self: end; width: min(100%, 410px); }
-.proof-image > img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.proof-image-main { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.proof-image-inset { position: absolute; top: 11%; left: -22%; display: block; width: 48%; aspect-ratio: 4 / 5; border: 7px solid var(--ivory); object-fit: cover; box-shadow: 12px 14px 0 rgba(7,62,50,.12); transform: rotate(-4deg); }
 .proof-image > div { position: absolute; right: -22px; bottom: -18px; display: flex; align-items: center; gap: 10px; padding: 13px 15px; color: var(--paper); background: var(--forest); font-size: 9px; font-weight: 800; letter-spacing: .08em; line-height: 1.5; text-transform: uppercase; }
 .proof-image > div img { width: 31px; height: 31px; object-fit: contain; }
 
@@ -331,7 +332,8 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
   .partner-route strong { margin: 0; }
   .partner-route p { grid-column: 2; }
   .proof-awards { flex-direction: column; gap: 15px; }
-  .proof-image { width: calc(100% - 18px); }
+  .proof-image { width: calc(100% - 18px); margin-left: 16px; }
+  .proof-image-inset { left: -15px; width: 43%; border-width: 5px; }
   .proof-image > div { right: -18px; }
 }
 

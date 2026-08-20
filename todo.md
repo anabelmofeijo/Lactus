@@ -1,5 +1,11 @@
 # Actualização de activos visuais
 
+## Fotografia de equipa na credibilidade
+
+- [x] Confirmar a fotografia da equipa com três pessoas e a melhor posição na secção de credibilidade.
+- [x] Integrar a fotografia sem aumentar a extensão da landing page.
+- [x] Validar a composição em desktop e mobile e guardar um checkpoint.
+
 ## Simplificação da landing page
 
 - [x] Definir as secções indispensáveis para explicar a Lactus e gerar contactos.

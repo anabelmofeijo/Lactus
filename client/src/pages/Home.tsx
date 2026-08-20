@@ -23,6 +23,7 @@ const contourImage = `${STORAGE}lactus-topography_de3fb0ce.jpg`;
 const markImage = `${STORAGE}lactus-logo-mark_7cd71d3c.png`;
 const fullLogoImage = `${STORAGE}lactus-logo-full_a42554be.png`;
 const communityTeamImage = `${STORAGE}lactus-community-team_c2fec649.webp`;
+const awardTeamImage = `${STORAGE}lactus-award-team_2bceef86.jpg`;
 const awardPortraitImage = `${STORAGE}lactus-award-portrait_d9780e0e.jpg`;
 
 const moments = [
@@ -126,7 +127,7 @@ export default function Home() {
 
         <section className="compact-proof section-pad">
           <div className="proof-copy"><FieldLabel>06 / UMA IDEIA COM CAMINHO</FieldLabel><h2>Da curiosidade<br /><em>à credibilidade.</em></h2><p>A Lactus nasceu depois de a equipa vencer o NASA Space Apps Challenge Luanda 2025. Em 2026, o projecto recebeu o Prémio Tigra Nova Garra pelo potencial de impacto social.</p><div className="proof-awards"><span><strong>1.º lugar</strong>NASA Space Apps Challenge<br />Luanda 2025</span><span><strong>2026</strong>Prémio Tigra Nova Garra<br />Impacto social</span></div></div>
-          <div className="proof-image"><img src={awardPortraitImage} alt="Anabelmo Feijó com o troféu Nova Garra" /><div><img src={markImage} alt="" />Equipa Lactus<br />Luanda, Angola</div></div>
+          <div className="proof-image"><img className="proof-image-main" src={awardPortraitImage} alt="Anabelmo Feijó com o troféu Nova Garra" /><img className="proof-image-inset" src={awardTeamImage} alt="Anabelmo Feijó com duas pessoas da equipa Lactus durante os Prémios Nova Garra" /><div><img src={markImage} alt="" />Equipa Lactus<br />Luanda, Angola</div></div>
         </section>
 
         <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>07 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Tem uma comunidade.<br /><em>Nós temos um próximo teste.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos criar um projecto-piloto juntos.</p><div className="contact-actions"><a className="button button--lime" href="mailto:hello@lactus.ao?subject=Quero%20ser%20parceiro%20da%20Lactus">Seja nosso parceiro <ArrowUpRight size={17} /></a><a className="text-link text-link--light" href="mailto:hello@lactus.ao">Fale connosco <Mail size={16} /></a></div></div></div></section>
