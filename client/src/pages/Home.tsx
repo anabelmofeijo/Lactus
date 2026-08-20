@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 
 const STORAGE = "/manus-storage/";
-const heroImage = `${STORAGE}lactus-hero-roots_abc84794.jpg`;
 const contourImage = `${STORAGE}lactus-topography_de3fb0ce.jpg`;
 const markImage = `${STORAGE}lactus-logo-mark_7cd71d3c.png`;
 const fullLogoImage = `${STORAGE}lactus-logo-full_a42554be.png`;
@@ -97,8 +96,8 @@ export default function Home() {
             <div className="hero-meta"><span><span className="dot" />Luanda, Angola</span><span>Bioenergia · Impacto local</span></div>
           </div>
           <div className="hero-visual">
-            <div className="hero-photo-wrap"><img src={heroImage} alt="Raízes de uma planta em solo rico, com uma pequena luz" className="hero-photo" /><span className="photo-caption">Estudo Lumi · 2026</span></div>
-            <div className="hero-note hero-note--top"><Sprout size={18} /><span>inovação<br /><strong>enraizada</strong></span></div>
+            <div className="hero-photo-wrap hero-photo-wrap--founders"><img src={awardTeamImage} alt="Os três fundadores da Lactus juntos durante os Prémios Nova Garra" className="hero-photo hero-photo--founders" /><span className="photo-caption">Fundadores Lactus · Luanda</span></div>
+            <div className="hero-note hero-note--top"><Sprout size={18} /><span>uma ideia<br /><strong>em equipa</strong></span></div>
             <span className="hero-orbit orbit-one" /><span className="hero-orbit orbit-two" />
           </div>
         </section>

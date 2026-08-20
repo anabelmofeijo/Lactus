@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Destaque dos fundadores no hero
+
+- [x] Reorganizar o hero para apresentar a fotografia dos três fundadores logo no início.
+- [x] Garantir que a fotografia fica ampla, completa e legível em desktop e mobile.
+- [x] Rever a legenda e a hierarquia da mensagem principal sem alongar a página.
+- [x] Validar a nova composição e guardar um checkpoint.
+
 ## Fotografia de equipa na credibilidade
 
 - [x] Confirmar a fotografia da equipa com três pessoas e a melhor posição na secção de credibilidade.
