@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Simplificação da landing page
+
+- [x] Definir as secções indispensáveis para explicar a Lactus e gerar contactos.
+- [x] Integrar o conteúdo secundário em blocos mais curtos ou eliminar redundâncias.
+- [x] Reduzir a extensão da página sem perder o Lumi, as provas de credibilidade e o CTA.
+- [x] Validar a nova narrativa em desktop e mobile e guardar um checkpoint.
+
 ## Limpeza dos enquadramentos fotográficos
 
 - [x] Eliminar as sobras laterais geradas pelo enquadramento das fotos em Momentos Lumi.
