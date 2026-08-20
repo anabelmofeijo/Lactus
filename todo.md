@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Galeria Momentos Lumi
+
+- [x] Retirar as três fotografias de desenvolvimento da secção principal do Lumi.
+- [x] Criar uma secção editorial “Momentos Lumi” para desenvolvimento, exposição e testes.
+- [x] Ajustar imagens, legendas e layout para mobile e desktop.
+- [x] Validar a nova composição e guardar um checkpoint.
+
 ## Correcção da responsividade
 
 - [x] Auditar a homepage em mobile estreito, mobile largo, tablet e desktop.

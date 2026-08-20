@@ -124,16 +124,28 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .image-stamp { position: absolute; right: -28px; bottom: 31px; display: flex; flex-direction: column; gap: 3px; padding: 18px; color: var(--forest); background: var(--lime); transform: rotate(-4deg); }
 .image-stamp span { font-family: var(--serif); font-size: 32px; line-height: .8; }
 .image-stamp small { font-size: 8px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.lumi-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
-.lumi-gallery figure { margin: 0; }
-.lumi-gallery img { display: block; width: 100%; height: 150px; object-fit: contain; background: #0a332a; }
-.lumi-gallery figcaption { padding-top: 8px; color: rgba(244,241,232,.58); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .lumi-copy { max-width: 610px; }
 .lumi-copy h2 { max-width: 550px; margin-top: 25px; font-size: clamp(58px, 6vw, 92px); }
 .lumi-copy h2 em { color: var(--lime); }
 .section-lead { color: var(--ink); font-family: var(--serif); font-size: 25px; line-height: 1.18; }
 .section-lead--light { max-width: 530px; color: var(--paper); }
 .body-light { max-width: 520px; color: rgba(244,241,232,.69); font-size: 15px; line-height: 1.8; }
+
+/* Momentos Lumi: a quiet editorial field journal of real product development. */
+.moments { display: grid; grid-template-columns: .72fr 1.28fr; gap: 8vw; align-items: start; background: var(--paper); }
+.moments-heading { position: sticky; top: 105px; }
+.moments-heading h2 { margin-top: 24px; font-size: clamp(48px, 5.2vw, 78px); }
+.moments-heading h2 em { color: var(--clay); }
+.moments-heading p { max-width: 305px; margin-top: 23px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+.moments-grid { display: grid; grid-template-columns: 1.12fr .88fr; align-items: start; gap: 26px; }
+.moment-card { margin: 0; }
+.moment-card--wide { grid-row: span 2; }
+.moment-card img { display: block; width: 100%; aspect-ratio: .72; object-fit: contain; background: #e9e5d9; }
+.moment-card--wide img { aspect-ratio: .8; }
+.moment-card figcaption { display: grid; grid-template-columns: 30px 1fr; gap: 12px; padding-top: 13px; border-top: 1px solid var(--line); }
+.moment-card figcaption > span { color: var(--clay); font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+.moment-card strong { font-family: var(--serif); font-size: 23px; font-weight: 400; }
+.moment-card p { max-width: 235px; margin: 5px 0 0; color: var(--muted); font-size: 12px; line-height: 1.58; }
 
 .applications { display: grid; grid-template-columns: .75fr 1.25fr; gap: 9vw; background: var(--ivory); }
 .applications h2 { margin-top: 24px; font-size: clamp(55px, 6vw, 86px); }
@@ -278,8 +290,8 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
   .challenge-list div:nth-child(3), .challenge-list div:nth-child(4) { border-top: 1px solid var(--line); }
   .lumi-section { gap: 48px; }
   .lumi-image-panel img { height: 480px; }
-  .lumi-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .lumi-gallery img { height: 170px; }
+  .moments { grid-template-columns: 1fr; gap: 46px; }
+  .moments-heading { position: static; max-width: 620px; }
   .image-stamp { right: 10px; }
   .applications { gap: 58px; }
   .small-note { grid-column: 1; }
@@ -316,9 +328,10 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
   .challenge-list div, .challenge-list div:not(:first-child) { padding: 16px 0; border-right: 0; border-top: 1px solid var(--line); }
   .challenge-list div:first-child { border-top: 0; }
   .lumi-image-panel img { height: 420px; }
-  .lumi-gallery { grid-template-columns: 1fr; gap: 18px; }
-  .lumi-gallery img { height: auto; max-height: 340px; }
-  .lumi-gallery figcaption { padding-top: 7px; }
+  .moments-grid { grid-template-columns: 1fr; gap: 32px; }
+  .moment-card--wide { grid-row: auto; }
+  .moment-card img, .moment-card--wide img { aspect-ratio: auto; max-height: 490px; }
+  .moment-card figcaption { grid-template-columns: 28px 1fr; }
   .application-row { grid-template-columns: 30px 1fr 20px; gap: 10px; }
   .application-row p { grid-column: 2 / 4; }
   .process-head, .steps, .difference-grid, .business-grid { grid-template-columns: 1fr; }
