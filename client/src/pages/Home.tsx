@@ -3,7 +3,7 @@
  * This compact landing page uses a short, asymmetric conversion journey: context, Lumi,
  * proof and partnership. Every section earns its place; secondary detail is intentionally quiet.
  */
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "wouter";
 import {
   ArrowDown,
@@ -18,66 +18,77 @@ import {
   Sprout,
   X,
 } from "lucide-react";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const STORAGE = "/manus-storage/";
-const contourImage = `${STORAGE}lactus-topography_de3fb0ce.jpg`;
-const markImage = `${STORAGE}lactus-logo-mark_7cd71d3c.png`;
 const fullLogoImage = `${STORAGE}lactus-logo-full_a42554be.png`;
 const communityTeamImage = `${STORAGE}lactus-community-team_c2fec649.webp`;
 const awardTeamImage = `${STORAGE}lactus-award-team_2bceef86.jpg`;
 const nasaVictoryImage = `${STORAGE}lactus-nasa-space-apps-luanda-2025-vitoria-global_d6ec43d1.jpeg`;
 
-const moments = [
-  {
-    image: "/manus-storage/lumi-working-prototype_8f300466.jpeg",
-    alt: "Equipa a trabalhar no protótipo Lumi sobre uma mesa",
-    label: "Desenvolvimento",
-  },
-  {
-    image: "/manus-storage/lumi-exhibition_626e7ff6.jpeg",
-    alt: "Protótipo Lumi apresentado numa exposição",
-    label: "Em exposição",
-  },
-  {
-    image: "/manus-storage/lumi-development_c859ad61.jpeg",
-    alt: "Equipa a testar o vaso Lumi com instrumentos electrónicos",
-    label: "Em teste",
-  },
-];
+type HomeCopy = {
+  nav: { lumi: string; services: string; faq: string; moments: string; partnerships: string; about: string; contact: string };
+  menu: { open: string; close: string; home: string };
+  partner: string;
+  hero: { label: string; title: [string, string]; lead: string; support: string; lumi: string; pilot: string; location: string; impact: string; founders: string; foundersNote: string; teamIdea: string };
+  who: { label: string; title: [string, string]; lead: string; problemLead: string; problem: string; source: string; history: string; signalsLabel: string; signals: { title: string; text: string }[] };
+  ticker: string[];
+  lumi: { label: string; title: string; lead: string; body: string; stamp: string; uses: string[]; cta: string };
+  moments: { label: string; title: [string, string]; intro: string; entries: { alt: string; label: string }[] };
+  services: { label: string; title: [string, string]; intro: string; note: string; entries: { title: string; text: string }[] };
+  journey: { label: string; title: [string, string]; lead: string; imageAlt: string; imageLabel: string; steps: { title: string; text: string }[]; cta: string };
+  nasa: { label: string; title: [string, string]; text: string; awards: { strong: string; text: ReactNode }[]; alt: string; caption: string; recognition: string };
+  faq: { label: string; title: [string, string]; intro: string; entries: { question: string; answers: string[] }[] };
+  contact: { label: string; title: [string, string]; text: string; partner: string; email: string };
+  footer: { text: ReactNode; rights: string };
+};
 
-const faqs = [
-  {
-    question: "O que é a Lactus?",
-    answer: "A Lactus é uma startup angolana de tecnologia e energia sustentável. Desenvolvemos, testamos e implementamos soluções para desafios de acesso à electricidade em comunidades, zonas rurais e espaços onde a rede é limitada, inexistente ou pouco fiável.",
+const homeCopy: Record<"pt" | "en", HomeCopy> = {
+  pt: {
+    nav: { lumi: "Lumi", services: "Serviços", faq: "FAQ", moments: "Momentos", partnerships: "Parcerias", about: "Sobre nós", contact: "Contacto" },
+    menu: { open: "Abrir menu", close: "Fechar menu", home: "Lactus — início" },
+    partner: "Seja nosso parceiro",
+    hero: { label: "01 / ENERGIA QUE CRIA RAÍZES", title: ["A energia pode", "começar no solo."], lead: "Tecnologia angolana para desenvolver soluções de energia sustentável para comunidades e espaços onde a electricidade é limitada, inexistente ou pouco fiável.", support: "Começamos com o Lumi, a nossa primeira solução de bioenergia para aplicações de baixo consumo.", lumi: "Conheça o Lumi", pilot: "Criar um piloto", location: "Luanda, Angola", impact: "Bioenergia · Impacto local", founders: "Israel Pedro · Catarina Monteiro · Anabelmo Feijó", foundersNote: "Fundadores Lactus · Luanda", teamIdea: "uma ideia em equipa" },
+    who: { label: "02 / QUEM SOMOS", title: ["Energia sustentável", "para desafios reais."], lead: "A Lactus é uma startup angolana de tecnologia e energia sustentável. Desenvolvemos soluções inovadoras para responder aos desafios de acesso à electricidade em comunidades vulneráveis, zonas rurais e espaços onde a rede eléctrica é limitada, inexistente ou pouco fiável.", problemLead: "O problema é directo:", problem: "em Angola, apenas 51,1% da população tinha acesso à electricidade em 2023. Onde a rede é limitada, inexistente ou pouco fiável, a falta de energia regular limita a iluminação, a segurança, os sensores agrícolas e pequenos projectos comunitários.", source: "Fonte: Banco Mundial, 2023.", history: "Depois de vencer o NASA Space Apps Challenge Luanda 2025 com o projecto Saúde+, Anabelmo Feijó, Israel Pedro e Catarina Monteiro formalizaram a Lactus em novembro de 2025 e iniciaram o desenvolvimento do Lumi. Em 2026, o projecto recebeu o Prémio Tigra Nova Garra pelo seu potencial de inovação e impacto social. O Lumi é a nossa primeira solução, mas a nossa ambição é desenvolver um portefólio de tecnologias energéticas sustentáveis, acessíveis e adequadas à realidade africana.", signalsLabel: "Princípios de energia sustentável da Lactus", signals: [{ title: "Solo vivo", text: "Raízes e microrganismos no ponto de partida." }, { title: "Baixo consumo", text: "Energia para aplicações específicas." }, { title: "Contexto local", text: "Desenhada para pessoas e lugares reais." }] },
+    ticker: ["Inovação local", "Bioenergia", "Impacto social", "Parcerias com propósito", "Inovação local"],
+    lumi: { label: "03 / A NOSSA PRIMEIRA SOLUÇÃO", title: "Conheça o Lumi", lead: "O Lumi é a primeira solução desenvolvida pela Lactus: um sistema de bioenergia inspirado na relação entre plantas, solo e microrganismos.", body: "Na sua forma actual, o Lumi funciona através de um vaso de plantas que gera energia, pensado para alimentar sinais LED e sensores ambientais, sem prejudicar a planta.", stamp: "vaso de plantas que gera energia", uses: ["Iluminar percursos", "Ler o ambiente"], cta: "Levar o Lumi ao terreno" },
+    moments: { label: "04 / MOMENTOS LUMI", title: ["Do protótipo", "ao mundo real."], intro: "Investigar, testar e partilhar: três momentos de uma solução que ainda está a crescer.", entries: [{ alt: "Equipa a trabalhar no protótipo Lumi sobre uma mesa", label: "Desenvolvimento" }, { alt: "Protótipo Lumi apresentado numa exposição", label: "Em exposição" }, { alt: "Equipa a testar o vaso Lumi com instrumentos electrónicos", label: "Em teste" }] },
+    services: { label: "05 / SERVIÇOS LACTUS", title: ["Energia que", "chega ao terreno."], intro: "Da identificação do desafio à implementação e acompanhamento, trabalhamos com organizações para desenvolver soluções energéticas sustentáveis, adequadas a cada contexto.", note: "Planeamento · implementação · acompanhamento · aprendizagem", entries: [{ title: "Desenvolvimento de soluções energéticas personalizadas", text: "Criamos e adaptamos soluções tecnológicas de energia às necessidades de comunidades, organizações e projectos em locais com acesso limitado, instável ou inexistente à electricidade." }, { title: "Implementação de sistemas energéticos", text: "Planeamos, fornecemos e instalamos soluções para iluminação, sinalização, monitorização e outras aplicações de baixo consumo." }, { title: "Monitorização e manutenção técnica", text: "Acompanhamos o desempenho das soluções, realizamos manutenção e recolhemos dados para reforçar a sua fiabilidade, aprendizagem e continuidade." }, { title: "Projectos-piloto, investigação e inovação", text: "Desenvolvemos pilotos com organizações parceiras para testar, validar e melhorar tecnologias em condições reais, medindo impacto técnico, social e ambiental." }] },
+    journey: { label: "06 / FAZEMOS COM QUEM CONHECE O TERRITÓRIO", title: ["Um piloto começa", "com uma conversa."], lead: "A organização parceira conhece a comunidade. A Lactus leva a tecnologia e o acompanhamento técnico.", imageAlt: "Membros da equipa Lactus num encontro de inovação e desenvolvimento comunitário", imageLabel: "Lactus + parceiros locais", steps: [{ title: "Mapear", text: "Identificamos uma necessidade e o melhor local." }, { title: "Instalar", text: "Adaptamos e instalamos a solução mais adequada ao contexto, acompanhando o início da implementação." }, { title: "Medir", text: "Aprendemos com dados técnicos e impacto percebido." }], cta: "Construir um piloto" },
+    nasa: { label: "07 / UMA VITÓRIA QUE ABRIU CAMINHO", title: ["Do desafio local", "ao reconhecimento global."], text: "A equipa venceu o NASA Space Apps Challenge Luanda 2025 e foi nomeada a nível global. Este momento reforçou a convicção de que as ideias nascidas em Angola podem criar soluções relevantes para desafios reais.", awards: [{ strong: "1.º lugar", text: <>NASA Space Apps Challenge<br />Luanda 2025</> }, { strong: "Nomeação global", text: "Reconhecimento além de Luanda" }, { strong: "2026", text: <>Prémio Tigra Nova Garra<br />Impacto social</> }], alt: "Equipa vencedora do NASA Space Apps Challenge Luanda 2025 reunida com o troféu e o certificado de reconhecimento", caption: "NASA Space Apps Challenge · Luanda, 2025", recognition: "Vitória local · Nomeação global" },
+    faq: { label: "08 / PERGUNTAS FREQUENTES", title: ["Dúvidas claras,", "parcerias melhores."], intro: "Algumas respostas para organizações que querem explorar um projecto-piloto ou conhecer melhor o trabalho da Lactus.", entries: [{ question: "O que é a Lactus?", answers: ["A Lactus é uma startup angolana de tecnologia e energia sustentável. Desenvolvemos, testamos e implementamos soluções para desafios de acesso à electricidade em comunidades, zonas rurais e espaços onde a rede é limitada, inexistente ou pouco fiável."] }, { question: "O que é o Lumi?", answers: ["O Lumi é a primeira solução desenvolvida pela Lactus. É uma tecnologia de bioenergia que utiliza a interacção natural entre plantas, solo e microrganismos para gerar electricidade para aplicações de baixo consumo."] }, { question: "O Lumi substitui a rede eléctrica?", answers: ["Não. O Lumi não foi concebido para substituir a rede eléctrica, painéis solares ou geradores em aplicações de grande escala.", "Nesta fase, é desenvolvido para necessidades específicas de baixo consumo, como sinalização LED, iluminação de orientação e sensores agrícolas ou ambientais."] }, { question: "A Lactus trabalha apenas com bioenergia?", answers: ["Não. A bioenergia, através do Lumi, é o nosso ponto de partida. A visão da Lactus é desenvolver diferentes soluções de energia sustentável, acessíveis e adaptadas à realidade africana."] }, { question: "Como funciona uma parceria com a Lactus?", answers: ["A organização parceira identifica uma necessidade concreta numa comunidade ou espaço. A Lactus avalia o local, desenvolve ou adapta a solução, realiza a implementação e acompanha o desempenho técnico do projecto.", "Os projectos podem incluir instalação, manutenção, monitorização e medição de impacto."] }, { question: "O Lumi já está disponível?", answers: ["O Lumi encontra-se em fase de validação e preparação para projectos-piloto em condições reais. Procuramos organizações parceiras interessadas em implementar, testar e acompanhar a solução de forma responsável e orientada por dados."] }] },
+    contact: { label: "09 / VAMOS CONSTRUIR IMPACTO", title: ["Onde a rede não chega,", "a Lactus chega."], text: "Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos desenhar e implementar um projecto-piloto adequado ao seu contexto.", partner: "Seja nosso parceiro", email: "Fale connosco" },
+    footer: { text: <>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</>, rights: "© 2026 Lactus. Luanda, Angola." },
   },
-  {
-    question: "O que é o Lumi?",
-    answer: "O Lumi é a primeira solução desenvolvida pela Lactus. É uma tecnologia de bioenergia que utiliza a interacção natural entre plantas, solo e microrganismos para gerar electricidade para aplicações de baixo consumo.",
+  en: {
+    nav: { lumi: "Lumi", services: "Services", faq: "FAQ", moments: "Milestones", partnerships: "Partnerships", about: "About us", contact: "Contact" },
+    menu: { open: "Open menu", close: "Close menu", home: "Lactus — home" },
+    partner: "Partner with us",
+    hero: { label: "01 / ENERGY THAT TAKES ROOT", title: ["Energy can", "start in the soil."], lead: "Angolan technology developing sustainable energy solutions for communities and spaces where electricity is limited, unavailable or unreliable.", support: "We begin with Lumi, our first bioenergy solution for low-consumption applications.", lumi: "Meet Lumi", pilot: "Create a pilot", location: "Luanda, Angola", impact: "Bioenergy · Local impact", founders: "Israel Pedro · Catarina Monteiro · Anabelmo Feijó", foundersNote: "Lactus founders · Luanda", teamIdea: "an idea built together" },
+    who: { label: "02 / WHO WE ARE", title: ["Sustainable energy", "for real challenges."], lead: "Lactus is an Angolan technology and sustainable energy startup. We develop innovative solutions for electricity-access challenges in vulnerable communities, rural areas and spaces where the electricity grid is limited, unavailable or unreliable.", problemLead: "The challenge is clear:", problem: "in Angola, only 51.1% of the population had access to electricity in 2023. Where the grid is limited, unavailable or unreliable, the lack of regular energy constrains lighting, safety, agricultural sensors and small community projects.", source: "Source: World Bank, 2023.", history: "After winning the NASA Space Apps Challenge Luanda 2025 with the Saúde+ project, Anabelmo Feijó, Israel Pedro and Catarina Monteiro formally established Lactus in November 2025 and began developing Lumi. In 2026, the project received the Tigra Nova Garra Award for its potential for innovation and social impact. Lumi is our first solution, but our ambition is to develop a portfolio of sustainable, accessible energy technologies suited to African realities.", signalsLabel: "Lactus principles for sustainable energy", signals: [{ title: "Living soil", text: "Roots and microorganisms at the starting point." }, { title: "Low consumption", text: "Energy for focused applications." }, { title: "Local context", text: "Designed for real people and places." }] },
+    ticker: ["Local innovation", "Bioenergy", "Social impact", "Purposeful partnerships", "Local innovation"],
+    lumi: { label: "03 / OUR FIRST SOLUTION", title: "Meet Lumi", lead: "Lumi is the first solution developed by Lactus: a bioenergy system inspired by the relationship between plants, soil and microorganisms.", body: "In its current form, Lumi works through a plant pot that generates energy, designed to power LED signs and environmental sensors without harming the plant.", stamp: "a plant pot that generates energy", uses: ["Light pathways", "Read the environment"], cta: "Bring Lumi to the field" },
+    moments: { label: "04 / LUMI MOMENTS", title: ["From prototype", "to the real world."], intro: "Research, test and share: three moments in a solution that is still growing.", entries: [{ alt: "Team working on the Lumi prototype at a table", label: "Development" }, { alt: "Lumi prototype displayed at an exhibition", label: "On display" }, { alt: "Team testing the Lumi plant pot with electronic instruments", label: "Testing" }] },
+    services: { label: "05 / LACTUS SERVICES", title: ["Energy that", "reaches the field."], intro: "From identifying the challenge to implementation and follow-up, we work with organisations to develop sustainable energy solutions tailored to each context.", note: "Planning · implementation · follow-up · learning", entries: [{ title: "Custom energy solution development", text: "We create and adapt energy technologies to the needs of communities, organisations and projects in places with limited, unstable or unavailable access to electricity." }, { title: "Energy system implementation", text: "We plan, supply and install solutions for lighting, signage, monitoring and other low-consumption applications." }, { title: "Technical monitoring and maintenance", text: "We track solution performance, conduct maintenance and gather data to strengthen reliability, learning and continuity." }, { title: "Pilot projects, research and innovation", text: "We develop pilots with partner organisations to test, validate and improve technologies in real conditions, measuring technical, social and environmental impact." }] },
+    journey: { label: "06 / WE BUILD WITH THOSE WHO KNOW THE TERRITORY", title: ["A pilot starts", "with a conversation."], lead: "The partner organisation knows the community. Lactus brings technology and technical follow-up.", imageAlt: "Lactus team members at an innovation and community development gathering", imageLabel: "Lactus + local partners", steps: [{ title: "Map", text: "We identify a need and the best location." }, { title: "Install", text: "We adapt and install the solution best suited to the context, supporting the start of implementation." }, { title: "Measure", text: "We learn from technical data and perceived impact." }], cta: "Build a pilot" },
+    nasa: { label: "07 / A WIN THAT OPENED A PATH", title: ["From a local challenge", "to global recognition."], text: "The team won the NASA Space Apps Challenge Luanda 2025 and was globally nominated. This moment reinforced our belief that ideas born in Angola can create relevant solutions for real challenges.", awards: [{ strong: "1st place", text: <>NASA Space Apps Challenge<br />Luanda 2025</> }, { strong: "Global nomination", text: "Recognition beyond Luanda" }, { strong: "2026", text: <>Tigra Nova Garra Award<br />Social impact</> }], alt: "Winning NASA Space Apps Challenge Luanda 2025 team gathered with the trophy and recognition certificate", caption: "NASA Space Apps Challenge · Luanda, 2025", recognition: "Local win · Global nomination" },
+    faq: { label: "08 / FREQUENTLY ASKED QUESTIONS", title: ["Clear questions,", "better partnerships."], intro: "A few answers for organisations that want to explore a pilot project or better understand Lactus’ work.", entries: [{ question: "What is Lactus?", answers: ["Lactus is an Angolan technology and sustainable energy startup. We develop, test and implement solutions for electricity-access challenges in communities, rural areas and spaces where the grid is limited, unavailable or unreliable."] }, { question: "What is Lumi?", answers: ["Lumi is the first solution developed by Lactus. It is a bioenergy technology that uses the natural interaction between plants, soil and microorganisms to generate electricity for low-consumption applications."] }, { question: "Does Lumi replace the electricity grid?", answers: ["No. Lumi was not designed to replace the electricity grid, solar panels or generators in large-scale applications.", "At this stage, it is designed for specific low-consumption needs, such as LED signage, orientation lighting and agricultural or environmental sensors."] }, { question: "Does Lactus work only with bioenergy?", answers: ["No. Bioenergy, through Lumi, is our starting point. Lactus’ vision is to develop different sustainable energy solutions that are accessible and adapted to African realities."] }, { question: "How does a partnership with Lactus work?", answers: ["The partner organisation identifies a specific need in a community or space. Lactus assesses the location, develops or adapts the solution, carries out the implementation and monitors technical performance.", "Projects may include installation, maintenance, monitoring and impact measurement."] }, { question: "Is Lumi already available?", answers: ["Lumi is in validation and preparation for pilot projects in real conditions. We are looking for partner organisations interested in implementing, testing and monitoring the solution responsibly and with a data-driven approach."] }] },
+    contact: { label: "09 / LET'S BUILD IMPACT", title: ["Where the grid does not reach,", "Lactus does."], text: "If your organisation works in rural development, education, agriculture, sustainability or social innovation, we can design and implement a pilot project suited to your context.", partner: "Partner with us", email: "Talk to us" },
+    footer: { text: <>Sustainable energy for<br />communities with limited access<br />to electricity.</>, rights: "© 2026 Lactus. Luanda, Angola." },
   },
-  {
-    question: "O Lumi substitui a rede eléctrica?",
-    answer: <>Não. O Lumi não foi concebido para substituir a rede eléctrica, painéis solares ou geradores em aplicações de grande escala.<br /><br />Nesta fase, é desenvolvido para necessidades específicas de baixo consumo, como sinalização LED, iluminação de orientação e sensores agrícolas ou ambientais.</>,
-  },
-  {
-    question: "A Lactus trabalha apenas com bioenergia?",
-    answer: "Não. A bioenergia, através do Lumi, é o nosso ponto de partida. A visão da Lactus é desenvolver diferentes soluções de energia sustentável, acessíveis e adaptadas à realidade africana.",
-  },
-  {
-    question: "Como funciona uma parceria com a Lactus?",
-    answer: <>A organização parceira identifica uma necessidade concreta numa comunidade ou espaço. A Lactus avalia o local, desenvolve ou adapta a solução, realiza a implementação e acompanha o desempenho técnico do projecto.<br /><br />Os projectos podem incluir instalação, manutenção, monitorização e medição de impacto.</>,
-  },
-  {
-    question: "O Lumi já está disponível?",
-    answer: "O Lumi encontra-se em fase de validação e preparação para projectos-piloto em condições reais. Procuramos organizações parceiras interessadas em implementar, testar e acompanhar a solução de forma responsável e orientada por dados.",
-  },
-];
+};
 
-function FieldLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+const momentImages = ["lumi-working-prototype_8f300466.jpeg", "lumi-exhibition_626e7ff6.jpeg", "lumi-development_c859ad61.jpeg"];
+
+function FieldLabel({ children, light = false }: { children: ReactNode; light?: boolean }) {
   return <span className={`field-label${light ? " field-label--light" : ""}`}>{children}</span>;
 }
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { language } = useLanguage();
+  const copy = homeCopy[language];
 
   useEffect(() => {
     const links = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
@@ -89,104 +100,42 @@ export default function Home() {
   return (
     <div className="lactus-site">
       <header className={`site-header${menuOpen ? " site-header--open" : ""}`}>
-        <a className="brand" href="#top" aria-label="Lactus — início">
-          <img className="brand-logo-full" src={fullLogoImage} alt="Lactus" decoding="async" />
-        </a>
-        <nav className="desktop-nav" aria-label="Navegação principal">
-          <a href="#lumi">Lumi</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#faq">FAQ</a>
-          <Link href="/momentos">Momentos</Link>
-          <a href="#parcerias">Parcerias</a>
-          <a href="#sobre">Sobre nós</a>
+        <a className="brand" href="#top" aria-label={copy.menu.home}><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" decoding="async" /></a>
+        <nav className="desktop-nav" aria-label={language === "pt" ? "Navegação principal" : "Main navigation"}>
+          <a href="#lumi">{copy.nav.lumi}</a><a href="#servicos">{copy.nav.services}</a><a href="#faq">{copy.nav.faq}</a><Link href="/momentos">{copy.nav.moments}</Link><a href="#parcerias">{copy.nav.partnerships}</a><a href="#sobre">{copy.nav.about}</a>
         </nav>
         <div className="header-actions">
           <a className="header-mail" href="mailto:startuplactus@gmail.com">startuplactus@gmail.com</a>
-          <Link className="button button--dark button--small" href="/parceria">Seja nosso parceiro <ArrowUpRight size={15} /></Link>
-          <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen}>
-            {menuOpen ? <X size={21} /> : <Menu size={21} />}
-          </button>
+          <LanguageToggle />
+          <Link className="button button--dark button--small" href="/parceria">{copy.partner} <ArrowUpRight size={15} /></Link>
+          <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? copy.menu.close : copy.menu.open} aria-expanded={menuOpen}>{menuOpen ? <X size={21} /> : <Menu size={21} />}</button>
         </div>
-        <div className="mobile-nav">
-          <a href="#lumi">Lumi</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#faq">FAQ</a>
-          <Link href="/momentos" onClick={() => setMenuOpen(false)}>Momentos</Link>
-          <a href="#parcerias">Parcerias</a>
-          <a href="#sobre">Sobre nós</a>
-          <a href="#contacto">Contacto</a>
-        </div>
+        <div className="mobile-nav"><a href="#lumi">{copy.nav.lumi}</a><a href="#servicos">{copy.nav.services}</a><a href="#faq">{copy.nav.faq}</a><Link href="/momentos" onClick={() => setMenuOpen(false)}>{copy.nav.moments}</Link><a href="#parcerias">{copy.nav.partnerships}</a><a href="#sobre">{copy.nav.about}</a><a href="#contacto">{copy.nav.contact}</a></div>
       </header>
 
       <main id="top">
-        <section className="hero section-pad">
-          <div className="hero-copy">
-            <FieldLabel>01 / ENERGIA QUE CRIA RAÍZES</FieldLabel>
-            <h1>A energia pode <em>começar</em> no solo.</h1>
-            <p className="hero-lead">Tecnologia angolana para desenvolver soluções de energia sustentável para comunidades e espaços onde a electricidade é limitada, inexistente ou pouco fiável.</p>
-            <p className="hero-support">Começamos com o Lumi, a nossa primeira solução de bioenergia para aplicações de baixo consumo.</p>
-            <div className="hero-actions">
-              <a className="button button--lime" href="#lumi">Conheça o Lumi <ArrowUpRight size={17} /></a>
-              <Link className="text-link" href="/parceria">Criar um piloto <ArrowDown size={16} /></Link>
-            </div>
-            <div className="hero-meta"><span><span className="dot" />Luanda, Angola</span><span>Bioenergia · Impacto local</span></div>
-          </div>
-          <div className="hero-visual">
-            <div className="hero-photo-wrap hero-photo-wrap--founders"><img src={awardTeamImage} alt="Israel Pedro, Catarina Monteiro e Anabelmo Feijó, fundadores da Lactus, juntos durante os Prémios Nova Garra" className="hero-photo hero-photo--founders" decoding="async" fetchPriority="high" /><span className="photo-caption"><strong>Israel Pedro · Catarina Monteiro · Anabelmo Feijó</strong><small>Fundadores Lactus · Luanda</small></span></div>
-            <div className="hero-note hero-note--top"><Sprout size={18} /><span>uma ideia<br /><strong>em equipa</strong></span></div>
-            <span className="hero-orbit orbit-one" /><span className="hero-orbit orbit-two" />
-          </div>
-        </section>
+        <section className="hero section-pad"><div className="hero-copy"><FieldLabel>{copy.hero.label}</FieldLabel><h1>{copy.hero.title[0]} <em>{copy.hero.title[1]}</em></h1><p className="hero-lead">{copy.hero.lead}</p><p className="hero-support">{copy.hero.support}</p><div className="hero-actions"><a className="button button--lime" href="#lumi">{copy.hero.lumi} <ArrowUpRight size={17} /></a><Link className="text-link" href="/parceria">{copy.hero.pilot} <ArrowDown size={16} /></Link></div><div className="hero-meta"><span><span className="dot" />{copy.hero.location}</span><span>{copy.hero.impact}</span></div></div><div className="hero-visual"><div className="hero-photo-wrap hero-photo-wrap--founders"><img src={awardTeamImage} alt={copy.hero.founders} className="hero-photo hero-photo--founders" decoding="async" fetchPriority="high" /><span className="photo-caption"><strong>{copy.hero.founders}</strong><small>{copy.hero.foundersNote}</small></span></div><div className="hero-note hero-note--top"><Sprout size={18} /><span>{copy.hero.teamIdea}</span></div><span className="hero-orbit orbit-one" /><span className="hero-orbit orbit-two" /></div></section>
 
-        <section className="who-section section-pad" id="sobre">
-          <div className="who-heading"><FieldLabel>02 / QUEM SOMOS</FieldLabel><h2>Energia sustentável<br /><em>para desafios reais.</em></h2></div>
-          <div className="who-story"><p className="who-lead">A Lactus é uma startup angolana de tecnologia e energia sustentável. Desenvolvemos soluções inovadoras para responder aos desafios de acesso à electricidade em comunidades vulneráveis, zonas rurais e espaços onde a rede eléctrica é limitada, inexistente ou pouco fiável.</p><p className="who-problem"><strong>O problema é directo:</strong> em Angola, apenas 51,1% da população tinha acesso à electricidade em 2023. Onde a rede é limitada, inexistente ou pouco fiável, a falta de energia regular limita a iluminação, a segurança, os sensores agrícolas e pequenos projectos comunitários.<small className="source-credit">Fonte: Banco Mundial, 2023.</small></p><p>Depois de vencer o NASA Space Apps Challenge Luanda 2025 com o projecto Saúde+, Anabelmo Feijó, Israel Pedro e Catarina Monteiro formalizaram a Lactus em novembro de 2025 e iniciaram o desenvolvimento do Lumi. Em 2026, o projecto recebeu o Prémio Tigra Nova Garra pelo seu potencial de inovação e impacto social. O Lumi é a nossa primeira solução, mas a nossa ambição é desenvolver um portefólio de tecnologias energéticas sustentáveis, acessíveis e adequadas à realidade africana.</p><div className="who-signals" aria-label="Princípios de energia sustentável da Lactus"><div><Sprout size={21} /><strong>Solo vivo</strong><span>Raízes e microrganismos no ponto de partida.</span></div><div><CircuitBoard size={21} /><strong>Baixo consumo</strong><span>Energia para aplicações específicas.</span></div><div><Leaf size={21} /><strong>Contexto local</strong><span>Desenhada para pessoas e lugares reais.</span></div></div></div>
-        </section>
+        <section className="who-section section-pad" id="sobre"><div className="who-heading"><FieldLabel>{copy.who.label}</FieldLabel><h2>{copy.who.title[0]}<br /><em>{copy.who.title[1]}</em></h2></div><div className="who-story"><p className="who-lead">{copy.who.lead}</p><p className="who-problem"><strong>{copy.who.problemLead}</strong> {copy.who.problem}<small className="source-credit">{copy.who.source}</small></p><p>{copy.who.history}</p><div className="who-signals" aria-label={copy.who.signalsLabel}>{copy.who.signals.map((signal, index) => <div key={signal.title}>{index === 0 ? <Sprout size={21} /> : index === 1 ? <CircuitBoard size={21} /> : <Leaf size={21} />}<strong>{signal.title}</strong><span>{signal.text}</span></div>)}</div></div></section>
 
-        <div className="ticker" aria-label="Valores da Lactus"><div className="ticker-track"><span>Inovação local</span><b>✦</b><span>Bioenergia</span><b>✦</b><span>Impacto social</span><b>✦</b><span>Parcerias com propósito</span><b>✦</b><span>Inovação local</span></div></div>
+        <div className="ticker" aria-label={language === "pt" ? "Valores da Lactus" : "Lactus values"}><div className="ticker-track">{copy.ticker.map((value, index) => <span key={`${value}-${index}`}>{value}{index < copy.ticker.length - 1 && <b>✦</b>}</span>)}</div></div>
 
-        <section className="lumi-section section-pad" id="lumi">
-          <div className="lumi-media"><div className="lumi-image-panel"><img src="/manus-storage/lumi-exhibition-detail_f6f88876.jpeg" alt="Protótipo Lumi num vaso de plantas ligado a uma luz LED durante uma exposição" loading="lazy" decoding="async" /><div className="image-stamp"><span>LUMI</span><small>vaso de plantas que gera energia</small></div></div></div>
-          <div className="lumi-copy"><FieldLabel light>03 / A NOSSA PRIMEIRA SOLUÇÃO</FieldLabel><h2>Conheça o <em>Lumi</em>.</h2><p className="section-lead section-lead--light">O Lumi é a primeira solução desenvolvida pela Lactus: um sistema de bioenergia inspirado na relação entre plantas, solo e microrganismos.</p><p className="body-light">Na sua forma actual, o Lumi funciona através de um vaso de plantas que gera energia, pensado para alimentar sinais LED e sensores ambientais, sem prejudicar a planta.</p><div className="lumi-uses"><span><Leaf size={16} /> Iluminar percursos</span><span><CircuitBoard size={16} /> Ler o ambiente</span></div><Link className="button button--outline-light" href="/parceria">Levar o Lumi ao terreno <ArrowUpRight size={16} /></Link></div>
-        </section>
+        <section className="lumi-section section-pad" id="lumi"><div className="lumi-media"><div className="lumi-image-panel"><img src="/manus-storage/lumi-exhibition-detail_f6f88876.jpeg" alt={language === "pt" ? "Protótipo Lumi num vaso de plantas ligado a uma luz LED durante uma exposição" : "Lumi prototype in a plant pot connected to an LED light during an exhibition"} loading="lazy" decoding="async" /><div className="image-stamp"><span>LUMI</span><small>{copy.lumi.stamp}</small></div></div></div><div className="lumi-copy"><FieldLabel light>{copy.lumi.label}</FieldLabel><h2>{copy.lumi.title.split(" ")[0]} <em>{copy.lumi.title.split(" ").slice(1).join(" ")}</em></h2><p className="section-lead section-lead--light">{copy.lumi.lead}</p><p className="body-light">{copy.lumi.body}</p><div className="lumi-uses"><span><Leaf size={16} /> {copy.lumi.uses[0]}</span><span><CircuitBoard size={16} /> {copy.lumi.uses[1]}</span></div><Link className="button button--outline-light" href="/parceria">{copy.lumi.cta} <ArrowUpRight size={16} /></Link></div></section>
 
-        <section className="compact-moments section-pad" aria-labelledby="momentos-lumi">
-          <div className="compact-moments-head"><FieldLabel>04 / MOMENTOS LUMI</FieldLabel><h2 id="momentos-lumi">Do protótipo<br /><em>ao mundo real.</em></h2><p>Investigar, testar e partilhar: três momentos de uma solução que ainda está a crescer.</p></div>
-          <div className="moments-strip">{moments.map((moment, index) => <figure key={moment.label}><img src={moment.image} alt={moment.alt} loading="lazy" decoding="async" /><figcaption><span>0{index + 1}</span>{moment.label}</figcaption></figure>)}</div>
-        </section>
+        <section className="compact-moments section-pad" aria-labelledby="momentos-lumi"><div className="compact-moments-head"><FieldLabel>{copy.moments.label}</FieldLabel><h2 id="momentos-lumi">{copy.moments.title[0]}<br /><em>{copy.moments.title[1]}</em></h2><p>{copy.moments.intro}</p></div><div className="moments-strip">{copy.moments.entries.map((moment, index) => <figure key={moment.label}><img src={`${STORAGE}${momentImages[index]}`} alt={moment.alt} loading="lazy" decoding="async" /><figcaption><span>0{index + 1}</span>{moment.label}</figcaption></figure>)}</div></section>
 
-        <section className="services-section section-pad" id="servicos" aria-labelledby="servicos-titulo">
-          <div className="services-heading"><FieldLabel>05 / SERVIÇOS LACTUS</FieldLabel><h2 id="servicos-titulo">Energia que<br /><em>chega ao terreno.</em></h2><p>Da identificação do desafio à implementação e acompanhamento, trabalhamos com organizações para desenvolver soluções energéticas sustentáveis, adequadas a cada contexto.</p><span className="services-field-note"><Sprout size={15} aria-hidden="true" />Planeamento · implementação · acompanhamento · aprendizagem</span></div>
-          <div className="services-list">
-            <article className="service-row"><span>01</span><CircuitBoard size={20} aria-hidden="true" /><div><h3>Desenvolvimento de soluções energéticas personalizadas</h3><p>Criamos e adaptamos soluções tecnológicas de energia às necessidades de comunidades, organizações e projectos em locais com acesso limitado, instável ou inexistente à electricidade.</p></div></article>
-            <article className="service-row"><span>02</span><Leaf size={20} aria-hidden="true" /><div><h3>Implementação de sistemas energéticos</h3><p>Planeamos, fornecemos e instalamos soluções para iluminação, sinalização, monitorização e outras aplicações de baixo consumo.</p></div></article>
-            <article className="service-row"><span>03</span><Sprout size={20} aria-hidden="true" /><div><h3>Monitorização e manutenção técnica</h3><p>Acompanhamos o desempenho das soluções, realizamos manutenção e recolhemos dados para reforçar a sua fiabilidade, aprendizagem e continuidade.</p></div></article>
-            <article className="service-row"><span>04</span><Handshake size={20} aria-hidden="true" /><div><h3>Projectos-piloto, investigação e inovação</h3><p>Desenvolvemos pilotos com organizações parceiras para testar, validar e melhorar tecnologias em condições reais, medindo impacto técnico, social e ambiental.</p></div></article>
-          </div>
-        </section>
+        <section className="services-section section-pad" id="servicos" aria-labelledby="servicos-titulo"><div className="services-heading"><FieldLabel>{copy.services.label}</FieldLabel><h2 id="servicos-titulo">{copy.services.title[0]}<br /><em>{copy.services.title[1]}</em></h2><p>{copy.services.intro}</p><span className="services-field-note"><Sprout size={15} aria-hidden="true" />{copy.services.note}</span></div><div className="services-list">{copy.services.entries.map((service, index) => <article className="service-row" key={service.title}><span>0{index + 1}</span>{index === 0 ? <CircuitBoard size={20} aria-hidden="true" /> : index === 1 ? <Leaf size={20} aria-hidden="true" /> : index === 2 ? <Sprout size={20} aria-hidden="true" /> : <Handshake size={20} aria-hidden="true" />}<div><h3>{service.title}</h3><p>{service.text}</p></div></article>)}</div></section>
 
-        <section className="partner-journey section-pad" id="parcerias">
-          <div className="partner-journey-media"><img src={communityTeamImage} alt="Membros da equipa Lactus num encontro de inovação e desenvolvimento comunitário" loading="lazy" decoding="async" /><span>Lactus + parceiros locais</span></div>
-          <div className="partner-journey-copy"><FieldLabel>06 / FAZEMOS COM QUEM CONHECE O TERRITÓRIO</FieldLabel><h2>Um piloto começa<br /><em>com uma conversa.</em></h2><p className="section-lead">A organização parceira conhece a comunidade. A Lactus leva a tecnologia e o acompanhamento técnico.</p><div className="partner-route"><div><span>01</span><strong>Mapear</strong><p>Identificamos uma necessidade e o melhor local.</p></div><div><span>02</span><strong>Instalar</strong><p>Adaptamos e instalamos a solução mais adequada ao contexto, acompanhando o início da implementação.</p></div><div><span>03</span><strong>Medir</strong><p>Aprendemos com dados técnicos e impacto percebido.</p></div></div><Link className="button button--dark" href="/parceria"><Handshake size={16} /> Construir um piloto</Link></div>
-        </section>
+        <section className="partner-journey section-pad" id="parcerias"><div className="partner-journey-media"><img src={communityTeamImage} alt={copy.journey.imageAlt} loading="lazy" decoding="async" /><span>{copy.journey.imageLabel}</span></div><div className="partner-journey-copy"><FieldLabel>{copy.journey.label}</FieldLabel><h2>{copy.journey.title[0]}<br /><em>{copy.journey.title[1]}</em></h2><p className="section-lead">{copy.journey.lead}</p><div className="partner-route">{copy.journey.steps.map((step, index) => <div key={step.title}><span>0{index + 1}</span><strong>{step.title}</strong><p>{step.text}</p></div>)}</div><Link className="button button--dark" href="/parceria"><Handshake size={16} /> {copy.journey.cta}</Link></div></section>
 
-        <section className="nasa-proof section-pad" id="nasa-space-apps" aria-labelledby="nasa-proof-title">
-          <div className="nasa-proof-head">
-            <div className="nasa-proof-heading"><FieldLabel>07 / UMA VITÓRIA QUE ABRIU CAMINHO</FieldLabel><h2 id="nasa-proof-title">Do desafio local<br /><em>ao reconhecimento global.</em></h2></div>
-            <div className="nasa-proof-details"><p>A equipa venceu o NASA Space Apps Challenge Luanda 2025 e foi nomeada a nível global. Este momento reforçou a convicção de que as ideias nascidas em Angola podem criar soluções relevantes para desafios reais.</p><div className="proof-awards"><span><strong>1.º lugar</strong>NASA Space Apps Challenge<br />Luanda 2025</span><span><strong>Nomeação global</strong>Reconhecimento além de Luanda</span><span><strong>2026</strong>Prémio Tigra Nova Garra<br />Impacto social</span></div></div>
-          </div>
-          <figure className="nasa-victory"><img src={nasaVictoryImage} alt="Equipa vencedora do NASA Space Apps Challenge Luanda 2025 reunida com o troféu e o certificado de reconhecimento" loading="lazy" decoding="async" /><figcaption><span>NASA Space Apps Challenge · Luanda, 2025</span><strong>Vitória local · Nomeação global</strong></figcaption></figure>
-        </section>
+        <section className="nasa-proof section-pad" id="nasa-space-apps" aria-labelledby="nasa-proof-title"><div className="nasa-proof-head"><div className="nasa-proof-heading"><FieldLabel>{copy.nasa.label}</FieldLabel><h2 id="nasa-proof-title">{copy.nasa.title[0]}<br /><em>{copy.nasa.title[1]}</em></h2></div><div className="nasa-proof-details"><p>{copy.nasa.text}</p><div className="proof-awards">{copy.nasa.awards.map((award) => <span key={award.strong}><strong>{award.strong}</strong>{award.text}</span>)}</div></div></div><figure className="nasa-victory"><img src={nasaVictoryImage} alt={copy.nasa.alt} loading="lazy" decoding="async" /><figcaption><span>{copy.nasa.caption}</span><strong>{copy.nasa.recognition}</strong></figcaption></figure></section>
 
-        <section className="faq-section section-pad" id="faq" aria-labelledby="faq-titulo">
-          <div className="faq-heading"><FieldLabel>08 / PERGUNTAS FREQUENTES</FieldLabel><h2 id="faq-titulo">Dúvidas claras,<br /><em>parcerias melhores.</em></h2><p>Algumas respostas para organizações que querem explorar um projecto-piloto ou conhecer melhor o trabalho da Lactus.</p></div>
-          <div className="faq-list">{faqs.map((faq, index) => <details className="faq-item" key={faq.question}><summary><span>0{index + 1}</span><strong>{faq.question}</strong><ChevronDown size={19} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div>
-        </section>
+        <section className="faq-section section-pad" id="faq" aria-labelledby="faq-titulo"><div className="faq-heading"><FieldLabel>{copy.faq.label}</FieldLabel><h2 id="faq-titulo">{copy.faq.title[0]}<br /><em>{copy.faq.title[1]}</em></h2><p>{copy.faq.intro}</p></div><div className="faq-list">{copy.faq.entries.map((faq, index) => <details className="faq-item" key={faq.question}><summary><span>0{index + 1}</span><strong>{faq.question}</strong><ChevronDown size={19} aria-hidden="true" /></summary><div className="faq-answer">{faq.answers.map((answer) => <p key={answer}>{answer}</p>)}</div></details>)}</div></section>
 
-        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>09 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Onde a rede não chega,<br /><em>a Lactus chega.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos desenhar e implementar um projecto-piloto adequado ao seu contexto.</p><div className="contact-actions"><Link className="button button--lime" href="/parceria">Seja nosso parceiro <ArrowUpRight size={17} /></Link><a className="text-link text-link--light" href="mailto:startuplactus@gmail.com">Fale connosco <Mail size={16} /></a></div></div></div></section>
+        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>{copy.contact.label}</FieldLabel><h2>{copy.contact.title[0]}<br /><em>{copy.contact.title[1]}</em></h2></div><div className="contact-side"><p>{copy.contact.text}</p><div className="contact-actions"><Link className="button button--lime" href="/parceria">{copy.contact.partner} <ArrowUpRight size={17} /></Link><a className="text-link text-link--light" href="mailto:startuplactus@gmail.com">{copy.contact.email} <Mail size={16} /></a></div></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" loading="lazy" decoding="async" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#servicos">Serviços</a><a href="#faq">FAQ</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
+      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" loading="lazy" decoding="async" /></a><p>{copy.footer.text}</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>{copy.footer.rights}</span><div><a href="#sobre">{copy.nav.about}</a><a href="#lumi">{copy.nav.lumi}</a><a href="#servicos">{copy.nav.services}</a><a href="#faq">{copy.nav.faq}</a><Link href="/momentos">{copy.nav.moments}</Link><a href="#contacto">{copy.nav.contact}</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
     </div>
   );
 }

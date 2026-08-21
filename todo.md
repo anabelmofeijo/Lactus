@@ -180,3 +180,10 @@
 - [x] Aplicar carregamento diferido e descodificação assíncrona às imagens secundárias, priorizar a fotografia hero, antecipar a descoberta das fontes e reduzir animações quando o utilizador o pede.
 - [x] Guardar o checkpoint publicado e sincronizar as optimizações de desempenho com o GitHub.
 - [x] Validar em telemóvel a página Momentos depois das optimizações de carregamento diferido e guardar o registo final desta verificação.
+
+## Experiência bilingue Português e Inglês
+
+- [x] Mapear a navegação, páginas públicas, formulários, mensagens de confirmação e metadados que necessitam de tradução.
+- [x] Implementar um selector acessível de Português e Inglês com preferência persistente no navegador.
+- [x] Traduzir a homepage, Momentos, formulário de parceria, páginas auxiliares e respectivos rótulos de acessibilidade.
+- [ ] Guardar o checkpoint publicado e sincronizar a versão bilingue com o GitHub após validar os selectores em desktop e telemóvel.

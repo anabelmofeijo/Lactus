@@ -5,6 +5,8 @@
  */
 import { ArrowLeft, ArrowUpRight, Leaf, Mail, Sprout } from "lucide-react";
 import { Link } from "wouter";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const STORAGE = "/manus-storage/";
 const fullLogoImage = `${STORAGE}lactus-logo-full_a42554be.png`;
@@ -14,91 +16,32 @@ const tigraPortraitImage = `${STORAGE}lactus-award-portrait_d9780e0e.jpg`;
 const tigraStageImage = `${STORAGE}lactus-award-stage_def66bca.jpg`;
 const nasaVictoryImage = `${STORAGE}lactus-nasa-space-apps-luanda-2025-vitoria-global_d6ec43d1.jpeg`;
 
-const milestones = [
-  {
-    number: "01",
-    title: "Prémio Tigra Nova Garra",
-    date: "2026",
-    description: "Um reconhecimento que reforça o potencial de impacto social da Lactus e dá mais força à validação do Lumi com parceiros locais.",
-    images: [
-      { src: tigraTeamImage, alt: "Israel Pedro, Catarina Monteiro e Anabelmo Feijó durante os Prémios Tigra Nova Garra", note: "A equipa Lactus no Prémio Tigra Nova Garra" },
-      { src: tigraPortraitImage, alt: "Anabelmo Feijó com o troféu do Prémio Tigra Nova Garra", note: "Reconhecimento pelo potencial de impacto social" },
-      { src: tigraStageImage, alt: "Momento de palco durante os Prémios Tigra Nova Garra", note: "Um marco para continuar a validar no terreno" },
-    ],
-  },
-  {
-    number: "02",
-    title: "NASA Space Apps Challenge",
-    date: "Luanda 2025",
-    description: "O ponto de partida: a equipa venceu o NASA Space Apps Challenge Luanda 2025 e foi nomeada a nível global. Uma vitória que transformou uma ideia de equipa numa ambição maior — criar soluções de bioenergia pensadas para o contexto angolano.",
-    images: [
-      { src: nasaVictoryImage, alt: "Equipa vencedora do NASA Space Apps Challenge Luanda 2025 reunida com o troféu e o certificado de reconhecimento", note: "Vitória no NASA Space Apps Luanda 2025 e nomeação global" },
-      { src: `${STORAGE}tigra-nova-garra-equipa_ac399128.jpeg`, alt: "Equipa reunida durante o NASA Space Apps Challenge Luanda 2025", note: "A equipa no ponto de partida" },
-      { src: `${STORAGE}tigra-nova-garra-premio_9030545d.jpeg`, alt: "Momento de reconhecimento no NASA Space Apps Challenge Luanda 2025", note: "Da ideia à pergunta que deu origem ao Lumi" },
-      { src: `${STORAGE}nasa-space-apps-luanda_3a5a9604.jpeg`, alt: "Registo da participação da equipa Lactus no NASA Space Apps Challenge Luanda 2025", note: "Uma vitória que abriu caminho ao Lumi" },
-    ],
-  },
-  {
-    number: "03",
-    title: "Desafio Genial",
-    date: "Em movimento",
-    description: "Um espaço de partilha, desafio e apresentação de ideias que ajudou a equipa a explicar, testar e amadurecer o caminho do Lumi.",
-    images: [
-      { src: `${STORAGE}desafio-genial-apresentacao_51b0b7ba.jpeg`, alt: "Apresentação da equipa num momento do Desafio Genial", note: "Explicar a ideia é também uma forma de a testar" },
-      { src: `${STORAGE}desafio-genial-dupla_2419c082.jpeg`, alt: "Dois membros da equipa num momento do Desafio Genial", note: "Conversas que refinam o próximo passo" },
-      { src: `${STORAGE}desafio-genial-grupo_ab7815d6.jpeg`, alt: "Participantes reunidos durante o Desafio Genial", note: "Partilhar conhecimento para ampliar o impacto" },
-    ],
-  },
-  {
-    number: "04",
-    title: "Huawei",
-    date: "Encontros que impulsionam",
-    description: "Conversas e ligações que mantêm a aprendizagem, a colaboração e a visão da Lactus em movimento — para que a tecnologia esteja sempre ligada a necessidades reais.",
-    images: [
-      { src: `${STORAGE}huawei-edificio_109ef9d3.jpeg`, alt: "Edifício Huawei num dos momentos documentados pela equipa Lactus", note: "Um encontro com novas perspectivas" },
-      { src: `${STORAGE}huawei-equipa_50de79d4.jpeg`, alt: "Equipa reunida durante um encontro ligado à Huawei", note: "Construir rede para construir melhor" },
-      { src: `${STORAGE}huawei-fundador_2b7c44c1.jpeg`, alt: "Fundador da Lactus num encontro ligado à Huawei", note: "Aprendizagens que regressam ao projecto" },
-      { src: `${STORAGE}digital-ao-representacao_8ea50691.jpeg`, alt: "Momento institucional adicional da trajectória da equipa Lactus", note: "Parcerias que alargam o campo de possibilidades" },
-    ],
-  },
-];
+type Milestone = { number: string; title: string; date: string; description: string; images: { src: string; alt: string; note: string }[] };
 
-function FieldLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return <span className={`field-label${light ? " field-label--light" : ""}`}>{children}</span>;
-}
+const milestones: Record<"pt" | "en", Milestone[]> = {
+  pt: [
+    { number: "01", title: "Prémio Tigra Nova Garra", date: "2026", description: "Um reconhecimento que reforça o potencial de impacto social da Lactus e dá mais força à validação do Lumi com parceiros locais.", images: [{ src: tigraTeamImage, alt: "Israel Pedro, Catarina Monteiro e Anabelmo Feijó durante os Prémios Tigra Nova Garra", note: "A equipa Lactus no Prémio Tigra Nova Garra" }, { src: tigraPortraitImage, alt: "Anabelmo Feijó com o troféu do Prémio Tigra Nova Garra", note: "Reconhecimento pelo potencial de impacto social" }, { src: tigraStageImage, alt: "Momento de palco durante os Prémios Tigra Nova Garra", note: "Um marco para continuar a validar no terreno" }] },
+    { number: "02", title: "NASA Space Apps Challenge", date: "Luanda 2025", description: "O ponto de partida: a equipa venceu o NASA Space Apps Challenge Luanda 2025 e foi nomeada a nível global. Uma vitória que transformou uma ideia de equipa numa ambição maior — criar soluções de bioenergia pensadas para o contexto angolano.", images: [{ src: nasaVictoryImage, alt: "Equipa vencedora do NASA Space Apps Challenge Luanda 2025 reunida com o troféu e o certificado de reconhecimento", note: "Vitória no NASA Space Apps Luanda 2025 e nomeação global" }, { src: `${STORAGE}tigra-nova-garra-equipa_ac399128.jpeg`, alt: "Equipa reunida durante o NASA Space Apps Challenge Luanda 2025", note: "A equipa no ponto de partida" }, { src: `${STORAGE}tigra-nova-garra-premio_9030545d.jpeg`, alt: "Momento de reconhecimento no NASA Space Apps Challenge Luanda 2025", note: "Da ideia à pergunta que deu origem ao Lumi" }, { src: `${STORAGE}nasa-space-apps-luanda_3a5a9604.jpeg`, alt: "Registo da participação da equipa Lactus no NASA Space Apps Challenge Luanda 2025", note: "Uma vitória que abriu caminho ao Lumi" }] },
+    { number: "03", title: "Desafio Genial", date: "Em movimento", description: "Um espaço de partilha, desafio e apresentação de ideias que ajudou a equipa a explicar, testar e amadurecer o caminho do Lumi.", images: [{ src: `${STORAGE}desafio-genial-apresentacao_51b0b7ba.jpeg`, alt: "Apresentação da equipa num momento do Desafio Genial", note: "Explicar a ideia é também uma forma de a testar" }, { src: `${STORAGE}desafio-genial-dupla_2419c082.jpeg`, alt: "Dois membros da equipa num momento do Desafio Genial", note: "Conversas que refinam o próximo passo" }, { src: `${STORAGE}desafio-genial-grupo_ab7815d6.jpeg`, alt: "Participantes reunidos durante o Desafio Genial", note: "Partilhar conhecimento para ampliar o impacto" }] },
+    { number: "04", title: "Huawei", date: "Encontros que impulsionam", description: "Conversas e ligações que mantêm a aprendizagem, a colaboração e a visão da Lactus em movimento — para que a tecnologia esteja sempre ligada a necessidades reais.", images: [{ src: `${STORAGE}huawei-edificio_109ef9d3.jpeg`, alt: "Edifício Huawei num dos momentos documentados pela equipa Lactus", note: "Um encontro com novas perspectivas" }, { src: `${STORAGE}huawei-equipa_50de79d4.jpeg`, alt: "Equipa reunida durante um encontro ligado à Huawei", note: "Construir rede para construir melhor" }, { src: `${STORAGE}huawei-fundador_2b7c44c1.jpeg`, alt: "Fundador da Lactus num encontro ligado à Huawei", note: "Aprendizagens que regressam ao projecto" }, { src: `${STORAGE}digital-ao-representacao_8ea50691.jpeg`, alt: "Momento institucional adicional da trajectória da equipa Lactus", note: "Parcerias que alargam o campo de possibilidades" }] },
+  ],
+  en: [
+    { number: "01", title: "Tigra Nova Garra Award", date: "2026", description: "Recognition that reinforces Lactus’ potential for social impact and gives further momentum to validating Lumi with local partners.", images: [{ src: tigraTeamImage, alt: "Israel Pedro, Catarina Monteiro and Anabelmo Feijó during the Tigra Nova Garra Awards", note: "The Lactus team at the Tigra Nova Garra Award" }, { src: tigraPortraitImage, alt: "Anabelmo Feijó with the Tigra Nova Garra Award trophy", note: "Recognition for social impact potential" }, { src: tigraStageImage, alt: "Stage moment during the Tigra Nova Garra Awards", note: "A milestone for continuing field validation" }] },
+    { number: "02", title: "NASA Space Apps Challenge", date: "Luanda 2025", description: "The starting point: the team won the NASA Space Apps Challenge Luanda 2025 and was globally nominated. A win that transformed a team idea into a bigger ambition — creating bioenergy solutions designed for the Angolan context.", images: [{ src: nasaVictoryImage, alt: "Winning NASA Space Apps Challenge Luanda 2025 team gathered with the trophy and recognition certificate", note: "NASA Space Apps Luanda 2025 win and global nomination" }, { src: `${STORAGE}tigra-nova-garra-equipa_ac399128.jpeg`, alt: "Team gathered during the NASA Space Apps Challenge Luanda 2025", note: "The team at the starting point" }, { src: `${STORAGE}tigra-nova-garra-premio_9030545d.jpeg`, alt: "Recognition moment at the NASA Space Apps Challenge Luanda 2025", note: "From an idea to the question that sparked Lumi" }, { src: `${STORAGE}nasa-space-apps-luanda_3a5a9604.jpeg`, alt: "Record of the Lactus team participating in NASA Space Apps Challenge Luanda 2025", note: "A win that opened the path to Lumi" }] },
+    { number: "03", title: "Desafio Genial", date: "In motion", description: "A space for sharing, challenging and presenting ideas that helped the team explain, test and refine Lumi’s path.", images: [{ src: `${STORAGE}desafio-genial-apresentacao_51b0b7ba.jpeg`, alt: "Team presentation at a Desafio Genial moment", note: "Explaining an idea is also a way to test it" }, { src: `${STORAGE}desafio-genial-dupla_2419c082.jpeg`, alt: "Two team members at a Desafio Genial moment", note: "Conversations that refine the next step" }, { src: `${STORAGE}desafio-genial-grupo_ab7815d6.jpeg`, alt: "Participants gathered during Desafio Genial", note: "Sharing knowledge to broaden impact" }] },
+    { number: "04", title: "Huawei", date: "Encounters that move us forward", description: "Conversations and connections that keep Lactus’ learning, collaboration and vision in motion — so that technology always remains connected to real needs.", images: [{ src: `${STORAGE}huawei-edificio_109ef9d3.jpeg`, alt: "Huawei building at one of the moments documented by the Lactus team", note: "An encounter with new perspectives" }, { src: `${STORAGE}huawei-equipa_50de79d4.jpeg`, alt: "Team gathered during a Huawei-related meeting", note: "Building a network to build better" }, { src: `${STORAGE}huawei-fundador_2b7c44c1.jpeg`, alt: "Lactus founder at a Huawei-related meeting", note: "Learning that returns to the project" }, { src: `${STORAGE}digital-ao-representacao_8ea50691.jpeg`, alt: "Additional institutional moment in the team’s journey", note: "Partnerships that expand the field of possibilities" }] },
+  ],
+};
+
+const pageCopy = {
+  pt: { home: "Início", contact: "Contacto", back: "Voltar ao início", navigation: "Navegação Momentos", archive: "ARQUIVO / Lactus", title: ["Momentos que", "nos fizeram crescer."], intro: "Uma selecção de prémios, desafios e encontros que acompanha o caminho da Lactus — da ideia partilhada à vontade de criar impacto.", fieldNotes: "Notas de campo", notes: "Não são apenas fotografias. São marcas de uma equipa que testa, aprende, apresenta e volta ao terreno com mais perguntas e mais energia.", milestones: "Marcos da Lactus", next: "PRÓXIMO CAPÍTULO", nextTitle: ["Quer fazer parte", "do que vem a seguir?"], nextText: "Se representa uma organização que acredita em soluções locais para desafios reais, fale com a Lactus.", cta: "Fale connosco", footer: <>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</> },
+  en: { home: "Home", contact: "Contact", back: "Back to home", navigation: "Milestones navigation", archive: "ARCHIVE / Lactus", title: ["Moments that", "helped us grow."], intro: "A selection of awards, challenges and encounters that follows Lactus’ path — from a shared idea to the determination to create impact.", fieldNotes: "Field notes", notes: "They are not just photographs. They are records of a team that tests, learns, presents and returns to the field with more questions and more energy.", milestones: "Lactus milestones", next: "NEXT CHAPTER", nextTitle: ["Want to be part", "of what comes next?"], nextText: "If you represent an organisation that believes in local solutions for real challenges, talk to Lactus.", cta: "Talk to us", footer: <>Sustainable energy for<br />communities with limited access<br />to electricity.</> },
+};
+
+function FieldLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) { return <span className={`field-label${light ? " field-label--light" : ""}`}>{children}</span>; }
 
 export default function Moments() {
-  return (
-    <div className="lactus-site moments-page">
-      <header className="moments-header">
-        <Link className="brand" href="/" aria-label="Lactus — início"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" decoding="async" /></Link>
-        <nav aria-label="Navegação Momentos"><Link href="/">Início</Link><a href="mailto:startuplactus@gmail.com">Contacto</a></nav>
-        <Link className="moments-back" href="/"><ArrowLeft size={16} /> Voltar ao início</Link>
-      </header>
-
-      <main>
-        <section className="moments-hero section-pad">
-          <div className="moments-hero-copy"><FieldLabel>ARQUIVO / Lactus</FieldLabel><h1>Momentos que<br /><em>nos fizeram crescer.</em></h1><p>Uma selecção de prémios, desafios e encontros que acompanha o caminho da Lactus — da ideia partilhada à vontade de criar impacto.</p></div>
-          <div className="moments-hero-art" aria-hidden="true"><img src={markImage} alt="" decoding="async" /><span className="moments-orbit moments-orbit--one" /><span className="moments-orbit moments-orbit--two" /><Leaf className="moments-leaf" size={35} /></div>
-        </section>
-
-        <section className="moments-intro section-pad"><div className="moments-intro-mark"><Sprout size={19} /><span>Notas de campo</span></div><p>Não são apenas fotografias. São marcas de uma equipa que testa, aprende, apresenta e volta ao terreno com mais perguntas e mais energia.</p></section>
-
-        <section className="milestone-list" aria-label="Marcos da Lactus">
-          {milestones.map((milestone, milestoneIndex) => (
-            <article className={`milestone milestone--${milestoneIndex + 1}`} key={milestone.title}>
-              <div className="milestone-copy section-pad"><span className="milestone-number">{milestone.number}</span><FieldLabel>{milestone.date}</FieldLabel><h2>{milestone.title}</h2><p>{milestone.description}</p><span className="milestone-line" /></div>
-              <div className={`milestone-gallery milestone-gallery--${milestone.images.length}`}>
-                {milestone.images.map((image, imageIndex) => <figure key={image.src} className={`milestone-photo milestone-photo--${imageIndex + 1}`}><img src={image.src} alt={image.alt} loading="lazy" decoding="async" /><figcaption>{image.note}</figcaption></figure>)}
-              </div>
-            </article>
-          ))}
-        </section>
-
-        <section className="moments-contact section-pad"><div><FieldLabel light>PRÓXIMO CAPÍTULO</FieldLabel><h2>Quer fazer parte<br /><em>do que vem a seguir?</em></h2></div><div><p>Se representa uma organização que acredita em soluções locais para desafios reais, fale com a Lactus.</p><a className="button button--lime" href="mailto:startuplactus@gmail.com?subject=Quero%20falar%20com%20a%20Lactus">Fale connosco <ArrowUpRight size={17} /></a></div></section>
-      </main>
-
-      <footer className="site-footer"><div className="footer-top"><Link className="brand brand--footer" href="/"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" loading="lazy" decoding="async" /></Link><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><Link href="/">Início</Link><a href="mailto:startuplactus@gmail.com">Contacto</a></div></div></footer>
-    </div>
-  );
+  const { language } = useLanguage();
+  const copy = pageCopy[language];
+  return <div className="lactus-site moments-page"><header className="moments-header"><Link className="brand" href="/" aria-label={`Lactus — ${copy.home}`}><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" decoding="async" /></Link><nav aria-label={copy.navigation}><Link href="/">{copy.home}</Link><a href="mailto:startuplactus@gmail.com">{copy.contact}</a></nav><div className="page-header-actions"><LanguageToggle /><Link className="moments-back" href="/"><ArrowLeft size={16} /> {copy.back}</Link></div></header><main><section className="moments-hero section-pad"><div className="moments-hero-copy"><FieldLabel>{copy.archive}</FieldLabel><h1>{copy.title[0]}<br /><em>{copy.title[1]}</em></h1><p>{copy.intro}</p></div><div className="moments-hero-art" aria-hidden="true"><img src={markImage} alt="" decoding="async" /><span className="moments-orbit moments-orbit--one" /><span className="moments-orbit moments-orbit--two" /><Leaf className="moments-leaf" size={35} /></div></section><section className="moments-intro section-pad"><div className="moments-intro-mark"><Sprout size={19} /><span>{copy.fieldNotes}</span></div><p>{copy.notes}</p></section><section className="milestone-list" aria-label={copy.milestones}>{milestones[language].map((milestone, milestoneIndex) => <article className={`milestone milestone--${milestoneIndex + 1}`} key={milestone.title}><div className="milestone-copy section-pad"><span className="milestone-number">{milestone.number}</span><FieldLabel>{milestone.date}</FieldLabel><h2>{milestone.title}</h2><p>{milestone.description}</p><span className="milestone-line" /></div><div className={`milestone-gallery milestone-gallery--${milestone.images.length}`}>{milestone.images.map((image, imageIndex) => <figure key={image.src} className={`milestone-photo milestone-photo--${imageIndex + 1}`}><img src={image.src} alt={image.alt} loading="lazy" decoding="async" /><figcaption>{image.note}</figcaption></figure>)}</div></article>)}</section><section className="moments-contact section-pad"><div><FieldLabel light>{copy.next}</FieldLabel><h2>{copy.nextTitle[0]}<br /><em>{copy.nextTitle[1]}</em></h2></div><div><p>{copy.nextText}</p><a className="button button--lime" href="mailto:startuplactus@gmail.com?subject=I%20would%20like%20to%20talk%20to%20Lactus">{copy.cta} <ArrowUpRight size={17} /></a></div></section></main><footer className="site-footer"><div className="footer-top"><Link className="brand brand--footer" href="/"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" loading="lazy" decoding="async" /></Link><p>{copy.footer}</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><Link href="/">{copy.home}</Link><a href="mailto:startuplactus@gmail.com">{copy.contact}</a></div></div></footer></div>;
 }

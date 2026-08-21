@@ -3,120 +3,32 @@ import { Link } from "wouter";
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Handshake, Leaf, Mail, Sprout } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const STORAGE = "/manus-storage/";
 const fullLogoImage = `${STORAGE}lactus-logo-full_a42554be.png`;
-
 type RequestType = "parceria" | "patrocinio" | "ambos" | "outro";
+type PartnershipFormState = { organizationName: string; contactName: string; email: string; phone: string; requestType: RequestType; location: string; projectContext: string; objectives: string; consentToContact: boolean };
+const initialForm: PartnershipFormState = { organizationName: "", contactName: "", email: "", phone: "", requestType: "parceria", location: "", projectContext: "", objectives: "", consentToContact: false };
+const formTypes: RequestType[] = ["parceria", "patrocinio", "ambos", "outro"];
 
-type PartnershipFormState = {
-  organizationName: string;
-  contactName: string;
-  email: string;
-  phone: string;
-  requestType: RequestType;
-  location: string;
-  projectContext: string;
-  objectives: string;
-  consentToContact: boolean;
+const copy = {
+  pt: { back: "Voltar ao site", label: "PARCERIAS / PROJECTOS-PILOTO", title: ["Uma boa parceria", "começa no contexto."], intro: "Conte-nos onde a energia faz falta e o que a sua organização pretende alcançar. A equipa Lactus analisará o pedido e entrará em contacto consigo.", signals: [<>Escutamos<br /><strong>o território</strong></>, <>Desenhamos<br /><strong>em conjunto</strong></>, <>Medimos<br /><strong>a aprendizagem</strong></>], signalLabel: "Como trabalhamos", email: "Prefere escrever-nos?", received: "PEDIDO RECEBIDO", thanks: ["Obrigado por", "nos procurar."], success: "O seu pedido foi registado. A Lactus entrará em contacto através do e-mail indicado para perceber os próximos passos.", home: "Voltar ao início", form: "FORMULÁRIO DE CONTACTO", formTitle: ["Vamos conhecer", "o seu desafio."], required: "Os campos assinalados com", fields: { organisation: "Organização", organisationPlaceholder: "Nome da organização", contact: "Pessoa responsável", contactPlaceholder: "Nome completo", email: "E-mail profissional", phone: "Telefone", interest: "Interesse", location: "Localização do projecto ou comunidade", locationPlaceholder: "Província, município ou comunidade", context: "Qual é o contexto ou necessidade?", contextPlaceholder: "Descreva o desafio, o espaço ou a comunidade onde pretende actuar.", objectives: "Que resultados pretende alcançar?", objectivesPlaceholder: "Ex.: melhorar orientação nocturna, apoiar monitorização agrícola, testar uma solução…" }, types: { parceria: "Parceria para projecto-piloto", patrocinio: "Patrocínio", ambos: "Parceria e patrocínio", outro: "Outro pedido" }, consent: "Autorizo a Lactus a contactar-me sobre este pedido de parceria ou patrocínio.", sending: "A enviar pedido…", submit: "Enviar pedido", error: "Não foi possível enviar o pedido agora. Tente novamente ou escreva-nos por e-mail.", footer: "Energia sustentável para contextos reais." },
+  en: { back: "Back to site", label: "PARTNERSHIPS / PILOT PROJECTS", title: ["A strong partnership", "starts with context."], intro: "Tell us where energy is needed and what your organisation wants to achieve. The Lactus team will review your request and get in touch.", signals: [<>We listen<br /><strong>to the territory</strong></>, <>We design<br /><strong>together</strong></>, <>We measure<br /><strong>learning</strong></>], signalLabel: "How we work", email: "Prefer to write to us?", received: "REQUEST RECEIVED", thanks: ["Thank you", "for reaching out."], success: "Your request has been recorded. Lactus will contact you using the email provided to understand the next steps.", home: "Back to home", form: "CONTACT FORM", formTitle: ["Let's understand", "your challenge."], required: "Fields marked with", fields: { organisation: "Organisation", organisationPlaceholder: "Organisation name", contact: "Contact person", contactPlaceholder: "Full name", email: "Professional email", phone: "Phone", interest: "Interest", location: "Project or community location", locationPlaceholder: "Province, municipality or community", context: "What is the context or need?", contextPlaceholder: "Describe the challenge, the space or the community where you want to act.", objectives: "What outcomes do you want to achieve?", objectivesPlaceholder: "E.g. improve night-time orientation, support agricultural monitoring, test a solution…" }, types: { parceria: "Pilot project partnership", patrocinio: "Sponsorship", ambos: "Partnership and sponsorship", outro: "Other request" }, consent: "I authorise Lactus to contact me about this partnership or sponsorship request.", sending: "Sending request…", submit: "Send request", error: "We could not send your request right now. Please try again or email us.", footer: "Sustainable energy for real contexts." },
 };
 
-const initialForm: PartnershipFormState = {
-  organizationName: "",
-  contactName: "",
-  email: "",
-  phone: "",
-  requestType: "parceria",
-  location: "",
-  projectContext: "",
-  objectives: "",
-  consentToContact: false,
-};
-
-function FieldLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return <span className={`field-label${light ? " field-label--light" : ""}`}>{children}</span>;
-}
+function FieldLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) { return <span className={`field-label${light ? " field-label--light" : ""}`}>{children}</span>; }
 
 export default function Partnership() {
   const [form, setForm] = useState<PartnershipFormState>(initialForm);
   const [submitted, setSubmitted] = useState(false);
-  const submitRequest = trpc.partnership.submit.useMutation({
-    onSuccess: () => {
-      setSubmitted(true);
-      setForm(initialForm);
-    },
-    onError: () => {
-      toast.error("Não foi possível enviar o pedido agora. Tente novamente ou escreva-nos por e-mail.");
-    },
-  });
+  const { language } = useLanguage();
+  const text = copy[language];
+  const submitRequest = trpc.partnership.submit.useMutation({ onSuccess: () => { setSubmitted(true); setForm(initialForm); }, onError: () => toast.error(text.error) });
+  const update = <Key extends keyof PartnershipFormState>(key: Key, value: PartnershipFormState[Key]) => setForm((current) => ({ ...current, [key]: value }));
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); submitRequest.mutate(form); };
+  const required = <b> *</b>;
 
-  const update = <Key extends keyof PartnershipFormState>(key: Key, value: PartnershipFormState[Key]) => {
-    setForm((current) => ({ ...current, [key]: value }));
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    submitRequest.mutate(form);
-  };
-
-  return (
-    <div className="lactus-site partnership-page">
-      <header className="partnership-header">
-        <Link className="brand" href="/" aria-label="Lactus — início">
-          <img className="brand-logo-full" src={fullLogoImage} alt="Lactus" />
-        </Link>
-        <Link className="partnership-back" href="/"><ArrowLeft size={16} /> Voltar ao site</Link>
-      </header>
-
-      <main className="partnership-main">
-        <section className="partnership-intro">
-          <FieldLabel>PARCERIAS / PROJECTOS-PILOTO</FieldLabel>
-          <h1>Uma boa parceria<br /><em>começa no contexto.</em></h1>
-          <p>Conte-nos onde a energia faz falta e o que a sua organização pretende alcançar. A equipa Lactus analisará o pedido e entrará em contacto consigo.</p>
-          <div className="partnership-signals" aria-label="Como trabalhamos">
-            <div><Sprout size={18} /><span>Escutamos<br /><strong>o território</strong></span></div>
-            <div><Handshake size={18} /><span>Desenhamos<br /><strong>em conjunto</strong></span></div>
-            <div><Leaf size={18} /><span>Medimos<br /><strong>a aprendizagem</strong></span></div>
-          </div>
-          <a className="partnership-email" href="mailto:startuplactus@gmail.com"><Mail size={16} />Prefere escrever-nos? startuplactus@gmail.com</a>
-        </section>
-
-        <section className="partnership-form-panel" aria-labelledby="partnership-form-title">
-          {submitted ? (
-            <div className="form-success" role="status">
-              <CheckCircle2 size={44} aria-hidden="true" />
-              <FieldLabel>PEDIDO RECEBIDO</FieldLabel>
-              <h2>Obrigado por<br /><em>nos procurar.</em></h2>
-              <p>O seu pedido foi registado. A Lactus entrará em contacto através do e-mail indicado para perceber os próximos passos.</p>
-              <Link className="button button--dark" href="/">Voltar ao início <ArrowUpRight size={16} /></Link>
-            </div>
-          ) : (
-            <form className="partnership-form" onSubmit={handleSubmit}>
-              <div className="form-heading">
-                <FieldLabel>FORMULÁRIO DE CONTACTO</FieldLabel>
-                <h2 id="partnership-form-title">Vamos conhecer<br /><em>o seu desafio.</em></h2>
-                <p>Os campos assinalados com <b>*</b> são obrigatórios.</p>
-              </div>
-
-              <div className="form-grid">
-                <label className="form-field form-field--full"><span>Organização <b>*</b></span><input value={form.organizationName} onChange={(event) => update("organizationName", event.target.value)} autoComplete="organization" required placeholder="Nome da organização" /></label>
-                <label className="form-field"><span>Pessoa responsável <b>*</b></span><input value={form.contactName} onChange={(event) => update("contactName", event.target.value)} autoComplete="name" required placeholder="Nome completo" /></label>
-                <label className="form-field"><span>E-mail profissional <b>*</b></span><input type="email" value={form.email} onChange={(event) => update("email", event.target.value)} autoComplete="email" required placeholder="nome@organizacao.org" /></label>
-                <label className="form-field"><span>Telefone</span><input type="tel" value={form.phone} onChange={(event) => update("phone", event.target.value)} autoComplete="tel" placeholder="+244 …" /></label>
-                <label className="form-field"><span>Interesse <b>*</b></span><select value={form.requestType} onChange={(event) => update("requestType", event.target.value as RequestType)} required><option value="parceria">Parceria para projecto-piloto</option><option value="patrocinio">Patrocínio</option><option value="ambos">Parceria e patrocínio</option><option value="outro">Outro pedido</option></select></label>
-                <label className="form-field form-field--full"><span>Localização do projecto ou comunidade <b>*</b></span><input value={form.location} onChange={(event) => update("location", event.target.value)} required placeholder="Província, município ou comunidade" /></label>
-                <label className="form-field form-field--full"><span>Qual é o contexto ou necessidade? <b>*</b></span><textarea value={form.projectContext} onChange={(event) => update("projectContext", event.target.value)} required minLength={20} rows={5} placeholder="Descreva o desafio, o espaço ou a comunidade onde pretende actuar." /></label>
-                <label className="form-field form-field--full"><span>Que resultados pretende alcançar?</span><textarea value={form.objectives} onChange={(event) => update("objectives", event.target.value)} rows={4} placeholder="Ex.: melhorar orientação nocturna, apoiar monitorização agrícola, testar uma solução…" /></label>
-              </div>
-
-              <label className="consent-field"><input type="checkbox" checked={form.consentToContact} onChange={(event) => update("consentToContact", event.target.checked)} required /><span>Autorizo a Lactus a contactar-me sobre este pedido de parceria ou patrocínio. <b>*</b></span></label>
-              <button className="button button--dark form-submit" type="submit" disabled={submitRequest.isPending}>{submitRequest.isPending ? "A enviar pedido…" : <>Enviar pedido <ArrowUpRight size={17} /></>}</button>
-            </form>
-          )}
-        </section>
-      </main>
-
-      <footer className="partnership-footer"><span>© 2026 Lactus. Luanda, Angola.</span><span>Energia sustentável para contextos reais.</span></footer>
-    </div>
-  );
+  return <div className="lactus-site partnership-page"><header className="partnership-header"><Link className="brand" href="/" aria-label={`Lactus — ${text.home}`}><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></Link><div className="page-header-actions"><LanguageToggle /><Link className="partnership-back" href="/"><ArrowLeft size={16} /> {text.back}</Link></div></header><main className="partnership-main"><section className="partnership-intro"><FieldLabel>{text.label}</FieldLabel><h1>{text.title[0]}<br /><em>{text.title[1]}</em></h1><p>{text.intro}</p><div className="partnership-signals" aria-label={text.signalLabel}><div><Sprout size={18} /><span>{text.signals[0]}</span></div><div><Handshake size={18} /><span>{text.signals[1]}</span></div><div><Leaf size={18} /><span>{text.signals[2]}</span></div></div><a className="partnership-email" href="mailto:startuplactus@gmail.com"><Mail size={16} />{text.email} startuplactus@gmail.com</a></section><section className="partnership-form-panel" aria-labelledby="partnership-form-title">{submitted ? <div className="form-success" role="status"><CheckCircle2 size={44} aria-hidden="true" /><FieldLabel>{text.received}</FieldLabel><h2>{text.thanks[0]}<br /><em>{text.thanks[1]}</em></h2><p>{text.success}</p><Link className="button button--dark" href="/">{text.home} <ArrowUpRight size={16} /></Link></div> : <form className="partnership-form" onSubmit={handleSubmit}><div className="form-heading"><FieldLabel>{text.form}</FieldLabel><h2 id="partnership-form-title">{text.formTitle[0]}<br /><em>{text.formTitle[1]}</em></h2><p>{text.required} <b>*</b> {language === "pt" ? "são obrigatórios." : "are required."}</p></div><div className="form-grid"><label className="form-field form-field--full"><span>{text.fields.organisation}{required}</span><input value={form.organizationName} onChange={(event) => update("organizationName", event.target.value)} autoComplete="organization" required placeholder={text.fields.organisationPlaceholder} /></label><label className="form-field"><span>{text.fields.contact}{required}</span><input value={form.contactName} onChange={(event) => update("contactName", event.target.value)} autoComplete="name" required placeholder={text.fields.contactPlaceholder} /></label><label className="form-field"><span>{text.fields.email}{required}</span><input type="email" value={form.email} onChange={(event) => update("email", event.target.value)} autoComplete="email" required placeholder="name@organisation.org" /></label><label className="form-field"><span>{text.fields.phone}</span><input type="tel" value={form.phone} onChange={(event) => update("phone", event.target.value)} autoComplete="tel" placeholder="+244 …" /></label><label className="form-field"><span>{text.fields.interest}{required}</span><select value={form.requestType} onChange={(event) => update("requestType", event.target.value as RequestType)} required>{formTypes.map((type) => <option key={type} value={type}>{text.types[type]}</option>)}</select></label><label className="form-field form-field--full"><span>{text.fields.location}{required}</span><input value={form.location} onChange={(event) => update("location", event.target.value)} required placeholder={text.fields.locationPlaceholder} /></label><label className="form-field form-field--full"><span>{text.fields.context}{required}</span><textarea value={form.projectContext} onChange={(event) => update("projectContext", event.target.value)} required minLength={20} rows={5} placeholder={text.fields.contextPlaceholder} /></label><label className="form-field form-field--full"><span>{text.fields.objectives}</span><textarea value={form.objectives} onChange={(event) => update("objectives", event.target.value)} rows={4} placeholder={text.fields.objectivesPlaceholder} /></label></div><label className="consent-field"><input type="checkbox" checked={form.consentToContact} onChange={(event) => update("consentToContact", event.target.checked)} required /><span>{text.consent}{required}</span></label><button className="button button--dark form-submit" type="submit" disabled={submitRequest.isPending}>{submitRequest.isPending ? text.sending : <>{text.submit} <ArrowUpRight size={17} /></>}</button></form>}</section></main><footer className="partnership-footer"><span>© 2026 Lactus. Luanda, Angola.</span><span>{text.footer}</span></footer></div>;
 }
