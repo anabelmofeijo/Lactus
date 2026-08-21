@@ -1,5 +1,10 @@
 # Actualização de activos visuais
 
+## CTA final
+
+- [x] Substituir o título do CTA final por “Onde a rede não chega, a Lactus chega.”
+- [x] Verificar a apresentação; o checkpoint segue como passo final.
+
 ## Actualização de copy institucional
 
 - [x] Actualizar hero, Quem somos e a secção Lumi para apresentar o Lumi como primeira solução da Lactus.
