@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Formulário de parceria e patrocínio
+
+- [x] Definir e criar os campos para contactos, organização, modalidade, contexto e objectivos do pedido.
+- [x] Guardar os pedidos enviados através de um fluxo de submissão seguro.
+- [x] Redireccionar CTAs de parceria para o formulário e criar confirmação de envio.
+- [x] Validar o fluxo em desktop e telemóvel, com testes e TypeScript sem erros; o checkpoint segue como passo final.
+
 ## Conteúdo institucional final da FAQ
 
 - [x] Substituir as perguntas e respostas actuais pelas seis formulações aprovadas sobre Lactus, Lumi, limites, visão e parcerias.
@@ -28,7 +35,7 @@
 
 - [x] Identificar os contentores e regras de imagem que introduzem espaços brancos na página Momentos.
 - [x] Ajustar o enquadramento para uma apresentação contínua e validar em desktop e telemóvel.
-- [ ] Guardar a correcção num novo checkpoint publicado.
+- [x] Guardar a correcção num novo checkpoint publicado.
 
 ## CTA final
 
@@ -149,4 +156,4 @@
 - [x] Substituir o símbolo gerado e a fotografia comunitária pelas imagens oficiais da Lactus.
 - [x] Criar uma apresentação visual dos reconhecimentos com as fotografias dos prémios.
 - [x] Rever os cortes, contraste, alt text e composição em desktop e mobile.
-- [ ] Guardar um novo checkpoint depois da validação final.
+- [x] Guardar um novo checkpoint depois da validação final.

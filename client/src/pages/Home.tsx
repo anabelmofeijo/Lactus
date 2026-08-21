@@ -102,7 +102,7 @@ export default function Home() {
         </nav>
         <div className="header-actions">
           <a className="header-mail" href="mailto:startuplactus@gmail.com">startuplactus@gmail.com</a>
-          <a className="button button--dark button--small" href="#contacto">Seja nosso parceiro <ArrowUpRight size={15} /></a>
+          <Link className="button button--dark button--small" href="/parceria">Seja nosso parceiro <ArrowUpRight size={15} /></Link>
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen}>
             {menuOpen ? <X size={21} /> : <Menu size={21} />}
           </button>
@@ -127,7 +127,7 @@ export default function Home() {
             <p className="hero-support">Começamos com o Lumi, a nossa primeira solução de bioenergia para aplicações de baixo consumo.</p>
             <div className="hero-actions">
               <a className="button button--lime" href="#lumi">Conheça o Lumi <ArrowUpRight size={17} /></a>
-              <a className="text-link" href="#parcerias">Criar um piloto <ArrowDown size={16} /></a>
+              <Link className="text-link" href="/parceria">Criar um piloto <ArrowDown size={16} /></Link>
             </div>
             <div className="hero-meta"><span><span className="dot" />Luanda, Angola</span><span>Bioenergia · Impacto local</span></div>
           </div>
@@ -147,7 +147,7 @@ export default function Home() {
 
         <section className="lumi-section section-pad" id="lumi">
           <div className="lumi-media"><div className="lumi-image-panel"><img src="/manus-storage/lumi-exhibition-detail_f6f88876.jpeg" alt="Protótipo Lumi num vaso de plantas ligado a uma luz LED durante uma exposição" /><div className="image-stamp"><span>LUMI</span><small>vaso de plantas que gera energia</small></div></div></div>
-          <div className="lumi-copy"><FieldLabel light>03 / A NOSSA PRIMEIRA SOLUÇÃO</FieldLabel><h2>Conheça o <em>Lumi</em>.</h2><p className="section-lead section-lead--light">O Lumi é a primeira solução desenvolvida pela Lactus: um sistema de bioenergia inspirado na relação entre plantas, solo e microrganismos.</p><p className="body-light">Na sua forma actual, o Lumi funciona através de um vaso de plantas que gera energia, pensado para alimentar sinais LED e sensores ambientais, sem prejudicar a planta.</p><div className="lumi-uses"><span><Leaf size={16} /> Iluminar percursos</span><span><CircuitBoard size={16} /> Ler o ambiente</span></div><a className="button button--outline-light" href="#parcerias">Levar o Lumi ao terreno <ArrowUpRight size={16} /></a></div>
+          <div className="lumi-copy"><FieldLabel light>03 / A NOSSA PRIMEIRA SOLUÇÃO</FieldLabel><h2>Conheça o <em>Lumi</em>.</h2><p className="section-lead section-lead--light">O Lumi é a primeira solução desenvolvida pela Lactus: um sistema de bioenergia inspirado na relação entre plantas, solo e microrganismos.</p><p className="body-light">Na sua forma actual, o Lumi funciona através de um vaso de plantas que gera energia, pensado para alimentar sinais LED e sensores ambientais, sem prejudicar a planta.</p><div className="lumi-uses"><span><Leaf size={16} /> Iluminar percursos</span><span><CircuitBoard size={16} /> Ler o ambiente</span></div><Link className="button button--outline-light" href="/parceria">Levar o Lumi ao terreno <ArrowUpRight size={16} /></Link></div>
         </section>
 
         <section className="compact-moments section-pad" aria-labelledby="momentos-lumi">
@@ -167,7 +167,7 @@ export default function Home() {
 
         <section className="partner-journey section-pad" id="parcerias">
           <div className="partner-journey-media"><img src={communityTeamImage} alt="Membros da equipa Lactus num encontro de inovação e desenvolvimento comunitário" /><span>Lactus + parceiros locais</span></div>
-          <div className="partner-journey-copy"><FieldLabel>06 / FAZEMOS COM QUEM CONHECE O TERRITÓRIO</FieldLabel><h2>Um piloto começa<br /><em>com uma conversa.</em></h2><p className="section-lead">A organização parceira conhece a comunidade. A Lactus leva a tecnologia e o acompanhamento técnico.</p><div className="partner-route"><div><span>01</span><strong>Mapear</strong><p>Identificamos uma necessidade e o melhor local.</p></div><div><span>02</span><strong>Instalar</strong><p>Adaptamos e instalamos a solução mais adequada ao contexto, acompanhando o início da implementação.</p></div><div><span>03</span><strong>Medir</strong><p>Aprendemos com dados técnicos e impacto percebido.</p></div></div><a className="button button--dark" href="#contacto"><Handshake size={16} /> Construir um piloto</a></div>
+          <div className="partner-journey-copy"><FieldLabel>06 / FAZEMOS COM QUEM CONHECE O TERRITÓRIO</FieldLabel><h2>Um piloto começa<br /><em>com uma conversa.</em></h2><p className="section-lead">A organização parceira conhece a comunidade. A Lactus leva a tecnologia e o acompanhamento técnico.</p><div className="partner-route"><div><span>01</span><strong>Mapear</strong><p>Identificamos uma necessidade e o melhor local.</p></div><div><span>02</span><strong>Instalar</strong><p>Adaptamos e instalamos a solução mais adequada ao contexto, acompanhando o início da implementação.</p></div><div><span>03</span><strong>Medir</strong><p>Aprendemos com dados técnicos e impacto percebido.</p></div></div><Link className="button button--dark" href="/parceria"><Handshake size={16} /> Construir um piloto</Link></div>
         </section>
 
         <section className="compact-proof section-pad">
@@ -180,7 +180,7 @@ export default function Home() {
           <div className="faq-list">{faqs.map((faq, index) => <details className="faq-item" key={faq.question}><summary><span>0{index + 1}</span><strong>{faq.question}</strong><ChevronDown size={19} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div>
         </section>
 
-        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>09 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Onde a rede não chega,<br /><em>a Lactus chega.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos desenhar e implementar um projecto-piloto adequado ao seu contexto.</p><div className="contact-actions"><a className="button button--lime" href="mailto:startuplactus@gmail.com?subject=Quero%20ser%20parceiro%20da%20Lactus">Seja nosso parceiro <ArrowUpRight size={17} /></a><a className="text-link text-link--light" href="mailto:startuplactus@gmail.com">Fale connosco <Mail size={16} /></a></div></div></div></section>
+        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>09 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Onde a rede não chega,<br /><em>a Lactus chega.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos desenhar e implementar um projecto-piloto adequado ao seu contexto.</p><div className="contact-actions"><Link className="button button--lime" href="/parceria">Seja nosso parceiro <ArrowUpRight size={17} /></Link><a className="text-link text-link--light" href="mailto:startuplactus@gmail.com">Fale connosco <Mail size={16} /></a></div></div></div></section>
       </main>
 
       <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#servicos">Serviços</a><a href="#faq">FAQ</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
