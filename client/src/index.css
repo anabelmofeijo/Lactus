@@ -71,6 +71,7 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .hero::before { position: absolute; right: -10%; bottom: -30%; width: 63%; height: 83%; background: url('/manus-storage/lactus-topography_de3fb0ce.jpg') center/cover; opacity: .16; mix-blend-mode: multiply; content: ''; pointer-events: none; }
 .hero-copy, .hero-visual { position: relative; z-index: 1; }
 .hero-lead { max-width: 560px; color: #4e6059; font-size: 17px; line-height: 1.7; }
+.hero-support { max-width: 520px; margin: 9px 0 0; color: var(--clay); font-size: 11px; font-weight: 800; letter-spacing: .025em; line-height: 1.55; }
 .hero-actions { display: flex; align-items: center; gap: 24px; margin-top: 33px; }
 .text-link { display: inline-flex; align-items: center; gap: 9px; width: fit-content; border-bottom: 1px solid rgba(16,47,42,.35); padding-bottom: 4px; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; transition: gap .2s var(--ease), color .2s ease; }
 .text-link:hover { gap: 14px; color: var(--clay); }
@@ -289,6 +290,7 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .who-story > p:not(.who-lead) { max-width: 545px; color: var(--muted); font-size: 14px; line-height: 1.72; }
 .who-story > .who-problem { max-width: 565px; margin: 24px 0 19px; padding: 15px 0 15px 17px; color: var(--forest); border-left: 2px solid var(--clay); background: linear-gradient(90deg, rgba(199,243,107,.18), transparent 82%); font-size: 13px; line-height: 1.67; }
 .who-problem strong { display: block; margin-bottom: 4px; color: var(--clay); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.source-credit { display: block; margin-top: 8px; color: var(--clay); font-size: 9px; font-weight: 800; letter-spacing: .06em; line-height: 1.4; }
 .who-signals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; margin-top: 31px; padding-top: 18px; border-top: 1px solid var(--line); }
 .who-signals div { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; min-width: 0; }
 .who-signals svg { color: var(--clay); }

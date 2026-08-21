@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Actualização de copy institucional
+
+- [x] Actualizar hero, Quem somos e a secção Lumi para apresentar o Lumi como primeira solução da Lactus.
+- [x] Actualizar a secção Serviços, o percurso de parceria e o CTA final conforme o texto aprovado.
+- [x] Adicionar a referência discreta ao Banco Mundial junto do dado de acesso à electricidade.
+- [x] Confirmar que Momentos Lumi e Uma ideia com caminho não são alteradas e validar o layout em desktop e telemóvel; o checkpoint segue como passo final.
+
 ## E-mail institucional
 
 - [x] Substituir o endereço de contacto por startuplactus@gmail.com no cabeçalho, CTAs e rodapé.
