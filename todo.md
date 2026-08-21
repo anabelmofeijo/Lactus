@@ -168,3 +168,7 @@
 - [x] Criar um destaque editorial de grande formato, preservando a fotografia integral da equipa e o enquadramento 16:9.
 - [x] Contextualizar a vitória no NASA Space Apps Luanda 2025 e a nomeação global, com linguagem institucional precisa.
 - [x] Guardar o checkpoint publicado e sincronizar o destaque NASA com o GitHub após a validação final.
+
+## Indicação Made with Manus
+
+- [x] Confirmar que a indicação é aplicada pela plataforma de alojamento, fora do código da Lactus; não existe texto ou componente Made with Manus controlado pelo projecto para remover.
