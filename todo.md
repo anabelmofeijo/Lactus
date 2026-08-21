@@ -1,5 +1,10 @@
 # Actualização de activos visuais
 
+## Conteúdo institucional final da FAQ
+
+- [x] Substituir as perguntas e respostas actuais pelas seis formulações aprovadas sobre Lactus, Lumi, limites, visão e parcerias.
+- [x] Confirmar a leitura dos acordeões e validar a apresentação em desktop e telemóvel; o checkpoint segue como passo final.
+
 ## Perguntas Frequentes para parceiros
 
 - [x] Redigir perguntas e respostas sobre pilotos, personalização, implementação, manutenção e contacto.

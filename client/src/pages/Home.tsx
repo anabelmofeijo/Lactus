@@ -47,24 +47,28 @@ const moments = [
 
 const faqs = [
   {
-    question: "Com que organizações pode a Lactus trabalhar?",
-    answer: "Trabalhamos com organizações ligadas ao desenvolvimento rural, educação, agricultura, sustentabilidade, inovação social e outros contextos onde o acesso à electricidade limita actividades importantes.",
+    question: "O que é a Lactus?",
+    answer: "A Lactus é uma startup angolana de tecnologia e energia sustentável. Desenvolvemos, testamos e implementamos soluções para desafios de acesso à electricidade em comunidades, zonas rurais e espaços onde a rede é limitada, inexistente ou pouco fiável.",
   },
   {
-    question: "Como começa um projecto-piloto?",
-    answer: "Começamos por uma conversa para compreender a necessidade, o local e os objectivos. A partir daí, mapeamos o contexto, definimos uma solução adequada, implementamos e acompanhamos a aprendizagem do piloto.",
+    question: "O que é o Lumi?",
+    answer: "O Lumi é a primeira solução desenvolvida pela Lactus. É uma tecnologia de bioenergia que utiliza a interacção natural entre plantas, solo e microrganismos para gerar electricidade para aplicações de baixo consumo.",
   },
   {
-    question: "As soluções podem ser adaptadas ao nosso contexto?",
-    answer: "Sim. Desenvolvemos soluções energéticas pensadas para cada realidade, tendo em conta o uso previsto, as condições locais e os recursos disponíveis. O Lumi é a primeira solução deste percurso.",
+    question: "O Lumi substitui a rede eléctrica?",
+    answer: <>Não. O Lumi não foi concebido para substituir a rede eléctrica, painéis solares ou geradores em aplicações de grande escala.<br /><br />Nesta fase, é desenvolvido para necessidades específicas de baixo consumo, como sinalização LED, iluminação de orientação e sensores agrícolas ou ambientais.</>,
   },
   {
-    question: "O que acontece depois da implementação?",
-    answer: "Acompanhamos o desempenho da solução, realizamos manutenção preventiva e correctiva quando necessário e recolhemos dados que ajudam a melhorar a fiabilidade, a durabilidade e o impacto do projecto.",
+    question: "A Lactus trabalha apenas com bioenergia?",
+    answer: "Não. A bioenergia, através do Lumi, é o nosso ponto de partida. A visão da Lactus é desenvolver diferentes soluções de energia sustentável, acessíveis e adaptadas à realidade africana.",
   },
   {
-    question: "Como podemos falar com a Lactus?",
-    answer: "Escreva para startuplactus@gmail.com com uma breve apresentação da organização, do local e do desafio que pretende explorar. A equipa entrará em contacto para avaliar os próximos passos.",
+    question: "Como funciona uma parceria com a Lactus?",
+    answer: <>A organização parceira identifica uma necessidade concreta numa comunidade ou espaço. A Lactus avalia o local, desenvolve ou adapta a solução, realiza a implementação e acompanha o desempenho técnico do projecto.<br /><br />Os projectos podem incluir instalação, manutenção, monitorização e medição de impacto.</>,
+  },
+  {
+    question: "O Lumi já está disponível?",
+    answer: "O Lumi encontra-se em fase de validação e preparação para projectos-piloto em condições reais. Procuramos organizações parceiras interessadas em implementar, testar e acompanhar a solução de forma responsável e orientada por dados.",
   },
 ];
 
