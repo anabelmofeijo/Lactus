@@ -72,7 +72,7 @@ export default function Home() {
           <a href="#sobre">Sobre nós</a>
         </nav>
         <div className="header-actions">
-          <a className="header-mail" href="mailto:hello@lactus.ao">hello@lactus.ao</a>
+          <a className="header-mail" href="mailto:startuplactus@gmail.com">startuplactus@gmail.com</a>
           <a className="button button--dark button--small" href="#contacto">Seja nosso parceiro <ArrowUpRight size={15} /></a>
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen}>
             {menuOpen ? <X size={21} /> : <Menu size={21} />}
@@ -144,10 +144,10 @@ export default function Home() {
           <div className="proof-image"><img className="proof-image-main" src={awardPortraitImage} alt="Anabelmo Feijó com o troféu Nova Garra" /><img className="proof-image-inset" src={awardTeamImage} alt="Anabelmo Feijó com duas pessoas da equipa Lactus durante os Prémios Nova Garra" /><div><img src={markImage} alt="" />Equipa Lactus<br />Luanda, Angola</div></div>
         </section>
 
-        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>08 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Tem uma comunidade.<br /><em>Nós temos um próximo teste.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos criar um projecto-piloto juntos.</p><div className="contact-actions"><a className="button button--lime" href="mailto:hello@lactus.ao?subject=Quero%20ser%20parceiro%20da%20Lactus">Seja nosso parceiro <ArrowUpRight size={17} /></a><a className="text-link text-link--light" href="mailto:hello@lactus.ao">Fale connosco <Mail size={16} /></a></div></div></div></section>
+        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>08 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Tem uma comunidade.<br /><em>Nós temos um próximo teste.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos criar um projecto-piloto juntos.</p><div className="contact-actions"><a className="button button--lime" href="mailto:startuplactus@gmail.com?subject=Quero%20ser%20parceiro%20da%20Lactus">Seja nosso parceiro <ArrowUpRight size={17} /></a><a className="text-link text-link--light" href="mailto:startuplactus@gmail.com">Fale connosco <Mail size={16} /></a></div></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:hello@lactus.ao"><Mail size={16} /> hello@lactus.ao</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#servicos">Serviços</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
+      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#servicos">Serviços</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
     </div>
   );
 }

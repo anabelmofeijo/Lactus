@@ -1,5 +1,10 @@
 # Actualização de activos visuais
 
+## E-mail institucional
+
+- [x] Substituir o endereço de contacto por startuplactus@gmail.com no cabeçalho, CTAs e rodapé.
+- [x] Confirmar as ligações de e-mail; o checkpoint segue como passo final.
+
 ## Serviços da Lactus
 
 - [x] Integrar os quatro serviços institucionais numa secção concisa para organizações parceiras.
