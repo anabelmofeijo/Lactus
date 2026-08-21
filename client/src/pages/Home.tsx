@@ -9,6 +9,7 @@ import {
   ArrowDown,
   ArrowUpRight,
   CircuitBoard,
+  ChevronDown,
   Handshake,
   Leaf,
   Linkedin,
@@ -44,6 +45,29 @@ const moments = [
   },
 ];
 
+const faqs = [
+  {
+    question: "Com que organizações pode a Lactus trabalhar?",
+    answer: "Trabalhamos com organizações ligadas ao desenvolvimento rural, educação, agricultura, sustentabilidade, inovação social e outros contextos onde o acesso à electricidade limita actividades importantes.",
+  },
+  {
+    question: "Como começa um projecto-piloto?",
+    answer: "Começamos por uma conversa para compreender a necessidade, o local e os objectivos. A partir daí, mapeamos o contexto, definimos uma solução adequada, implementamos e acompanhamos a aprendizagem do piloto.",
+  },
+  {
+    question: "As soluções podem ser adaptadas ao nosso contexto?",
+    answer: "Sim. Desenvolvemos soluções energéticas pensadas para cada realidade, tendo em conta o uso previsto, as condições locais e os recursos disponíveis. O Lumi é a primeira solução deste percurso.",
+  },
+  {
+    question: "O que acontece depois da implementação?",
+    answer: "Acompanhamos o desempenho da solução, realizamos manutenção preventiva e correctiva quando necessário e recolhemos dados que ajudam a melhorar a fiabilidade, a durabilidade e o impacto do projecto.",
+  },
+  {
+    question: "Como podemos falar com a Lactus?",
+    answer: "Escreva para startuplactus@gmail.com com uma breve apresentação da organização, do local e do desafio que pretende explorar. A equipa entrará em contacto para avaliar os próximos passos.",
+  },
+];
+
 function FieldLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return <span className={`field-label${light ? " field-label--light" : ""}`}>{children}</span>;
 }
@@ -67,6 +91,7 @@ export default function Home() {
         <nav className="desktop-nav" aria-label="Navegação principal">
           <a href="#lumi">Lumi</a>
           <a href="#servicos">Serviços</a>
+          <a href="#faq">FAQ</a>
           <Link href="/momentos">Momentos</Link>
           <a href="#parcerias">Parcerias</a>
           <a href="#sobre">Sobre nós</a>
@@ -81,6 +106,7 @@ export default function Home() {
         <div className="mobile-nav">
           <a href="#lumi">Lumi</a>
           <a href="#servicos">Serviços</a>
+          <a href="#faq">FAQ</a>
           <Link href="/momentos" onClick={() => setMenuOpen(false)}>Momentos</Link>
           <a href="#parcerias">Parcerias</a>
           <a href="#sobre">Sobre nós</a>
@@ -145,10 +171,15 @@ export default function Home() {
           <div className="proof-image"><img className="proof-image-main" src={awardPortraitImage} alt="Anabelmo Feijó com o troféu Nova Garra" /><img className="proof-image-inset" src={awardTeamImage} alt="Anabelmo Feijó com duas pessoas da equipa Lactus durante os Prémios Nova Garra" /><div><img src={markImage} alt="" />Equipa Lactus<br />Luanda, Angola</div></div>
         </section>
 
-        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>08 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Onde a rede não chega,<br /><em>a Lactus chega.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos desenhar e implementar um projecto-piloto adequado ao seu contexto.</p><div className="contact-actions"><a className="button button--lime" href="mailto:startuplactus@gmail.com?subject=Quero%20ser%20parceiro%20da%20Lactus">Seja nosso parceiro <ArrowUpRight size={17} /></a><a className="text-link text-link--light" href="mailto:startuplactus@gmail.com">Fale connosco <Mail size={16} /></a></div></div></div></section>
+        <section className="faq-section section-pad" id="faq" aria-labelledby="faq-titulo">
+          <div className="faq-heading"><FieldLabel>08 / PERGUNTAS FREQUENTES</FieldLabel><h2 id="faq-titulo">Dúvidas claras,<br /><em>parcerias melhores.</em></h2><p>Algumas respostas para organizações que querem explorar um projecto-piloto ou conhecer melhor o trabalho da Lactus.</p></div>
+          <div className="faq-list">{faqs.map((faq, index) => <details className="faq-item" key={faq.question}><summary><span>0{index + 1}</span><strong>{faq.question}</strong><ChevronDown size={19} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div>
+        </section>
+
+        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>09 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Onde a rede não chega,<br /><em>a Lactus chega.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos desenhar e implementar um projecto-piloto adequado ao seu contexto.</p><div className="contact-actions"><a className="button button--lime" href="mailto:startuplactus@gmail.com?subject=Quero%20ser%20parceiro%20da%20Lactus">Seja nosso parceiro <ArrowUpRight size={17} /></a><a className="text-link text-link--light" href="mailto:startuplactus@gmail.com">Fale connosco <Mail size={16} /></a></div></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#servicos">Serviços</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
+      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#servicos">Serviços</a><a href="#faq">FAQ</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
     </div>
   );
 }

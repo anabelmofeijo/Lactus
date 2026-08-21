@@ -1,5 +1,11 @@
 # Actualização de activos visuais
 
+## Perguntas Frequentes para parceiros
+
+- [x] Redigir perguntas e respostas sobre pilotos, personalização, implementação, manutenção e contacto.
+- [x] Integrar a secção FAQ na landing page e disponibilizar acesso pela navegação.
+- [x] Validar a experiência em desktop e telemóvel, incluindo os refinamentos de marca e leitura editorial; o checkpoint segue como passo final.
+
 ## Auditoria responsiva integral
 
 - [x] Auditar homepage e página Momentos em telemóvel estreito, telemóvel largo e tablet. Observação em tablet: ambas as páginas reorganizam-se numa coluna, sem overflow horizontal.

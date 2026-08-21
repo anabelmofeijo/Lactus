@@ -91,3 +91,5 @@ Um símbolo sem texto formado por duas folhas arqueadas que se encontram numa pe
 - Reservar o verde broto `#C7F36B` para acções principais, marcos de avanço, ênfase editorial e sinais de energia; não o usar como fundo decorativo genérico.
 - Apresentar prémios, encontros e desafios como provas de percurso que desbloqueiam aprendizagem ou validação do Lumi, e não como uma galeria autónoma de celebração institucional.
 - Fazer da numeração e das etiquetas de campo uma gramática funcional: nos serviços, processos e momentos, a sequência deve comunicar planeamento, teste, acompanhamento e aprendizagem, e não apenas decorar a composição.
+- Tratar FAQ e conteúdos de esclarecimento como instrumentos de campo: usar linhas de medição, marcadores de sequência e sinais de verde broto para orientar decisões práticas, sem os transformar em cartões genéricos.
+- Manter o wordmark oficial como assinatura de marca com presença generosa no cabeçalho e rodapé; preservar a fotografia dos fundadores no hero, conforme decisão explícita da equipa, enquanto os prémios permanecem provas secundárias do percurso.
