@@ -66,6 +66,7 @@ export default function Home() {
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal">
           <a href="#lumi">Lumi</a>
+          <a href="#servicos">Serviços</a>
           <Link href="/momentos">Momentos</Link>
           <a href="#parcerias">Parcerias</a>
           <a href="#sobre">Sobre nós</a>
@@ -79,6 +80,7 @@ export default function Home() {
         </div>
         <div className="mobile-nav">
           <a href="#lumi">Lumi</a>
+          <a href="#servicos">Serviços</a>
           <Link href="/momentos" onClick={() => setMenuOpen(false)}>Momentos</Link>
           <a href="#parcerias">Parcerias</a>
           <a href="#sobre">Sobre nós</a>
@@ -122,20 +124,30 @@ export default function Home() {
           <div className="moments-strip">{moments.map((moment, index) => <figure key={moment.label}><img src={moment.image} alt={moment.alt} /><figcaption><span>0{index + 1}</span>{moment.label}</figcaption></figure>)}</div>
         </section>
 
+        <section className="services-section section-pad" id="servicos" aria-labelledby="servicos-titulo">
+          <div className="services-heading"><FieldLabel>05 / SERVIÇOS LACTUS</FieldLabel><h2 id="servicos-titulo">Energia que<br /><em>chega ao terreno.</em></h2><p>Da ideia à manutenção, trabalhamos com comunidades e organizações para criar soluções energéticas adequadas a cada contexto.</p><span className="services-field-note"><Sprout size={15} aria-hidden="true" />Planeamento · implementação · acompanhamento · aprendizagem</span></div>
+          <div className="services-list">
+            <article className="service-row"><span>01</span><CircuitBoard size={20} aria-hidden="true" /><div><h3>Desenvolvimento de soluções personalizadas</h3><p>Criamos soluções tecnológicas de energia adaptadas às necessidades de comunidades, organizações e projectos com acesso limitado, instável ou inexistente à electricidade.</p></div></article>
+            <article className="service-row"><span>02</span><Leaf size={20} aria-hidden="true" /><div><h3>Implementação de sistemas energéticos</h3><p>Planeamos, fornecemos e implementamos soluções para iluminação, sinalização, monitorização e outras aplicações de baixo consumo.</p></div></article>
+            <article className="service-row"><span>03</span><Sprout size={20} aria-hidden="true" /><div><h3>Monitorização e manutenção técnica</h3><p>Acompanhamos o desempenho, realizamos manutenção preventiva e correctiva e recolhemos dados para reforçar a fiabilidade e a durabilidade das soluções.</p></div></article>
+            <article className="service-row"><span>04</span><Handshake size={20} aria-hidden="true" /><div><h3>Projectos-piloto, investigação e inovação</h3><p>Desenvolvemos projectos-piloto com organizações parceiras para testar, validar e evoluir tecnologias em condições reais, medindo o impacto técnico, social e ambiental.</p></div></article>
+          </div>
+        </section>
+
         <section className="partner-journey section-pad" id="parcerias">
           <div className="partner-journey-media"><img src={communityTeamImage} alt="Membros da equipa Lactus num encontro de inovação e desenvolvimento comunitário" /><span>Lactus + parceiros locais</span></div>
-          <div className="partner-journey-copy"><FieldLabel>05 / FAZEMOS COM QUEM CONHECE O TERRITÓRIO</FieldLabel><h2>Um piloto começa<br /><em>com uma conversa.</em></h2><p className="section-lead">A organização parceira conhece a comunidade. A Lactus leva a tecnologia e o acompanhamento técnico.</p><div className="partner-route"><div><span>01</span><strong>Mapear</strong><p>Identificamos uma necessidade e o melhor local.</p></div><div><span>02</span><strong>Instalar</strong><p>Adaptamos o Lumi ao contexto e acompanhamos o início.</p></div><div><span>03</span><strong>Medir</strong><p>Aprendemos com dados técnicos e impacto percebido.</p></div></div><a className="button button--dark" href="#contacto"><Handshake size={16} /> Construir um piloto</a></div>
+          <div className="partner-journey-copy"><FieldLabel>06 / FAZEMOS COM QUEM CONHECE O TERRITÓRIO</FieldLabel><h2>Um piloto começa<br /><em>com uma conversa.</em></h2><p className="section-lead">A organização parceira conhece a comunidade. A Lactus leva a tecnologia e o acompanhamento técnico.</p><div className="partner-route"><div><span>01</span><strong>Mapear</strong><p>Identificamos uma necessidade e o melhor local.</p></div><div><span>02</span><strong>Instalar</strong><p>Adaptamos o Lumi ao contexto e acompanhamos o início.</p></div><div><span>03</span><strong>Medir</strong><p>Aprendemos com dados técnicos e impacto percebido.</p></div></div><a className="button button--dark" href="#contacto"><Handshake size={16} /> Construir um piloto</a></div>
         </section>
 
         <section className="compact-proof section-pad">
-          <div className="proof-copy"><FieldLabel>06 / UMA IDEIA COM CAMINHO</FieldLabel><h2>Da curiosidade<br /><em>à credibilidade.</em></h2><p>A Lactus nasceu depois de a equipa vencer o NASA Space Apps Challenge Luanda 2025. Em 2026, o projecto recebeu o Prémio Tigra Nova Garra pelo potencial de impacto social.</p><div className="proof-awards"><span><strong>1.º lugar</strong>NASA Space Apps Challenge<br />Luanda 2025</span><span><strong>2026</strong>Prémio Tigra Nova Garra<br />Impacto social</span></div></div>
+          <div className="proof-copy"><FieldLabel>07 / UMA IDEIA COM CAMINHO</FieldLabel><h2>Da curiosidade<br /><em>à credibilidade.</em></h2><p>A Lactus nasceu depois de a equipa vencer o NASA Space Apps Challenge Luanda 2025. Em 2026, o projecto recebeu o Prémio Tigra Nova Garra pelo potencial de impacto social.</p><div className="proof-awards"><span><strong>1.º lugar</strong>NASA Space Apps Challenge<br />Luanda 2025</span><span><strong>2026</strong>Prémio Tigra Nova Garra<br />Impacto social</span></div></div>
           <div className="proof-image"><img className="proof-image-main" src={awardPortraitImage} alt="Anabelmo Feijó com o troféu Nova Garra" /><img className="proof-image-inset" src={awardTeamImage} alt="Anabelmo Feijó com duas pessoas da equipa Lactus durante os Prémios Nova Garra" /><div><img src={markImage} alt="" />Equipa Lactus<br />Luanda, Angola</div></div>
         </section>
 
-        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>07 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Tem uma comunidade.<br /><em>Nós temos um próximo teste.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos criar um projecto-piloto juntos.</p><div className="contact-actions"><a className="button button--lime" href="mailto:hello@lactus.ao?subject=Quero%20ser%20parceiro%20da%20Lactus">Seja nosso parceiro <ArrowUpRight size={17} /></a><a className="text-link text-link--light" href="mailto:hello@lactus.ao">Fale connosco <Mail size={16} /></a></div></div></div></section>
+        <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>08 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Tem uma comunidade.<br /><em>Nós temos um próximo teste.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos criar um projecto-piloto juntos.</p><div className="contact-actions"><a className="button button--lime" href="mailto:hello@lactus.ao?subject=Quero%20ser%20parceiro%20da%20Lactus">Seja nosso parceiro <ArrowUpRight size={17} /></a><a className="text-link text-link--light" href="mailto:hello@lactus.ao">Fale connosco <Mail size={16} /></a></div></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:hello@lactus.ao"><Mail size={16} /> hello@lactus.ao</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
+      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:hello@lactus.ao"><Mail size={16} /> hello@lactus.ao</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#servicos">Serviços</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
     </div>
   );
 }

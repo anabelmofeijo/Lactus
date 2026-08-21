@@ -90,3 +90,4 @@ Um símbolo sem texto formado por duas folhas arqueadas que se encontram numa pe
 - Tratar cada fotografia como evidência de campo: enquadrar, legendar e sequenciar imagens para revelar aprendizagem, validação, parceria ou o caminho do Lumi, nunca como decoração de evento.
 - Reservar o verde broto `#C7F36B` para acções principais, marcos de avanço, ênfase editorial e sinais de energia; não o usar como fundo decorativo genérico.
 - Apresentar prémios, encontros e desafios como provas de percurso que desbloqueiam aprendizagem ou validação do Lumi, e não como uma galeria autónoma de celebração institucional.
+- Fazer da numeração e das etiquetas de campo uma gramática funcional: nos serviços, processos e momentos, a sequência deve comunicar planeamento, teste, acompanhamento e aprendizagem, e não apenas decorar a composição.

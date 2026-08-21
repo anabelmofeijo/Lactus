@@ -1,5 +1,10 @@
 # Actualização de activos visuais
 
+## Serviços da Lactus
+
+- [x] Integrar os quatro serviços institucionais numa secção concisa para organizações parceiras.
+- [x] Ligar a secção à navegação e validar a apresentação em desktop e telemóvel; o checkpoint segue como passo final.
+
 ## Limpeza de identidade visual externa
 
 - [x] Localizar e remover qualquer símbolo ou referência visual associada à Manus.
