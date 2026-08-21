@@ -450,6 +450,7 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 }
 
 @media (max-width: 560px) {
+  .section-pad { padding: 70px 6vw; }
   .compact-intro, .who-section, .compact-moments, .services-section, .compact-proof { padding-top: 70px; padding-bottom: 70px; }
   .compact-lead { font-size: 25px; }
   .who-lead { font-size: 25px; }
@@ -458,8 +459,9 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
   .who-signals svg { grid-row: span 2; }
   .who-signals span { grid-column: 2; }
   .compact-principles { grid-template-columns: 1fr; gap: 14px; }
-  .moments-strip { gap: 10px; }
-  .moments-strip figcaption { display: block; font-size: 14px; line-height: 1.1; }
+  .moments-strip { grid-template-columns: 1fr; gap: 22px; max-width: 460px; }
+  .moments-strip img { aspect-ratio: auto; max-height: 560px; object-fit: contain; }
+  .moments-strip figcaption { display: flex; gap: 9px; font-size: 18px; line-height: 1.1; }
   .moments-strip figcaption span { display: block; margin-bottom: 4px; }
   .service-row { grid-template-columns: 29px 27px 1fr; gap: 8px; padding: 21px 0; }
   .service-row:hover { padding-right: 0; padding-left: 0; background: transparent; }
@@ -540,6 +542,10 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
   .challenge-list { grid-template-columns: 1fr; }
   .challenge-list div, .challenge-list div:not(:first-child) { padding: 16px 0; border-right: 0; border-top: 1px solid var(--line); }
   .challenge-list div:first-child { border-top: 0; }
+  .lumi-section { grid-template-columns: 1fr; gap: 34px; }
+  .lumi-copy h2 { font-size: clamp(52px, 14vw, 66px); }
+  .lumi-uses { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .image-stamp { right: 12px; bottom: 16px; }
   .lumi-image-panel img { height: auto; max-height: none; }
   .moments-grid { grid-template-columns: 1fr; gap: 32px; }
   .moment-card--wide { grid-row: auto; }

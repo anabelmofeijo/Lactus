@@ -1,5 +1,11 @@
 # Actualização de activos visuais
 
+## Auditoria responsiva integral
+
+- [x] Auditar homepage e página Momentos em telemóvel estreito, telemóvel largo e tablet. Observação em tablet: ambas as páginas reorganizam-se numa coluna, sem overflow horizontal.
+- [x] Corrigir navegação, hierarquia, espaços, grelhas, fotografias, botões e textos onde necessário. No telemóvel, o Lumi e Momentos Lumi passam a usar largura total e empilhamento explícito.
+- [x] Validar a experiência completa em telemóvel e tablet; o checkpoint segue como passo final.
+
 ## Reorganização factual do arquivo Momentos
 
 - [x] Separar as fotografias do NASA Space Apps das fotografias do Prémio Tigra Nova Garra.
