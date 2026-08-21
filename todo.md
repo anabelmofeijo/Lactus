@@ -1,5 +1,12 @@
 # Actualização de activos visuais
 
+## Reorganização factual do arquivo Momentos
+
+- [x] Separar as fotografias do NASA Space Apps das fotografias do Prémio Tigra Nova Garra.
+- [x] Manter o destaque do Tigra na secção inicial e associar cada fotografia ao marco correcto em Momentos.
+- [x] Restaurar a visualização integral das fotografias do arquivo, sem espaços brancos interiores nem recortes agressivos.
+- [x] Validar em desktop e telemóvel; o checkpoint segue como passo final.
+
 ## Galeria Momentos sem espaços brancos
 
 - [x] Identificar os contentores e regras de imagem que introduzem espaços brancos na página Momentos.

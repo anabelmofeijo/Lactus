@@ -9,6 +9,9 @@ import { Link } from "wouter";
 const STORAGE = "/manus-storage/";
 const fullLogoImage = `${STORAGE}lactus-logo-full_a42554be.png`;
 const markImage = `${STORAGE}lactus-logo-mark_7cd71d3c.png`;
+const tigraTeamImage = `${STORAGE}lactus-award-team_2bceef86.jpg`;
+const tigraPortraitImage = `${STORAGE}lactus-award-portrait_d9780e0e.jpg`;
+const tigraStageImage = `${STORAGE}lactus-award-stage_def66bca.jpg`;
 
 const milestones = [
   {
@@ -17,8 +20,9 @@ const milestones = [
     date: "2026",
     description: "Um reconhecimento que reforça o potencial de impacto social da Lactus e dá mais força à validação do Lumi com parceiros locais.",
     images: [
-      { src: `${STORAGE}tigra-nova-garra-equipa_ac399128.jpeg`, alt: "Equipa Lactus reunida no contexto do Prémio Tigra Nova Garra", note: "Reconhecimento que abre espaço para testar com mais parceiros" },
-      { src: `${STORAGE}tigra-nova-garra-premio_9030545d.jpeg`, alt: "Momento de entrega do Prémio Tigra Nova Garra", note: "Potencial de impacto social" },
+      { src: tigraTeamImage, alt: "Israel Pedro, Catarina Monteiro e Anabelmo Feijó durante os Prémios Tigra Nova Garra", note: "A equipa Lactus no Prémio Tigra Nova Garra" },
+      { src: tigraPortraitImage, alt: "Anabelmo Feijó com o troféu do Prémio Tigra Nova Garra", note: "Reconhecimento pelo potencial de impacto social" },
+      { src: tigraStageImage, alt: "Momento de palco durante os Prémios Tigra Nova Garra", note: "Um marco para continuar a validar no terreno" },
     ],
   },
   {
@@ -27,7 +31,9 @@ const milestones = [
     date: "Luanda 2025",
     description: "O ponto de partida: uma vitória que transformou uma ideia de equipa numa ambição maior — criar soluções de bioenergia pensadas para o contexto angolano.",
     images: [
-      { src: `${STORAGE}nasa-space-apps-luanda_3a5a9604.jpeg`, alt: "Registo da participação da equipa Lactus no NASA Space Apps Challenge Luanda 2025", note: "Da ideia à pergunta que deu origem ao Lumi" },
+      { src: `${STORAGE}tigra-nova-garra-equipa_ac399128.jpeg`, alt: "Equipa reunida durante o NASA Space Apps Challenge Luanda 2025", note: "A equipa no ponto de partida" },
+      { src: `${STORAGE}tigra-nova-garra-premio_9030545d.jpeg`, alt: "Momento de reconhecimento no NASA Space Apps Challenge Luanda 2025", note: "Da ideia à pergunta que deu origem ao Lumi" },
+      { src: `${STORAGE}nasa-space-apps-luanda_3a5a9604.jpeg`, alt: "Registo da participação da equipa Lactus no NASA Space Apps Challenge Luanda 2025", note: "Uma vitória que abriu caminho ao Lumi" },
     ],
   },
   {
