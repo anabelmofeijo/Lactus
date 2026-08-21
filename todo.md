@@ -186,4 +186,4 @@
 - [x] Mapear a navegação, páginas públicas, formulários, mensagens de confirmação e metadados que necessitam de tradução.
 - [x] Implementar um selector acessível de Português e Inglês com preferência persistente no navegador.
 - [x] Traduzir a homepage, Momentos, formulário de parceria, páginas auxiliares e respectivos rótulos de acessibilidade.
-- [ ] Guardar o checkpoint publicado e sincronizar a versão bilingue com o GitHub após validar os selectores em desktop e telemóvel.
+- [x] Guardar o checkpoint publicado e sincronizar a versão bilingue com o GitHub após validar os selectores em desktop e telemóvel.
