@@ -1,5 +1,11 @@
 # Actualização de activos visuais
 
+## Galeria Momentos sem espaços brancos
+
+- [x] Identificar os contentores e regras de imagem que introduzem espaços brancos na página Momentos.
+- [x] Ajustar o enquadramento para uma apresentação contínua e validar em desktop e telemóvel.
+- [ ] Guardar a correcção num novo checkpoint publicado.
+
 ## CTA final
 
 - [x] Substituir o título do CTA final por “Onde a rede não chega, a Lactus chega.”
