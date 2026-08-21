@@ -90,7 +90,7 @@ export default function Home() {
     <div className="lactus-site">
       <header className={`site-header${menuOpen ? " site-header--open" : ""}`}>
         <a className="brand" href="#top" aria-label="Lactus — início">
-          <img className="brand-logo-full" src={fullLogoImage} alt="Lactus" />
+          <img className="brand-logo-full" src={fullLogoImage} alt="Lactus" decoding="async" />
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal">
           <a href="#lumi">Lumi</a>
@@ -132,7 +132,7 @@ export default function Home() {
             <div className="hero-meta"><span><span className="dot" />Luanda, Angola</span><span>Bioenergia · Impacto local</span></div>
           </div>
           <div className="hero-visual">
-            <div className="hero-photo-wrap hero-photo-wrap--founders"><img src={awardTeamImage} alt="Israel Pedro, Catarina Monteiro e Anabelmo Feijó, fundadores da Lactus, juntos durante os Prémios Nova Garra" className="hero-photo hero-photo--founders" /><span className="photo-caption"><strong>Israel Pedro · Catarina Monteiro · Anabelmo Feijó</strong><small>Fundadores Lactus · Luanda</small></span></div>
+            <div className="hero-photo-wrap hero-photo-wrap--founders"><img src={awardTeamImage} alt="Israel Pedro, Catarina Monteiro e Anabelmo Feijó, fundadores da Lactus, juntos durante os Prémios Nova Garra" className="hero-photo hero-photo--founders" decoding="async" fetchPriority="high" /><span className="photo-caption"><strong>Israel Pedro · Catarina Monteiro · Anabelmo Feijó</strong><small>Fundadores Lactus · Luanda</small></span></div>
             <div className="hero-note hero-note--top"><Sprout size={18} /><span>uma ideia<br /><strong>em equipa</strong></span></div>
             <span className="hero-orbit orbit-one" /><span className="hero-orbit orbit-two" />
           </div>
@@ -146,13 +146,13 @@ export default function Home() {
         <div className="ticker" aria-label="Valores da Lactus"><div className="ticker-track"><span>Inovação local</span><b>✦</b><span>Bioenergia</span><b>✦</b><span>Impacto social</span><b>✦</b><span>Parcerias com propósito</span><b>✦</b><span>Inovação local</span></div></div>
 
         <section className="lumi-section section-pad" id="lumi">
-          <div className="lumi-media"><div className="lumi-image-panel"><img src="/manus-storage/lumi-exhibition-detail_f6f88876.jpeg" alt="Protótipo Lumi num vaso de plantas ligado a uma luz LED durante uma exposição" /><div className="image-stamp"><span>LUMI</span><small>vaso de plantas que gera energia</small></div></div></div>
+          <div className="lumi-media"><div className="lumi-image-panel"><img src="/manus-storage/lumi-exhibition-detail_f6f88876.jpeg" alt="Protótipo Lumi num vaso de plantas ligado a uma luz LED durante uma exposição" loading="lazy" decoding="async" /><div className="image-stamp"><span>LUMI</span><small>vaso de plantas que gera energia</small></div></div></div>
           <div className="lumi-copy"><FieldLabel light>03 / A NOSSA PRIMEIRA SOLUÇÃO</FieldLabel><h2>Conheça o <em>Lumi</em>.</h2><p className="section-lead section-lead--light">O Lumi é a primeira solução desenvolvida pela Lactus: um sistema de bioenergia inspirado na relação entre plantas, solo e microrganismos.</p><p className="body-light">Na sua forma actual, o Lumi funciona através de um vaso de plantas que gera energia, pensado para alimentar sinais LED e sensores ambientais, sem prejudicar a planta.</p><div className="lumi-uses"><span><Leaf size={16} /> Iluminar percursos</span><span><CircuitBoard size={16} /> Ler o ambiente</span></div><Link className="button button--outline-light" href="/parceria">Levar o Lumi ao terreno <ArrowUpRight size={16} /></Link></div>
         </section>
 
         <section className="compact-moments section-pad" aria-labelledby="momentos-lumi">
           <div className="compact-moments-head"><FieldLabel>04 / MOMENTOS LUMI</FieldLabel><h2 id="momentos-lumi">Do protótipo<br /><em>ao mundo real.</em></h2><p>Investigar, testar e partilhar: três momentos de uma solução que ainda está a crescer.</p></div>
-          <div className="moments-strip">{moments.map((moment, index) => <figure key={moment.label}><img src={moment.image} alt={moment.alt} /><figcaption><span>0{index + 1}</span>{moment.label}</figcaption></figure>)}</div>
+          <div className="moments-strip">{moments.map((moment, index) => <figure key={moment.label}><img src={moment.image} alt={moment.alt} loading="lazy" decoding="async" /><figcaption><span>0{index + 1}</span>{moment.label}</figcaption></figure>)}</div>
         </section>
 
         <section className="services-section section-pad" id="servicos" aria-labelledby="servicos-titulo">
@@ -166,7 +166,7 @@ export default function Home() {
         </section>
 
         <section className="partner-journey section-pad" id="parcerias">
-          <div className="partner-journey-media"><img src={communityTeamImage} alt="Membros da equipa Lactus num encontro de inovação e desenvolvimento comunitário" /><span>Lactus + parceiros locais</span></div>
+          <div className="partner-journey-media"><img src={communityTeamImage} alt="Membros da equipa Lactus num encontro de inovação e desenvolvimento comunitário" loading="lazy" decoding="async" /><span>Lactus + parceiros locais</span></div>
           <div className="partner-journey-copy"><FieldLabel>06 / FAZEMOS COM QUEM CONHECE O TERRITÓRIO</FieldLabel><h2>Um piloto começa<br /><em>com uma conversa.</em></h2><p className="section-lead">A organização parceira conhece a comunidade. A Lactus leva a tecnologia e o acompanhamento técnico.</p><div className="partner-route"><div><span>01</span><strong>Mapear</strong><p>Identificamos uma necessidade e o melhor local.</p></div><div><span>02</span><strong>Instalar</strong><p>Adaptamos e instalamos a solução mais adequada ao contexto, acompanhando o início da implementação.</p></div><div><span>03</span><strong>Medir</strong><p>Aprendemos com dados técnicos e impacto percebido.</p></div></div><Link className="button button--dark" href="/parceria"><Handshake size={16} /> Construir um piloto</Link></div>
         </section>
 
@@ -175,7 +175,7 @@ export default function Home() {
             <div className="nasa-proof-heading"><FieldLabel>07 / UMA VITÓRIA QUE ABRIU CAMINHO</FieldLabel><h2 id="nasa-proof-title">Do desafio local<br /><em>ao reconhecimento global.</em></h2></div>
             <div className="nasa-proof-details"><p>A equipa venceu o NASA Space Apps Challenge Luanda 2025 e foi nomeada a nível global. Este momento reforçou a convicção de que as ideias nascidas em Angola podem criar soluções relevantes para desafios reais.</p><div className="proof-awards"><span><strong>1.º lugar</strong>NASA Space Apps Challenge<br />Luanda 2025</span><span><strong>Nomeação global</strong>Reconhecimento além de Luanda</span><span><strong>2026</strong>Prémio Tigra Nova Garra<br />Impacto social</span></div></div>
           </div>
-          <figure className="nasa-victory"><img src={nasaVictoryImage} alt="Equipa vencedora do NASA Space Apps Challenge Luanda 2025 reunida com o troféu e o certificado de reconhecimento" /><figcaption><span>NASA Space Apps Challenge · Luanda, 2025</span><strong>Vitória local · Nomeação global</strong></figcaption></figure>
+          <figure className="nasa-victory"><img src={nasaVictoryImage} alt="Equipa vencedora do NASA Space Apps Challenge Luanda 2025 reunida com o troféu e o certificado de reconhecimento" loading="lazy" decoding="async" /><figcaption><span>NASA Space Apps Challenge · Luanda, 2025</span><strong>Vitória local · Nomeação global</strong></figcaption></figure>
         </section>
 
         <section className="faq-section section-pad" id="faq" aria-labelledby="faq-titulo">
@@ -186,7 +186,7 @@ export default function Home() {
         <section className="contact section-pad" id="contacto"><div className="contact-inner"><div><FieldLabel light>09 / VAMOS CONSTRUIR IMPACTO</FieldLabel><h2>Onde a rede não chega,<br /><em>a Lactus chega.</em></h2></div><div className="contact-side"><p>Se a sua organização trabalha com desenvolvimento rural, educação, agricultura, sustentabilidade ou inovação social, podemos desenhar e implementar um projecto-piloto adequado ao seu contexto.</p><div className="contact-actions"><Link className="button button--lime" href="/parceria">Seja nosso parceiro <ArrowUpRight size={17} /></Link><a className="text-link text-link--light" href="mailto:startuplactus@gmail.com">Fale connosco <Mail size={16} /></a></div></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#servicos">Serviços</a><a href="#faq">FAQ</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
+      <footer className="site-footer"><div className="footer-top"><a className="brand brand--footer" href="#top"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" loading="lazy" decoding="async" /></a><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><a href="#sobre">Sobre nós</a><a href="#lumi">Lumi</a><a href="#servicos">Serviços</a><a href="#faq">FAQ</a><Link href="/momentos">Momentos</Link><a href="#contacto">Contacto</a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16} /></a></div></div></footer>
     </div>
   );
 }

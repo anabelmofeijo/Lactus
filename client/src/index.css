@@ -4,7 +4,6 @@
  * system. Typography pairs DM Serif Display with Manrope; layouts stay editorial
  * and asymmetric, with restrained motion and generous functional whitespace.
  */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -98,7 +97,7 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .orbit-one { top: 18%; right: -5%; width: 155px; height: 155px; }
 .orbit-two { bottom: 10%; left: -2%; width: 88px; height: 88px; border-color: rgba(168,100,69,.5); }
 .ticker { overflow: hidden; color: var(--lime); background: var(--forest); }
-.ticker-track { display: flex; align-items: center; justify-content: space-around; gap: 34px; min-width: max-content; padding: 19px 0; animation: ticker 26s linear infinite; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.ticker-track { display: flex; align-items: center; justify-content: space-around; gap: 34px; min-width: max-content; padding: 19px 0; animation: ticker 26s linear infinite; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; will-change: transform; }
 .ticker-track b { color: var(--lime); font-size: 12px; }
 @keyframes ticker { to { transform: translateX(-18%); } }
 
@@ -345,6 +344,11 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .nasa-victory img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: var(--forest); }
 .nasa-victory figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 14px 0 0; border-top: 1px solid var(--line); color: var(--forest); font-size: 10px; font-weight: 800; letter-spacing: .08em; line-height: 1.45; text-transform: uppercase; }
 .nasa-victory figcaption strong { color: var(--clay); font-family: var(--serif); font-size: 20px; font-weight: 400; letter-spacing: -.015em; text-align: right; text-transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
 
 /* Partner FAQ: practical clarity presented as an editorial field exchange. */
 .faq-section { position: relative; display: grid; grid-template-columns: .74fr 1.26fr; gap: 10vw; align-items: start; overflow: hidden; background: var(--paper); }

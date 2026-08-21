@@ -71,7 +71,7 @@ export default function Moments() {
   return (
     <div className="lactus-site moments-page">
       <header className="moments-header">
-        <Link className="brand" href="/" aria-label="Lactus — início"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></Link>
+        <Link className="brand" href="/" aria-label="Lactus — início"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" decoding="async" /></Link>
         <nav aria-label="Navegação Momentos"><Link href="/">Início</Link><a href="mailto:startuplactus@gmail.com">Contacto</a></nav>
         <Link className="moments-back" href="/"><ArrowLeft size={16} /> Voltar ao início</Link>
       </header>
@@ -79,7 +79,7 @@ export default function Moments() {
       <main>
         <section className="moments-hero section-pad">
           <div className="moments-hero-copy"><FieldLabel>ARQUIVO / Lactus</FieldLabel><h1>Momentos que<br /><em>nos fizeram crescer.</em></h1><p>Uma selecção de prémios, desafios e encontros que acompanha o caminho da Lactus — da ideia partilhada à vontade de criar impacto.</p></div>
-          <div className="moments-hero-art" aria-hidden="true"><img src={markImage} alt="" /><span className="moments-orbit moments-orbit--one" /><span className="moments-orbit moments-orbit--two" /><Leaf className="moments-leaf" size={35} /></div>
+          <div className="moments-hero-art" aria-hidden="true"><img src={markImage} alt="" decoding="async" /><span className="moments-orbit moments-orbit--one" /><span className="moments-orbit moments-orbit--two" /><Leaf className="moments-leaf" size={35} /></div>
         </section>
 
         <section className="moments-intro section-pad"><div className="moments-intro-mark"><Sprout size={19} /><span>Notas de campo</span></div><p>Não são apenas fotografias. São marcas de uma equipa que testa, aprende, apresenta e volta ao terreno com mais perguntas e mais energia.</p></section>
@@ -89,7 +89,7 @@ export default function Moments() {
             <article className={`milestone milestone--${milestoneIndex + 1}`} key={milestone.title}>
               <div className="milestone-copy section-pad"><span className="milestone-number">{milestone.number}</span><FieldLabel>{milestone.date}</FieldLabel><h2>{milestone.title}</h2><p>{milestone.description}</p><span className="milestone-line" /></div>
               <div className={`milestone-gallery milestone-gallery--${milestone.images.length}`}>
-                {milestone.images.map((image, imageIndex) => <figure key={image.src} className={`milestone-photo milestone-photo--${imageIndex + 1}`}><img src={image.src} alt={image.alt} /><figcaption>{image.note}</figcaption></figure>)}
+                {milestone.images.map((image, imageIndex) => <figure key={image.src} className={`milestone-photo milestone-photo--${imageIndex + 1}`}><img src={image.src} alt={image.alt} loading="lazy" decoding="async" /><figcaption>{image.note}</figcaption></figure>)}
               </div>
             </article>
           ))}
@@ -98,7 +98,7 @@ export default function Moments() {
         <section className="moments-contact section-pad"><div><FieldLabel light>PRÓXIMO CAPÍTULO</FieldLabel><h2>Quer fazer parte<br /><em>do que vem a seguir?</em></h2></div><div><p>Se representa uma organização que acredita em soluções locais para desafios reais, fale com a Lactus.</p><a className="button button--lime" href="mailto:startuplactus@gmail.com?subject=Quero%20falar%20com%20a%20Lactus">Fale connosco <ArrowUpRight size={17} /></a></div></section>
       </main>
 
-      <footer className="site-footer"><div className="footer-top"><Link className="brand brand--footer" href="/"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" /></Link><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><Link href="/">Início</Link><a href="mailto:startuplactus@gmail.com">Contacto</a></div></div></footer>
+      <footer className="site-footer"><div className="footer-top"><Link className="brand brand--footer" href="/"><img className="brand-logo-full" src={fullLogoImage} alt="Lactus" loading="lazy" decoding="async" /></Link><p>Energia sustentável para<br />comunidades com acesso limitado<br />à electricidade.</p><a className="footer-email" href="mailto:startuplactus@gmail.com"><Mail size={16} /> startuplactus@gmail.com</a></div><div className="footer-bottom"><span>© 2026 Lactus. Luanda, Angola.</span><div><Link href="/">Início</Link><a href="mailto:startuplactus@gmail.com">Contacto</a></div></div></footer>
     </div>
   );
 }

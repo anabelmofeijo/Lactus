@@ -172,3 +172,10 @@
 ## Indicação Made with Manus
 
 - [x] Confirmar que a indicação é aplicada pela plataforma de alojamento, fora do código da Lactus; não existe texto ou componente Made with Manus controlado pelo projecto para remover.
+
+## Desempenho de carregamento e scroll
+
+- [x] Recolher e registar evidência verificável de desempenho na página publicada, incluindo pedidos de imagens, erros de consola e tempos de carregamento.
+- [x] Identificar o carregamento antecipado de fotografias fora do primeiro ecrã como a principal fonte de peso inicial e de descodificação durante o scroll.
+- [x] Aplicar carregamento diferido e descodificação assíncrona às imagens secundárias, priorizar a fotografia hero, antecipar a descoberta das fontes e reduzir animações quando o utilizador o pede.
+- [ ] Guardar o checkpoint publicado e sincronizar as optimizações de desempenho com o GitHub após a validação final em desktop e telemóvel.
