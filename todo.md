@@ -1,5 +1,10 @@
 # Actualização de activos visuais
 
+## Limpeza de identidade visual externa
+
+- [x] Localizar e remover qualquer símbolo ou referência visual associada à Manus.
+- [x] Confirmar que apenas a identidade visual da Lactus permanece; o checkpoint segue como passo final.
+
 ## Formulação institucional aprovada
 
 - [x] Substituir a introdução da secção Quem somos pela formulação institucional aprovada pelo utilizador.
