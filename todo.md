@@ -1,5 +1,10 @@
 # Actualização de activos visuais
 
+## Formulação institucional aprovada
+
+- [x] Substituir a introdução da secção Quem somos pela formulação institucional aprovada pelo utilizador.
+- [x] Verificar a apresentação; o checkpoint segue como passo final.
+
 ## Revisão factual da secção Quem somos
 
 - [x] Rever o conteúdo institucional enviado para recuperar a origem, a missão e os factos concretos da Lactus.
