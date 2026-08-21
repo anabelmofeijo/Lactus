@@ -160,4 +160,4 @@
 
 ## Sincronização com GitHub
 
-- [ ] Confirmar o estado local e enviar os commits pendentes para a branch principal do repositório GitHub privado.
+- [x] Confirmar o estado local e enviar os commits pendentes para a branch principal do repositório GitHub privado.
