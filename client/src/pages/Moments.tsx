@@ -12,6 +12,7 @@ const markImage = `${STORAGE}lactus-logo-mark_7cd71d3c.png`;
 const tigraTeamImage = `${STORAGE}lactus-award-team_2bceef86.jpg`;
 const tigraPortraitImage = `${STORAGE}lactus-award-portrait_d9780e0e.jpg`;
 const tigraStageImage = `${STORAGE}lactus-award-stage_def66bca.jpg`;
+const nasaVictoryImage = `${STORAGE}lactus-nasa-space-apps-luanda-2025-vitoria-global_d6ec43d1.jpeg`;
 
 const milestones = [
   {
@@ -29,8 +30,9 @@ const milestones = [
     number: "02",
     title: "NASA Space Apps Challenge",
     date: "Luanda 2025",
-    description: "O ponto de partida: uma vitória que transformou uma ideia de equipa numa ambição maior — criar soluções de bioenergia pensadas para o contexto angolano.",
+    description: "O ponto de partida: a equipa venceu o NASA Space Apps Challenge Luanda 2025 e foi nomeada a nível global. Uma vitória que transformou uma ideia de equipa numa ambição maior — criar soluções de bioenergia pensadas para o contexto angolano.",
     images: [
+      { src: nasaVictoryImage, alt: "Equipa vencedora do NASA Space Apps Challenge Luanda 2025 reunida com o troféu e o certificado de reconhecimento", note: "Vitória no NASA Space Apps Luanda 2025 e nomeação global" },
       { src: `${STORAGE}tigra-nova-garra-equipa_ac399128.jpeg`, alt: "Equipa reunida durante o NASA Space Apps Challenge Luanda 2025", note: "A equipa no ponto de partida" },
       { src: `${STORAGE}tigra-nova-garra-premio_9030545d.jpeg`, alt: "Momento de reconhecimento no NASA Space Apps Challenge Luanda 2025", note: "Da ideia à pergunta que deu origem ao Lumi" },
       { src: `${STORAGE}nasa-space-apps-luanda_3a5a9604.jpeg`, alt: "Registo da participação da equipa Lactus no NASA Space Apps Challenge Luanda 2025", note: "Uma vitória que abriu caminho ao Lumi" },

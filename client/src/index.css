@@ -332,17 +332,19 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .partner-route span { color: var(--clay); font-size: 9px; font-weight: 800; letter-spacing: .12em; }
 .partner-route strong { display: block; margin: 16px 0 6px; font-family: var(--serif); font-size: 24px; font-weight: 400; }
 .partner-route p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.55; }
-.compact-proof { display: grid; grid-template-columns: 1fr .85fr; gap: 9vw; align-items: center; padding-top: 95px; padding-bottom: 95px; background: var(--ivory); }
-.proof-copy h2 { margin-top: 21px; }
-.proof-copy > p { max-width: 540px; color: var(--muted); font-size: 14px; line-height: 1.72; }
+.nasa-proof { background: var(--ivory); }
+.nasa-proof-head { display: grid; grid-template-columns: .78fr 1.22fr; gap: 10vw; align-items: end; }
+.nasa-proof-heading h2 { margin-top: 21px; }
+.nasa-proof-details { max-width: 620px; padding-bottom: 6px; }
+.nasa-proof-details > p { max-width: 590px; color: var(--muted); font-size: 14px; line-height: 1.72; }
 .proof-awards { display: flex; gap: 35px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); }
 .proof-awards span { color: var(--muted); font-size: 10px; font-weight: 700; line-height: 1.55; }
 .proof-awards strong { display: block; margin-bottom: 6px; color: var(--clay); font-family: var(--serif); font-size: 25px; font-weight: 400; }
-.proof-image { position: relative; justify-self: end; width: min(100%, 410px); }
-.proof-image-main { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
-.proof-image-inset { position: absolute; top: 11%; left: -22%; display: block; width: 48%; aspect-ratio: 4 / 5; border: 7px solid var(--ivory); object-fit: cover; box-shadow: 12px 14px 0 rgba(7,62,50,.12); transform: rotate(-4deg); }
-.proof-image > div { position: absolute; right: -22px; bottom: -18px; display: flex; align-items: center; gap: 10px; padding: 13px 15px; color: var(--paper); background: var(--forest); font-size: 9px; font-weight: 800; letter-spacing: .08em; line-height: 1.5; text-transform: uppercase; }
-.proof-image > div img { width: 31px; height: 31px; object-fit: contain; }
+.nasa-victory { position: relative; margin: 53px 0 0; }
+.nasa-victory::before { position: absolute; top: -9px; left: 7.5%; width: 25%; height: 9px; background: var(--lime); content: ''; }
+.nasa-victory img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: var(--forest); }
+.nasa-victory figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 14px 0 0; border-top: 1px solid var(--line); color: var(--forest); font-size: 10px; font-weight: 800; letter-spacing: .08em; line-height: 1.45; text-transform: uppercase; }
+.nasa-victory figcaption strong { color: var(--clay); font-family: var(--serif); font-size: 20px; font-weight: 400; letter-spacing: -.015em; text-align: right; text-transform: none; }
 
 /* Partner FAQ: practical clarity presented as an editorial field exchange. */
 .faq-section { position: relative; display: grid; grid-template-columns: .74fr 1.26fr; gap: 10vw; align-items: start; overflow: hidden; background: var(--paper); }
@@ -456,8 +458,8 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 }
 
 @media (max-width: 900px) {
-  .compact-intro, .who-section, .compact-moments, .services-section, .partner-journey, .compact-proof, .faq-section { grid-template-columns: 1fr; gap: 46px; }
-  .compact-intro, .who-section, .compact-moments, .services-section, .compact-proof, .faq-section { padding-top: 80px; padding-bottom: 80px; }
+  .compact-intro, .who-section, .compact-moments, .services-section, .partner-journey, .faq-section { grid-template-columns: 1fr; gap: 46px; }
+  .compact-intro, .who-section, .compact-moments, .services-section, .faq-section { padding-top: 80px; padding-bottom: 80px; }
   .compact-intro-copy { max-width: 620px; }
   .who-story { max-width: 620px; }
   .compact-moments-head { max-width: 580px; }
@@ -465,12 +467,13 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
   .faq-heading { position: static; max-width: 580px; }
   .partner-journey-media { max-width: 610px; }
   .partner-journey-media img { height: auto; aspect-ratio: 4 / 3; }
-  .proof-image { justify-self: start; }
+  .nasa-proof-head { grid-template-columns: 1fr; gap: 34px; }
+  .nasa-proof-details { max-width: 620px; }
 }
 
 @media (max-width: 560px) {
   .section-pad { padding: 70px 6vw; }
-  .compact-intro, .who-section, .compact-moments, .services-section, .compact-proof, .faq-section { padding-top: 70px; padding-bottom: 70px; }
+  .compact-intro, .who-section, .compact-moments, .services-section, .faq-section { padding-top: 70px; padding-bottom: 70px; }
   .compact-lead { font-size: 25px; }
   .who-lead { font-size: 25px; }
   .who-signals { grid-template-columns: 1fr; gap: 17px; }
@@ -496,9 +499,10 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
   .partner-route strong { margin: 0; }
   .partner-route p { grid-column: 2; }
   .proof-awards { flex-direction: column; gap: 15px; }
-  .proof-image { width: calc(100% - 18px); margin-left: 16px; }
-  .proof-image-inset { left: -15px; width: 43%; border-width: 5px; }
-  .proof-image > div { right: -18px; }
+  .nasa-victory { margin-top: 34px; }
+  .nasa-victory::before { left: 13%; width: 39%; }
+  .nasa-victory figcaption { align-items: flex-start; flex-direction: column; gap: 5px; font-size: 9px; }
+  .nasa-victory figcaption strong { font-size: 19px; text-align: left; }
 }
 
 @media (max-width: 900px) {

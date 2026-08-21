@@ -161,3 +161,10 @@
 ## Sincronização com GitHub
 
 - [x] Confirmar o estado local e enviar os commits pendentes para a branch principal do repositório GitHub privado.
+
+## Destaque NASA Space Apps Luanda 2025
+
+- [x] Preparar a fotografia da vitória e disponibilizá-la no armazenamento web sem perda de qualidade perceptível.
+- [x] Criar um destaque editorial de grande formato, preservando a fotografia integral da equipa e o enquadramento 16:9.
+- [x] Contextualizar a vitória no NASA Space Apps Luanda 2025 e a nomeação global, com linguagem institucional precisa.
+- [ ] Guardar o checkpoint publicado e sincronizar o destaque NASA com o GitHub após a validação final.

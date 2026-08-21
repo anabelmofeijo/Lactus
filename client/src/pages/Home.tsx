@@ -25,7 +25,7 @@ const markImage = `${STORAGE}lactus-logo-mark_7cd71d3c.png`;
 const fullLogoImage = `${STORAGE}lactus-logo-full_a42554be.png`;
 const communityTeamImage = `${STORAGE}lactus-community-team_c2fec649.webp`;
 const awardTeamImage = `${STORAGE}lactus-award-team_2bceef86.jpg`;
-const awardPortraitImage = `${STORAGE}lactus-award-portrait_d9780e0e.jpg`;
+const nasaVictoryImage = `${STORAGE}lactus-nasa-space-apps-luanda-2025-vitoria-global_d6ec43d1.jpeg`;
 
 const moments = [
   {
@@ -170,9 +170,12 @@ export default function Home() {
           <div className="partner-journey-copy"><FieldLabel>06 / FAZEMOS COM QUEM CONHECE O TERRITÓRIO</FieldLabel><h2>Um piloto começa<br /><em>com uma conversa.</em></h2><p className="section-lead">A organização parceira conhece a comunidade. A Lactus leva a tecnologia e o acompanhamento técnico.</p><div className="partner-route"><div><span>01</span><strong>Mapear</strong><p>Identificamos uma necessidade e o melhor local.</p></div><div><span>02</span><strong>Instalar</strong><p>Adaptamos e instalamos a solução mais adequada ao contexto, acompanhando o início da implementação.</p></div><div><span>03</span><strong>Medir</strong><p>Aprendemos com dados técnicos e impacto percebido.</p></div></div><Link className="button button--dark" href="/parceria"><Handshake size={16} /> Construir um piloto</Link></div>
         </section>
 
-        <section className="compact-proof section-pad">
-          <div className="proof-copy"><FieldLabel>07 / UMA IDEIA COM CAMINHO</FieldLabel><h2>Da curiosidade<br /><em>à credibilidade.</em></h2><p>A Lactus nasceu depois de a equipa vencer o NASA Space Apps Challenge Luanda 2025. Em 2026, o projecto recebeu o Prémio Tigra Nova Garra pelo potencial de impacto social.</p><div className="proof-awards"><span><strong>1.º lugar</strong>NASA Space Apps Challenge<br />Luanda 2025</span><span><strong>2026</strong>Prémio Tigra Nova Garra<br />Impacto social</span></div></div>
-          <div className="proof-image"><img className="proof-image-main" src={awardPortraitImage} alt="Anabelmo Feijó com o troféu Nova Garra" /><img className="proof-image-inset" src={awardTeamImage} alt="Anabelmo Feijó com duas pessoas da equipa Lactus durante os Prémios Nova Garra" /><div><img src={markImage} alt="" />Equipa Lactus<br />Luanda, Angola</div></div>
+        <section className="nasa-proof section-pad" id="nasa-space-apps" aria-labelledby="nasa-proof-title">
+          <div className="nasa-proof-head">
+            <div className="nasa-proof-heading"><FieldLabel>07 / UMA VITÓRIA QUE ABRIU CAMINHO</FieldLabel><h2 id="nasa-proof-title">Do desafio local<br /><em>ao reconhecimento global.</em></h2></div>
+            <div className="nasa-proof-details"><p>A equipa venceu o NASA Space Apps Challenge Luanda 2025 e foi nomeada a nível global. Este momento reforçou a convicção de que as ideias nascidas em Angola podem criar soluções relevantes para desafios reais.</p><div className="proof-awards"><span><strong>1.º lugar</strong>NASA Space Apps Challenge<br />Luanda 2025</span><span><strong>Nomeação global</strong>Reconhecimento além de Luanda</span><span><strong>2026</strong>Prémio Tigra Nova Garra<br />Impacto social</span></div></div>
+          </div>
+          <figure className="nasa-victory"><img src={nasaVictoryImage} alt="Equipa vencedora do NASA Space Apps Challenge Luanda 2025 reunida com o troféu e o certificado de reconhecimento" /><figcaption><span>NASA Space Apps Challenge · Luanda, 2025</span><strong>Vitória local · Nomeação global</strong></figcaption></figure>
         </section>
 
         <section className="faq-section section-pad" id="faq" aria-labelledby="faq-titulo">
