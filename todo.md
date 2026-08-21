@@ -157,3 +157,7 @@
 - [x] Criar uma apresentação visual dos reconhecimentos com as fotografias dos prémios.
 - [x] Rever os cortes, contraste, alt text e composição em desktop e mobile.
 - [x] Guardar um novo checkpoint depois da validação final.
+
+## Sincronização com GitHub
+
+- [ ] Confirmar o estado local e enviar os commits pendentes para a branch principal do repositório GitHub privado.
