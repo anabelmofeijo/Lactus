@@ -187,3 +187,8 @@
 - [x] Implementar um selector acessível de Português e Inglês com preferência persistente no navegador.
 - [x] Traduzir a homepage, Momentos, formulário de parceria, páginas auxiliares e respectivos rótulos de acessibilidade.
 - [x] Guardar o checkpoint publicado e sincronizar a versão bilingue com o GitHub após validar os selectores em desktop e telemóvel.
+
+## Etiqueta editorial do hero
+
+- [ ] Rever o texto, contraste, rotação, dimensão e posicionamento da etiqueta verde sobre a fotografia principal em desktop e telemóvel.
+- [ ] Ajustar a etiqueta se necessário, validar a composição, publicar e sincronizar com GitHub.
