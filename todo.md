@@ -196,4 +196,4 @@
 ## Planta em crescimento na página Momentos
 
 - [x] Integrar uma ilustração botânica de crescimento junto ao título da página Momentos, com movimento opcional e acessível.
-- [ ] Guardar o checkpoint publicado e sincronizar a planta em crescimento com o GitHub após validação em desktop e telemóvel.
+- [x] Guardar o checkpoint publicado e sincronizar a planta em crescimento com o GitHub após validação em desktop e telemóvel.
