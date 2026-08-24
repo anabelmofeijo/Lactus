@@ -215,4 +215,4 @@
 - [x] Adicionar testes de comportamento aos procedimentos administrativos, cobrindo autorização, listagem e actualização de estado.
 - [x] Validar a área com a sessão de administrador, a consulta real à base de dados sem pedidos artificiais e a apresentação em desktop e telemóvel.
 - [x] Guardar o checkpoint publicado com o painel privado e o alerta interno como fluxo definitivo de pedidos.
-- [ ] Sincronizar o fluxo definitivo de pedidos com o GitHub e confirmar a branch principal limpa e alinhada com o remoto.
+- [x] Sincronizar o fluxo definitivo de pedidos com o GitHub e confirmar a branch principal limpa e alinhada com o remoto.
