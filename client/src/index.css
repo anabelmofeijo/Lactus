@@ -389,32 +389,49 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 .moments-hero h1 { max-width: 760px; margin-bottom: 28px; font-size: clamp(64px, 7.5vw, 118px); }
 .moments-hero h1 em { color: var(--lime); }
 .moments-hero-copy > p { max-width: 510px; color: rgba(244,241,232,.72); font-size: 15px; line-height: 1.75; }
-.moments-hero-art { position: relative; z-index: 1; align-self: end; justify-self: end; width: min(100%, 330px); min-height: 300px; }
-.moments-hero-art img { position: absolute; top: 66px; left: 45px; width: 170px; height: 170px; object-fit: contain; filter: brightness(0) invert(1); opacity: .95; }
-.moments-growing-plant { position: absolute; z-index: 2; right: 28px; bottom: 17px; width: 103px; height: 198px; color: var(--lime); transform-origin: 50% 100%; }
+.moments-hero-art { position: relative; z-index: 1; align-self: end; justify-self: end; width: min(100%, 400px); min-height: 440px; }
+.moments-growing-plant { position: absolute; z-index: 2; right: -22px; bottom: -26px; width: min(119%, 430px); height: 490px; color: var(--lime); transform-origin: 50% 100%; }
 .moments-growing-plant svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .growth-stem, .growth-ground { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
-.growth-stem { stroke-width: 3; }
-.growth-ground { stroke-width: 2; opacity: .65; }
+.growth-stem { stroke-width: 5; }
+.growth-stem--main { stroke-width: 8; }
+.growth-ground { stroke-width: 3; opacity: .66; }
+.growth-ground--fine { stroke-width: 1.5; opacity: .35; }
 .growth-leaf { fill: var(--lime); transform-box: fill-box; transform-origin: 50% 100%; }
+.growth-bloom { fill: var(--clay); transform-box: fill-box; transform-origin: center; }
+.growth-bloom circle { fill: var(--paper); }
+.growth-sparkles { fill: var(--paper); }
 .moments-orbit { position: absolute; border: 1px solid rgba(199,243,107,.6); border-radius: 50%; }
 .moments-orbit--one { top: 0; right: 0; width: 270px; height: 270px; }
 .moments-orbit--two { bottom: 10px; left: 0; width: 155px; height: 155px; border-style: dashed; }
-.moments-leaf { position: absolute; right: 33px; bottom: 52px; color: var(--lime); transform: rotate(-17deg); }
-
 @media (prefers-reduced-motion: no-preference) {
-  .moments-growing-plant { animation: plant-rise 800ms var(--ease-out) both; }
-  .growth-stem { stroke-dasharray: 150; stroke-dashoffset: 150; animation: plant-stem 900ms 90ms var(--ease-out) forwards; }
-  .growth-leaf { opacity: 0; animation: plant-leaf 430ms var(--ease-out) forwards; }
-  .growth-leaf--one { animation-delay: 430ms; }
-  .growth-leaf--two { animation-delay: 520ms; }
-  .growth-leaf--three { animation-delay: 630ms; }
-  .growth-leaf--four { animation-delay: 710ms; }
+  .moments-growing-plant { animation: botanical-entrance 10s var(--ease-out) infinite; }
+  .growth-stem { stroke-dasharray: 680; stroke-dashoffset: 680; animation: botanical-stem 10s var(--ease-out) infinite; }
+  .growth-stem--branch-one { animation-delay: .45s; }
+  .growth-stem--branch-two { animation-delay: .75s; }
+  .growth-stem--branch-three { animation-delay: 1s; }
+  .growth-stem--branch-four { animation-delay: 1.2s; }
+  .growth-leaf { opacity: 0; animation: botanical-leaf 10s var(--ease-out) infinite; }
+  .growth-leaf--one { animation-delay: 1.15s; }
+  .growth-leaf--two { animation-delay: 1.6s; }
+  .growth-leaf--three { animation-delay: 1.82s; }
+  .growth-leaf--four { animation-delay: 2.05s; }
+  .growth-leaf--five { animation-delay: 2.28s; }
+  .growth-leaf--six { animation-delay: 2.52s; }
+  .growth-leaf--seven { animation-delay: 2.75s; }
+  .growth-leaf--eight { animation-delay: 2.95s; }
+  .growth-bloom { opacity: 0; animation: botanical-bloom 10s var(--ease-out) infinite; }
+  .growth-bloom--one { animation-delay: 3.15s; }
+  .growth-bloom--two { animation-delay: 3.45s; }
+  .growth-bloom--three { animation-delay: 3.7s; }
+  .growth-sparkles { opacity: 0; animation: botanical-sparkle 10s var(--ease-out) infinite 4.15s; }
 }
 
-@keyframes plant-rise { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
-@keyframes plant-stem { to { stroke-dashoffset: 0; } }
-@keyframes plant-leaf { from { opacity: 0; transform: scale(.45); } to { opacity: 1; transform: scale(1); } }
+@keyframes botanical-entrance { 0%, 4% { opacity: 0; transform: translateY(16px) scale(.97); } 10%, 92% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(10px) scale(.98); } }
+@keyframes botanical-stem { 0%, 7% { stroke-dashoffset: 680; } 37%, 92% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 680; } }
+@keyframes botanical-leaf { 0%, 17% { opacity: 0; transform: scale(.18) rotate(-14deg); } 34%, 91% { opacity: 1; transform: scale(1) rotate(0); } 100% { opacity: 0; transform: scale(.42) rotate(10deg); } }
+@keyframes botanical-bloom { 0%, 28% { opacity: 0; transform: scale(.2) rotate(-22deg); } 42%, 90% { opacity: 1; transform: scale(1) rotate(0); } 100% { opacity: 0; transform: scale(.35) rotate(18deg); } }
+@keyframes botanical-sparkle { 0%, 34% { opacity: 0; transform: scale(.2); } 43%, 77% { opacity: .85; transform: scale(1); } 89%, 100% { opacity: 0; transform: scale(1.3); } }
 .moments-intro { display: grid; grid-template-columns: 90px minmax(0, 690px); gap: 22px; align-items: start; padding-top: 56px; padding-bottom: 56px; color: var(--forest); background: var(--ivory); }
 .moments-intro-mark { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; color: var(--clay); }
 .moments-intro-mark span { color: var(--clay); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
@@ -448,9 +465,8 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
 @media (max-width: 900px) {
   .moments-header { padding: 20px 6vw; }
   .moments-hero { grid-template-columns: 1fr .62fr; min-height: 470px; padding-top: 84px; padding-bottom: 78px; }
-  .moments-hero-art { width: 250px; min-height: 240px; }
-  .moments-hero-art img { top: 50px; left: 34px; width: 137px; height: 137px; }
-  .moments-growing-plant { right: 18px; bottom: 7px; width: 80px; height: 158px; }
+  .moments-hero-art { width: 300px; min-height: 350px; }
+  .moments-growing-plant { right: -26px; bottom: -18px; width: 330px; height: 405px; }
   .moments-orbit--one { width: 210px; height: 210px; }
   .moments-orbit--two { width: 120px; height: 120px; }
   .moments-leaf { right: 23px; bottom: 35px; }
@@ -471,9 +487,8 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
   .moments-hero { grid-template-columns: 1fr; gap: 34px; min-height: 0; padding-top: 72px; padding-bottom: 65px; }
   .moments-hero h1 { font-size: clamp(55px, 14vw, 75px); }
   .moments-hero-copy > p { font-size: 14px; }
-  .moments-hero-art { justify-self: start; width: 220px; min-height: 200px; margin-left: 19%; }
-  .moments-hero-art img { top: 44px; left: 30px; width: 112px; height: 112px; }
-  .moments-growing-plant { right: 16px; bottom: 3px; width: 68px; height: 134px; }
+  .moments-hero-art { justify-self: center; width: min(100%, 314px); min-height: 368px; margin-left: 0; }
+  .moments-growing-plant { right: -15px; bottom: -16px; width: 320px; height: 390px; }
   .moments-orbit--one { width: 185px; height: 185px; }
   .moments-orbit--two { width: 102px; height: 102px; }
   .moments-leaf { right: 20px; bottom: 23px; }

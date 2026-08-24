@@ -197,3 +197,10 @@
 
 - [x] Integrar uma ilustração botânica de crescimento junto ao título da página Momentos, com movimento opcional e acessível.
 - [x] Guardar o checkpoint publicado e sincronizar a planta em crescimento com o GitHub após validação em desktop e telemóvel.
+
+## Planta botânica imersiva em Momentos
+
+- [x] Substituir o ornamento actual por uma planta grande, detalhada e visualmente marcante no hero de Momentos.
+- [x] Criar uma sequência de crescimento visível: caule, ramificações, folhas, botões e flores a surgirem em etapas.
+- [x] Validar explicitamente a nova planta botânica imersiva em tablet, em Português e Inglês, confirmando uma composição forte nesse breakpoint além da versão acessível sem animação.
+- [ ] Guardar o checkpoint publicado e sincronizar a experiência botânica imersiva com o GitHub.

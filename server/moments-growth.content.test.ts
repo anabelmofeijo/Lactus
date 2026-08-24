@@ -8,8 +8,11 @@ describe("ilustração botânica da página Momentos", () => {
     const styles = readFileSync(resolve(process.cwd(), "client/src/index.css"), "utf8");
 
     expect(moments).toContain("moments-growing-plant");
-    expect(moments).toContain("growth-stem");
+    expect(moments).toContain("growth-stem--main");
+    expect(moments).toContain("growth-bloom--one");
+    expect(moments).toContain("growth-sparkles");
     expect(styles).toContain("@media (prefers-reduced-motion: no-preference)");
-    expect(styles).toContain("plant-rise");
+    expect(styles).toContain("botanical-bloom");
+    expect(styles).toContain("botanical-stem");
   });
 });
