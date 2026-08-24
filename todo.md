@@ -203,4 +203,4 @@
 - [x] Substituir o ornamento actual por uma planta grande, detalhada e visualmente marcante no hero de Momentos.
 - [x] Criar uma sequência de crescimento visível: caule, ramificações, folhas, botões e flores a surgirem em etapas.
 - [x] Validar explicitamente a nova planta botânica imersiva em tablet, em Português e Inglês, confirmando uma composição forte nesse breakpoint além da versão acessível sem animação.
-- [ ] Guardar o checkpoint publicado e sincronizar a experiência botânica imersiva com o GitHub.
+- [x] Guardar o checkpoint publicado e sincronizar a experiência botânica imersiva com o GitHub.
