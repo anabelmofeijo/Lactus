@@ -222,4 +222,4 @@
 - [x] Substituir a entrada genérica do painel por uma página de acesso alinhada à identidade Lactus, em desktop e telemóvel.
 - [x] Manter a autenticação segura actual e confirmar que o proprietário do projecto tem perfil de administrador.
 - [x] Clarificar à equipa que não é necessário criar credenciais próprias: a conta administrativa actual já permite aceder ao painel de forma segura.
-- [ ] Validar, publicar e sincronizar a nova experiência de acesso com o GitHub.
+- [x] Validar, publicar e sincronizar a nova experiência de acesso com o GitHub.
