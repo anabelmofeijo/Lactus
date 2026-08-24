@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/sidebar";
 import { startLogin } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { LayoutDashboard, LogOut, PanelLeft, Users, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, LayoutDashboard, Leaf, LockKeyhole, LogOut, PanelLeft, Users, type LucideIcon } from "lucide-react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from './DashboardLayoutSkeleton';
@@ -67,27 +67,7 @@ export default function DashboardLayout({
   }
 
   if (!user) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="flex flex-col items-center gap-8 p-8 max-w-md w-full">
-          <div className="flex flex-col items-center gap-6">
-            <h1 className="text-2xl font-semibold tracking-tight text-center">
-              Sign in to continue
-            </h1>
-            <p className="text-sm text-muted-foreground text-center max-w-sm">
-              Access to this dashboard requires authentication. Continue to launch the login flow.
-            </p>
-          </div>
-          <Button
-            onClick={() => startLogin()}
-            size="lg"
-            className="w-full shadow-lg hover:shadow-xl transition-all"
-          >
-            Sign in
-          </Button>
-        </div>
-      </div>
-    );
+    return <DashboardAccessGate />;
   }
 
   return (
@@ -103,6 +83,21 @@ export default function DashboardLayout({
       </DashboardLayoutContent>
     </SidebarProvider>
   );
+}
+
+function DashboardAccessGate() {
+  return <div className="min-h-screen bg-[#073e32] p-4 text-[#f4f1e8] sm:p-7 lg:p-10">
+    <div className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-6xl overflow-hidden rounded-[2rem] border border-white/15 bg-[#0a4b3d] shadow-2xl shadow-black/25 lg:grid-cols-[1.1fr_0.9fr] lg:min-h-[calc(100vh-5rem)]">
+      <section className="relative flex flex-col justify-between overflow-hidden p-7 sm:p-10 lg:p-14">
+        <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full border border-[#c7f36b]/25" />
+        <div className="absolute -bottom-32 right-0 h-96 w-96 rounded-full border border-[#c7f36b]/20" />
+        <header className="relative flex items-center gap-3"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#c7f36b] text-[#073e32]"><Leaf className="h-6 w-6" /></span><div><p className="text-lg font-semibold tracking-[0.16em]">LACTUS</p><p className="text-xs text-[#c7f36b]">Operações de parceria</p></div></header>
+        <div className="relative my-16 max-w-lg lg:my-0"><p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#c7f36b]">Área reservada</p><h1 className="mt-5 font-serif text-5xl leading-[0.94] sm:text-6xl lg:text-7xl">Cada parceria merece acompanhamento.</h1><p className="mt-7 max-w-md text-base leading-7 text-[#f4f1e8]/78">Entre para acompanhar pedidos, actualizar conversas e manter o percurso de cada organização bem organizado.</p></div>
+        <footer className="relative flex flex-wrap gap-3 text-xs text-[#f4f1e8]/70"><span className="rounded-full border border-white/15 px-3 py-2">Pedidos protegidos</span><span className="rounded-full border border-white/15 px-3 py-2">Acesso da equipa</span></footer>
+      </section>
+      <section className="relative flex items-center bg-[#f4f1e8] p-6 text-[#073e32] sm:p-10 lg:p-14"><div className="mx-auto w-full max-w-sm"><div className="rounded-[1.75rem] border border-[#073e32]/15 bg-white p-7 shadow-xl shadow-[#073e32]/10 sm:p-9"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#073e32] text-[#c7f36b]"><LockKeyhole className="h-5 w-5" /></span><p className="mt-7 text-xs font-semibold uppercase tracking-[0.18em] text-[#a86445]">Gestão Lactus</p><h2 className="mt-3 font-serif text-4xl leading-none">Bem-vindo de volta.</h2><p className="mt-5 text-sm leading-6 text-[#073e32]/70">Use a conta autorizada da equipa para abrir o painel de pedidos de parceria.</p><Button onClick={() => startLogin()} size="lg" className="mt-8 w-full justify-between bg-[#073e32] px-5 text-[#f4f1e8] hover:bg-[#0a4b3d]"><span>Entrar no painel</span><ArrowUpRight className="h-4 w-4" /></Button><p className="mt-5 text-center text-xs leading-5 text-[#073e32]/55">O acesso administrativo é reservado a membros autorizados da Lactus.</p></div><a className="mt-7 inline-flex items-center gap-2 text-sm font-medium underline-offset-4 hover:underline" href="/"><ArrowUpRight className="h-4 w-4 rotate-[-135deg]" />Voltar ao site</a></div></section>
+    </div>
+  </div>;
 }
 
 type DashboardLayoutContentProps = {

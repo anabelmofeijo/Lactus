@@ -216,3 +216,10 @@
 - [x] Validar a área com a sessão de administrador, a consulta real à base de dados sem pedidos artificiais e a apresentação em desktop e telemóvel.
 - [x] Guardar o checkpoint publicado com o painel privado e o alerta interno como fluxo definitivo de pedidos.
 - [x] Sincronizar o fluxo definitivo de pedidos com o GitHub e confirmar a branch principal limpa e alinhada com o remoto.
+
+## Entrada e acesso ao painel administrativo
+
+- [x] Substituir a entrada genérica do painel por uma página de acesso alinhada à identidade Lactus, em desktop e telemóvel.
+- [x] Manter a autenticação segura actual e confirmar que o proprietário do projecto tem perfil de administrador.
+- [x] Clarificar à equipa que não é necessário criar credenciais próprias: a conta administrativa actual já permite aceder ao painel de forma segura.
+- [ ] Validar, publicar e sincronizar a nova experiência de acesso com o GitHub.
