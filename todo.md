@@ -223,3 +223,12 @@
 - [x] Manter a autenticação segura actual e confirmar que o proprietário do projecto tem perfil de administrador.
 - [x] Clarificar à equipa que não é necessário criar credenciais próprias: a conta administrativa actual já permite aceder ao painel de forma segura.
 - [x] Validar, publicar e sincronizar a nova experiência de acesso com o GitHub.
+
+## Acesso administrativo por utilizador e palavra-passe
+
+- [x] Diagnosticar o erro do retorno OAuth e retirar esse fluxo da entrada administrativa para eliminar a falha de acesso.
+- [x] Criar uma conta administrativa inicial com utilizador e palavra-passe configurados exclusivamente por segredos e comparados com derivação criptográfica, sem expor valores no código.
+- [x] Implementar validação de credenciais, sessões HTTP-only e protecção contra tentativas repetidas no painel privado.
+- [x] Redesenhar a página de login com fotografia oficial da equipa, linguagem institucional Lactus e campos de utilizador e palavra-passe.
+- [x] Cobrir os cenários de autenticação com testes automatizados e validar o novo login em desktop e telemóvel.
+- [ ] Publicar a substituição do acesso e sincronizá-la com o GitHub.

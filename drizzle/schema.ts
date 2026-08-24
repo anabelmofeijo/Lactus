@@ -25,6 +25,16 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
+export const adminLoginAttempts = mysqlTable("adminLoginAttempts", {
+  id: int("id").autoincrement().primaryKey(),
+  loginKey: varchar("loginKey", { length: 96 }).notNull().unique(),
+  failedAttempts: int("failedAttempts").default(0).notNull(),
+  lockedUntil: timestamp("lockedUntil"),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AdminLoginAttempt = typeof adminLoginAttempts.$inferSelect;
+
 export const partnershipRequests = mysqlTable("partnershipRequests", {
   id: int("id").autoincrement().primaryKey(),
   organizationName: varchar("organizationName", { length: 180 }).notNull(),

@@ -1,6 +1,6 @@
 import { desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertPartnershipRequest, InsertUser, partnershipRequests, PartnershipRequest, users } from "../drizzle/schema";
+import { adminLoginAttempts, InsertPartnershipRequest, InsertUser, partnershipRequests, PartnershipRequest, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -87,6 +87,34 @@ export async function getUserByOpenId(openId: string) {
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getAdminLoginAttempt(loginKey: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(adminLoginAttempts).where(eq(adminLoginAttempts.loginKey, loginKey)).limit(1);
+  return result[0];
+}
+
+export async function recordFailedAdminLogin(loginKey: string, maxAttempts: number, lockDurationMs: number) {
+  const db = await getDb();
+  if (!db) throw new Error("A base de dados não está disponível neste momento.");
+
+  const existing = await getAdminLoginAttempt(loginKey);
+  const failedAttempts = (existing?.failedAttempts ?? 0) + 1;
+  const lockedUntil = failedAttempts >= maxAttempts ? new Date(Date.now() + lockDurationMs) : null;
+
+  await db.insert(adminLoginAttempts).values({ loginKey, failedAttempts, lockedUntil }).onDuplicateKeyUpdate({
+    set: { failedAttempts, lockedUntil },
+  });
+
+  return { failedAttempts, lockedUntil };
+}
+
+export async function clearAdminLoginAttempts(loginKey: string) {
+  const db = await getDb();
+  if (!db) return;
+  await db.delete(adminLoginAttempts).where(eq(adminLoginAttempts.loginKey, loginKey));
 }
 
 export async function createPartnershipRequest(request: InsertPartnershipRequest) {

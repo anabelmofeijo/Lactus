@@ -1,8 +1,12 @@
-import { COOKIE_NAME } from "@shared/const";
+import { ADMIN_SESSION_COOKIE, ADMIN_SESSION_MAX_AGE_MS, COOKIE_NAME } from "@shared/const";
+import { scryptSync, timingSafeEqual } from "node:crypto";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { createPartnershipRequest, listPartnershipRequests, updatePartnershipRequestStatus } from "./db";
+import { clearAdminLoginAttempts, createPartnershipRequest, getAdminLoginAttempt, listPartnershipRequests, recordFailedAdminLogin, updatePartnershipRequestStatus, upsertUser } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
+import { ENV } from "./_core/env";
 import { notifyOwner } from "./_core/notification";
+import { sdk } from "./_core/sdk";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
 
@@ -20,14 +24,67 @@ export const partnershipRequestInput = z.object({
 
 export const partnershipStatusInput = z.enum(["novo", "em_analise", "contactado", "em_conversa", "concluido", "arquivado"]);
 
+const passwordLoginInput = z.object({
+  username: z.string().trim().min(1).max(96),
+  password: z.string().min(1).max(128),
+});
+const PASSWORD_ADMIN_OPEN_ID = "lactus_password_admin";
+const ADMIN_LOGIN_KEY = "primary-admin";
+const MAX_FAILED_LOGIN_ATTEMPTS = 5;
+const LOGIN_LOCK_DURATION_MS = 15 * 60 * 1000;
+
+function sameSecret(candidate: string, expected: string) {
+  const salt = "lactus-admin-password-verifier-v1";
+  const candidateHash = scryptSync(candidate, salt, 64);
+  const expectedHash = scryptSync(expected, salt, 64);
+  return timingSafeEqual(candidateHash, expectedHash);
+}
+
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
+    passwordLogin: publicProcedure.input(passwordLoginInput).mutation(async ({ ctx, input }) => {
+      if (!ENV.adminLoginUsername || !ENV.adminLoginPassword) {
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "O acesso administrativo ainda não está configurado." });
+      }
+
+      const attempt = await getAdminLoginAttempt(ADMIN_LOGIN_KEY);
+      if (attempt?.lockedUntil && attempt.lockedUntil > new Date()) {
+        throw new TRPCError({ code: "TOO_MANY_REQUESTS", message: "Demasiadas tentativas. Tente novamente dentro de alguns minutos." });
+      }
+
+      const credentialsAreValid = sameSecret(input.username, ENV.adminLoginUsername) && sameSecret(input.password, ENV.adminLoginPassword);
+      if (!credentialsAreValid) {
+        const failed = await recordFailedAdminLogin(ADMIN_LOGIN_KEY, MAX_FAILED_LOGIN_ATTEMPTS, LOGIN_LOCK_DURATION_MS);
+        const message = failed.lockedUntil
+          ? "Demasiadas tentativas. Tente novamente dentro de alguns minutos."
+          : "Utilizador ou palavra-passe incorrectos.";
+        throw new TRPCError({ code: failed.lockedUntil ? "TOO_MANY_REQUESTS" : "BAD_REQUEST", message });
+      }
+
+      await clearAdminLoginAttempts(ADMIN_LOGIN_KEY);
+      await upsertUser({
+        openId: PASSWORD_ADMIN_OPEN_ID,
+        name: "Administração Lactus",
+        loginMethod: "password",
+        role: "admin",
+        lastSignedIn: new Date(),
+      });
+
+      const sessionToken = await sdk.createSessionToken(PASSWORD_ADMIN_OPEN_ID, {
+        expiresInMs: ADMIN_SESSION_MAX_AGE_MS,
+        name: ENV.adminLoginUsername,
+      });
+      const cookieOptions = getSessionCookieOptions(ctx.req);
+      ctx.res.cookie(ADMIN_SESSION_COOKIE, sessionToken, { ...cookieOptions, maxAge: ADMIN_SESSION_MAX_AGE_MS });
+      return { success: true } as const;
+    }),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
+      ctx.res.clearCookie(ADMIN_SESSION_COOKIE, { ...cookieOptions, maxAge: -1 });
       return {
         success: true,
       } as const;
