@@ -231,4 +231,4 @@
 - [x] Implementar validação de credenciais, sessões HTTP-only e protecção contra tentativas repetidas no painel privado.
 - [x] Redesenhar a página de login com fotografia oficial da equipa, linguagem institucional Lactus e campos de utilizador e palavra-passe.
 - [x] Cobrir os cenários de autenticação com testes automatizados e validar o novo login em desktop e telemóvel.
-- [ ] Publicar a substituição do acesso e sincronizá-la com o GitHub.
+- [x] Publicar a substituição do acesso e sincronizá-la com o GitHub.
