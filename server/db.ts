@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertPartnershipRequest, InsertUser, partnershipRequests, users } from "../drizzle/schema";
+import { InsertPartnershipRequest, InsertUser, partnershipRequests, PartnershipRequest, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -97,4 +97,26 @@ export async function createPartnershipRequest(request: InsertPartnershipRequest
 
   const result = await db.insert(partnershipRequests).values(request);
   return result[0].insertId;
+}
+
+export async function listPartnershipRequests(status?: PartnershipRequest["status"]) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("A base de dados não está disponível neste momento.");
+  }
+
+  if (status) {
+    return db.select().from(partnershipRequests).where(eq(partnershipRequests.status, status)).orderBy(desc(partnershipRequests.createdAt));
+  }
+
+  return db.select().from(partnershipRequests).orderBy(desc(partnershipRequests.createdAt));
+}
+
+export async function updatePartnershipRequestStatus(id: number, status: PartnershipRequest["status"]) {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("A base de dados não está disponível neste momento.");
+  }
+
+  await db.update(partnershipRequests).set({ status }).where(eq(partnershipRequests.id, id));
 }

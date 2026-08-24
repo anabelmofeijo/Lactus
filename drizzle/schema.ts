@@ -36,7 +36,9 @@ export const partnershipRequests = mysqlTable("partnershipRequests", {
   projectContext: text("projectContext").notNull(),
   objectives: text("objectives"),
   consentToContact: boolean("consentToContact").notNull(),
+  status: mysqlEnum("status", ["novo", "em_analise", "contactado", "em_conversa", "concluido", "arquivado"]).default("novo").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
 export type PartnershipRequest = typeof partnershipRequests.$inferSelect;

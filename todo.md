@@ -204,3 +204,14 @@
 - [x] Criar uma sequência de crescimento visível: caule, ramificações, folhas, botões e flores a surgirem em etapas.
 - [x] Validar explicitamente a nova planta botânica imersiva em tablet, em Português e Inglês, confirmando uma composição forte nesse breakpoint além da versão acessível sem animação.
 - [x] Guardar o checkpoint publicado e sincronizar a experiência botânica imersiva com o GitHub.
+
+## Operações de pedidos de parceria
+
+- [x] Definir estados de acompanhamento para pedidos e disponibilizá-los no esquema da base de dados.
+- [x] Enviar uma notificação ao proprietário do projecto sempre que um novo pedido público for recebido.
+- [x] Descontinuar a opção SMTP Gmail, pois a conta requer uma palavra-passe de aplicação que a equipa prefere não configurar.
+- [x] Escolher o painel privado e o alerta interno ao proprietário como canal definitivo de acompanhamento, sem domínio próprio nem palavra-passe de aplicação Gmail.
+- [x] Criar uma área privada para listar, consultar, filtrar e actualizar o estado dos pedidos.
+- [x] Adicionar testes de comportamento aos procedimentos administrativos, cobrindo autorização, listagem e actualização de estado.
+- [x] Validar a área com a sessão de administrador, a consulta real à base de dados sem pedidos artificiais e a apresentação em desktop e telemóvel.
+- [ ] Guardar o checkpoint publicado e sincronizar com GitHub o painel privado e o alerta interno como fluxo definitivo de pedidos.

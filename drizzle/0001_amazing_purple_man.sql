@@ -1,0 +1,2 @@
+ALTER TABLE `partnershipRequests` ADD `status` enum('novo','em_analise','contactado','em_conversa','concluido','arquivado') DEFAULT 'novo' NOT NULL;--> statement-breakpoint
+ALTER TABLE `partnershipRequests` ADD `updatedAt` timestamp DEFAULT (now()) NOT NULL ON UPDATE CURRENT_TIMESTAMP;
