@@ -190,5 +190,10 @@
 
 ## Etiqueta editorial do hero
 
-- [ ] Rever o texto, contraste, rotação, dimensão e posicionamento da etiqueta verde sobre a fotografia principal em desktop e telemóvel.
-- [ ] Ajustar a etiqueta se necessário, validar a composição, publicar e sincronizar com GitHub.
+- [x] Validar explicitamente a etiqueta verde do hero em telemóvel e tablet, em Português e Inglês, confirmando legibilidade, contraste, rotação e posicionamento.
+- [x] Confirmar, após a validação visual completa, que não é necessário alterar a etiqueta sem uma preferência adicional da equipa.
+
+## Planta em crescimento na página Momentos
+
+- [x] Integrar uma ilustração botânica de crescimento junto ao título da página Momentos, com movimento opcional e acessível.
+- [ ] Guardar o checkpoint publicado e sincronizar a planta em crescimento com o GitHub após validação em desktop e telemóvel.
