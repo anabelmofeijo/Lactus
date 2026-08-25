@@ -260,3 +260,9 @@
 - [x] Construir a aba Pontos Lumi no painel com formulário e confirmação de eliminação.
 - [x] Testar autorização, validação, eliminação e responsividade da nova aba.
 - [x] Publicar a gestão dos pontos Lumi e sincronizá-la com o GitHub.
+
+## Remoção da gestão de pontos Lumi
+
+- [x] Remover a navegação, rota e interface de gestão dos pontos Lumi do painel.
+- [x] Confirmar que pedidos de parceria e contas da equipa continuam acessíveis.
+- [ ] Validar, publicar e sincronizar a remoção com o GitHub.
