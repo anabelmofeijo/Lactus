@@ -237,3 +237,9 @@
 
 - [x] Reposicionar o selo “Uma ideia em equipa” no telemóvel para não tapar nenhum dos fundadores.
 - [x] Publicar a correcção validada do enquadramento da fotografia principal em telemóvel.
+
+## Verificação transversal de mobile e autenticação
+
+- [x] Inspeccionar as páginas públicas e o painel em formatos de telemóvel compacto, telemóvel grande e tablet.
+- [x] Testar o login administrativo com credenciais válidas, inválidas e bloqueio após tentativas repetidas.
+- [x] Confirmar que não foram detectadas falhas de responsividade ou autenticação e publicar o registo da validação final.
