@@ -236,4 +236,4 @@
 ## Protecção dos rostos no hero móvel
 
 - [x] Reposicionar o selo “Uma ideia em equipa” no telemóvel para não tapar nenhum dos fundadores.
-- [ ] Publicar a correcção validada do enquadramento da fotografia principal em telemóvel.
+- [x] Publicar a correcção validada do enquadramento da fotografia principal em telemóvel.
