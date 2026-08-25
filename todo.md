@@ -252,3 +252,11 @@
 - [x] Validar os novos fluxos de gestão e autenticação com testes automatizados e nos formatos móveis.
 - [ ] Submeter e verificar um pedido de parceria usando dados reais fornecidos pela equipa, sem dados fictícios.
 - [ ] Publicar a gestão de equipa e sincronizá-la com o GitHub.
+
+## Pontos Lumi instalados
+
+- [ ] Definir o modelo de dados dos pontos Lumi, empresa associada, localização, estado e observações.
+- [ ] Criar procedimentos protegidos para listar, cadastrar e eliminar pontos Lumi.
+- [ ] Construir a aba Pontos Lumi no painel com formulário e confirmação de eliminação.
+- [ ] Testar autorização, validação, eliminação e responsividade da nova aba.
+- [ ] Publicar a gestão dos pontos Lumi e sincronizá-la com o GitHub.
