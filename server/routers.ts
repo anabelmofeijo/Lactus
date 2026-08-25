@@ -2,7 +2,7 @@ import { ADMIN_SESSION_COOKIE, ADMIN_SESSION_MAX_AGE_MS, COOKIE_NAME } from "@sh
 import { randomBytes, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { clearAdminLoginAttempts, createPartnershipRequest, createTeamAccount, getAdminLoginAttempt, getTeamAccountByUsername, listPartnershipRequests, listTeamAccounts, recordFailedAdminLogin, setTeamAccountActive, updatePartnershipRequestStatus, upsertUser } from "./db";
+import { clearAdminLoginAttempts, createLumiInstallation, createPartnershipRequest, createTeamAccount, deleteLumiInstallation, getAdminLoginAttempt, getTeamAccountByUsername, listLumiInstallations, listPartnershipRequests, listTeamAccounts, recordFailedAdminLogin, setTeamAccountActive, updatePartnershipRequestStatus, upsertUser } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { ENV } from "./_core/env";
 import { notifyOwner } from "./_core/notification";
@@ -27,6 +27,16 @@ export const partnershipStatusInput = z.enum(["novo", "em_analise", "contactado"
 const passwordLoginInput = z.object({
   username: z.string().trim().min(1).max(96),
   password: z.string().min(1).max(128),
+});
+const lumiInstallationInput = z.object({
+  pointName: z.string().trim().min(2, "Indique o nome ou referência do ponto.").max(180),
+  companyName: z.string().trim().min(2, "Indique a empresa associada.").max(180),
+  contactName: z.string().trim().max(180).optional(),
+  contactEmail: z.string().trim().email("Indique um e-mail válido.").max(320).optional().or(z.literal("")),
+  location: z.string().trim().min(2, "Indique a localização.").max(180),
+  installedAt: z.coerce.date().optional(),
+  status: z.enum(["operacional", "manutencao", "retirado"]).default("operacional"),
+  notes: z.string().trim().max(5000).optional(),
 });
 const teamAccountInput = z.object({
   name: z.string().trim().min(2, "Indique o nome da pessoa.").max(180),
@@ -146,6 +156,26 @@ export const appRouter = router({
     }),
     setActive: adminProcedure.input(z.object({ id: z.number().int().positive(), isActive: z.boolean() })).mutation(async ({ input }) => {
       await setTeamAccountActive(input.id, input.isActive);
+      return { success: true } as const;
+    }),
+  }),
+  lumi: router({
+    list: adminProcedure.query(async () => ({ installations: await listLumiInstallations() })),
+    create: adminProcedure.input(lumiInstallationInput).mutation(async ({ input }) => {
+      const id = await createLumiInstallation({
+        pointName: input.pointName,
+        companyName: input.companyName,
+        contactName: input.contactName || null,
+        contactEmail: input.contactEmail || null,
+        location: input.location,
+        installedAt: input.installedAt ?? null,
+        status: input.status,
+        notes: input.notes || null,
+      });
+      return { success: true, id } as const;
+    }),
+    delete: adminProcedure.input(z.object({ id: z.number().int().positive() })).mutation(async ({ input }) => {
+      await deleteLumiInstallation(input.id);
       return { success: true } as const;
     }),
   }),

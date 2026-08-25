@@ -2,13 +2,14 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import DashboardLayout, { type DashboardNavigationItem } from "@/components/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc";
-import { ClipboardList, ExternalLink, Home, KeyRound, ShieldAlert, UserPlus, UsersRound } from "lucide-react";
+import { ClipboardList, ExternalLink, Home, KeyRound, MapPinned, ShieldAlert, UserPlus, UsersRound } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 
 const adminNavigation: DashboardNavigationItem[] = [
   { icon: ClipboardList, label: "Pedidos de parceria", path: "/gestao-parcerias" },
   { icon: UsersRound, label: "Equipa e acessos", path: "/gestao-equipa" },
+  { icon: MapPinned, label: "Pontos Lumi", path: "/gestao-lumi" },
   { icon: Home, label: "Ver site", path: "/" },
 ];
 

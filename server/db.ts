@@ -1,6 +1,6 @@
 import { and, desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { adminLoginAttempts, InsertPartnershipRequest, InsertUser, partnershipRequests, PartnershipRequest, users } from "../drizzle/schema";
+import { adminLoginAttempts, InsertLumiInstallation, InsertPartnershipRequest, InsertUser, lumiInstallations, partnershipRequests, PartnershipRequest, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -138,6 +138,25 @@ export async function setTeamAccountActive(id: number, isActive: boolean) {
   const db = await getDb();
   if (!db) throw new Error("A base de dados não está disponível neste momento.");
   await db.update(users).set({ isActive }).where(and(eq(users.id, id), eq(users.loginMethod, "team-password")));
+}
+
+export async function listLumiInstallations() {
+  const db = await getDb();
+  if (!db) throw new Error("A base de dados não está disponível neste momento.");
+  return db.select().from(lumiInstallations).orderBy(desc(lumiInstallations.createdAt));
+}
+
+export async function createLumiInstallation(installation: InsertLumiInstallation) {
+  const db = await getDb();
+  if (!db) throw new Error("A base de dados não está disponível neste momento.");
+  const result = await db.insert(lumiInstallations).values(installation);
+  return Number(result[0].insertId);
+}
+
+export async function deleteLumiInstallation(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("A base de dados não está disponível neste momento.");
+  await db.delete(lumiInstallations).where(eq(lumiInstallations.id, id));
 }
 
 export async function getAdminLoginAttempt(loginKey: string) {

@@ -38,6 +38,23 @@ export const adminLoginAttempts = mysqlTable("adminLoginAttempts", {
 
 export type AdminLoginAttempt = typeof adminLoginAttempts.$inferSelect;
 
+export const lumiInstallations = mysqlTable("lumiInstallations", {
+  id: int("id").autoincrement().primaryKey(),
+  pointName: varchar("pointName", { length: 180 }).notNull(),
+  companyName: varchar("companyName", { length: 180 }).notNull(),
+  contactName: varchar("contactName", { length: 180 }),
+  contactEmail: varchar("contactEmail", { length: 320 }),
+  location: varchar("location", { length: 180 }).notNull(),
+  installedAt: timestamp("installedAt"),
+  status: mysqlEnum("status", ["operacional", "manutencao", "retirado"]).default("operacional").notNull(),
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type LumiInstallation = typeof lumiInstallations.$inferSelect;
+export type InsertLumiInstallation = typeof lumiInstallations.$inferInsert;
+
 export const partnershipRequests = mysqlTable("partnershipRequests", {
   id: int("id").autoincrement().primaryKey(),
   organizationName: varchar("organizationName", { length: 180 }).notNull(),
