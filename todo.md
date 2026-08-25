@@ -265,4 +265,4 @@
 
 - [x] Remover a navegação, rota e interface de gestão dos pontos Lumi do painel.
 - [x] Confirmar que pedidos de parceria e contas da equipa continuam acessíveis.
-- [ ] Validar, publicar e sincronizar a remoção com o GitHub.
+- [x] Validar, publicar e sincronizar a remoção com o GitHub.
