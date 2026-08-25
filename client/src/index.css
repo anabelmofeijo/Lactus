@@ -612,10 +612,10 @@ h2 { margin: 18px 0 24px; font-size: clamp(48px, 5.5vw, 82px); line-height: .94;
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 19px; }
   .hero-meta { flex-direction: column; gap: 10px; margin-top: 45px; }
   .hero { padding-top: 120px; padding-bottom: 64px; }
-  .hero-visual { min-height: 390px; }
+  .hero-visual { min-height: 470px; }
   .hero-photo-wrap { right: 0; width: 88%; height: 360px; }
   .hero-photo-wrap--founders { width: 94%; height: 405px; }
-  .hero-note--top { top: 48px; left: -4%; }
+  .hero-note--top { top: auto; bottom: 8px; left: 1%; }
   .hero-note--bottom { right: -3%; bottom: 15px; }
   .hero-orbit { display: none; }
   .challenge-list { grid-template-columns: 1fr; }

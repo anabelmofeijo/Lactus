@@ -232,3 +232,8 @@
 - [x] Redesenhar a página de login com fotografia oficial da equipa, linguagem institucional Lactus e campos de utilizador e palavra-passe.
 - [x] Cobrir os cenários de autenticação com testes automatizados e validar o novo login em desktop e telemóvel.
 - [x] Publicar a substituição do acesso e sincronizá-la com o GitHub.
+
+## Protecção dos rostos no hero móvel
+
+- [x] Reposicionar o selo “Uma ideia em equipa” no telemóvel para não tapar nenhum dos fundadores.
+- [ ] Publicar a correcção validada do enquadramento da fotografia principal em telemóvel.
