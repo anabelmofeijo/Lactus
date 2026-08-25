@@ -1,4 +1,4 @@
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { adminLoginAttempts, InsertPartnershipRequest, InsertUser, partnershipRequests, PartnershipRequest, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -35,7 +35,7 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     };
     const updateSet: Record<string, unknown> = {};
 
-    const textFields = ["name", "email", "loginMethod"] as const;
+    const textFields = ["name", "email", "username", "passwordHash", "loginMethod"] as const;
     type TextField = (typeof textFields)[number];
 
     const assignNullable = (field: TextField) => {
@@ -58,6 +58,10 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     } else if (user.openId === ENV.ownerOpenId) {
       values.role = 'admin';
       updateSet.role = 'admin';
+    }
+    if (user.isActive !== undefined) {
+      values.isActive = user.isActive;
+      updateSet.isActive = user.isActive;
     }
 
     if (!values.lastSignedIn) {
@@ -87,6 +91,53 @@ export async function getUserByOpenId(openId: string) {
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getTeamAccountByUsername(username: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.username, username)).limit(1);
+  return result[0];
+}
+
+export async function listTeamAccounts() {
+  const db = await getDb();
+  if (!db) throw new Error("A base de dados não está disponível neste momento.");
+  return db.select({
+    id: users.id,
+    name: users.name,
+    email: users.email,
+    username: users.username,
+    isActive: users.isActive,
+    role: users.role,
+    createdAt: users.createdAt,
+    lastSignedIn: users.lastSignedIn,
+  }).from(users).where(eq(users.loginMethod, "team-password")).orderBy(desc(users.createdAt));
+}
+
+export async function createTeamAccount(account: {
+  openId: string;
+  name: string;
+  email: string;
+  username: string;
+  passwordHash: string;
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("A base de dados não está disponível neste momento.");
+  const result = await db.insert(users).values({
+    ...account,
+    loginMethod: "team-password",
+    role: "admin",
+    isActive: true,
+    lastSignedIn: new Date(),
+  });
+  return Number(result[0].insertId);
+}
+
+export async function setTeamAccountActive(id: number, isActive: boolean) {
+  const db = await getDb();
+  if (!db) throw new Error("A base de dados não está disponível neste momento.");
+  await db.update(users).set({ isActive }).where(and(eq(users.id, id), eq(users.loginMethod, "team-password")));
 }
 
 export async function getAdminLoginAttempt(loginKey: string) {

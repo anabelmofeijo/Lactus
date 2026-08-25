@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import DashboardLayout, { type DashboardNavigationItem } from "@/components/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc";
-import { ClipboardList, ExternalLink, Home, ShieldAlert } from "lucide-react";
+import { ClipboardList, ExternalLink, Home, ShieldAlert, UsersRound } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "wouter";
 
@@ -20,6 +20,7 @@ type StatusFilter = PartnershipStatus | "todos";
 
 const adminNavigation: DashboardNavigationItem[] = [
   { icon: ClipboardList, label: "Pedidos de parceria", path: "/gestao-parcerias" },
+  { icon: UsersRound, label: "Equipa e acessos", path: "/gestao-equipa" },
   { icon: Home, label: "Ver site", path: "/" },
 ];
 

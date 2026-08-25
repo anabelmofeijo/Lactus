@@ -243,3 +243,12 @@
 - [x] Inspeccionar as páginas públicas e o painel em formatos de telemóvel compacto, telemóvel grande e tablet.
 - [x] Testar o login administrativo com credenciais válidas, inválidas e bloqueio após tentativas repetidas.
 - [x] Confirmar que não foram detectadas falhas de responsividade ou autenticação e publicar o registo da validação final.
+
+## Contas individuais da equipa e validação de pedidos
+
+- [x] Criar o modelo seguro de contas individuais, palavras-passe com hash e estados de activação.
+- [x] Criar uma área administrativa para adicionar, consultar e desactivar contas da equipa.
+- [x] Integrar as contas individuais no login administrativo, mantendo sessões protegidas e controlo de tentativas.
+- [x] Validar os novos fluxos de gestão e autenticação com testes automatizados e nos formatos móveis.
+- [ ] Submeter e verificar um pedido de parceria usando dados reais fornecidos pela equipa, sem dados fictícios.
+- [ ] Publicar a gestão de equipa e sincronizá-la com o GitHub.

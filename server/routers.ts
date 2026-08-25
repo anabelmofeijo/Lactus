@@ -1,8 +1,8 @@
 import { ADMIN_SESSION_COOKIE, ADMIN_SESSION_MAX_AGE_MS, COOKIE_NAME } from "@shared/const";
-import { scryptSync, timingSafeEqual } from "node:crypto";
+import { randomBytes, randomUUID, scryptSync, timingSafeEqual } from "node:crypto";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { clearAdminLoginAttempts, createPartnershipRequest, getAdminLoginAttempt, listPartnershipRequests, recordFailedAdminLogin, updatePartnershipRequestStatus, upsertUser } from "./db";
+import { clearAdminLoginAttempts, createPartnershipRequest, createTeamAccount, getAdminLoginAttempt, getTeamAccountByUsername, listPartnershipRequests, listTeamAccounts, recordFailedAdminLogin, setTeamAccountActive, updatePartnershipRequestStatus, upsertUser } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { ENV } from "./_core/env";
 import { notifyOwner } from "./_core/notification";
@@ -28,6 +28,12 @@ const passwordLoginInput = z.object({
   username: z.string().trim().min(1).max(96),
   password: z.string().min(1).max(128),
 });
+const teamAccountInput = z.object({
+  name: z.string().trim().min(2, "Indique o nome da pessoa.").max(180),
+  email: z.string().trim().email("Indique um e-mail válido.").max(320),
+  username: z.string().trim().toLowerCase().min(3, "O utilizador deve ter pelo menos 3 caracteres.").max(96).regex(/^[a-z0-9._-]+$/, "Use apenas letras minúsculas, números, pontos, hífenes ou sublinhados."),
+  password: z.string().min(12, "A palavra-passe deve ter pelo menos 12 caracteres.").max(128).regex(/[a-zA-Z]/, "A palavra-passe deve incluir uma letra.").regex(/[0-9]/, "A palavra-passe deve incluir um número."),
+});
 const PASSWORD_ADMIN_OPEN_ID = "lactus_password_admin";
 const ADMIN_LOGIN_KEY = "primary-admin";
 const MAX_FAILED_LOGIN_ATTEMPTS = 5;
@@ -40,6 +46,25 @@ function sameSecret(candidate: string, expected: string) {
   return timingSafeEqual(candidateHash, expectedHash);
 }
 
+function hashPassword(password: string) {
+  const salt = randomBytes(16);
+  const passwordHash = scryptSync(password, salt, 64);
+  return `${salt.toString("hex")}:${passwordHash.toString("hex")}`;
+}
+
+function verifyPassword(candidate: string, storedHash: string | null) {
+  if (!storedHash) return false;
+  const [saltHex, hashHex] = storedHash.split(":");
+  if (!saltHex || !hashHex) return false;
+  try {
+    const candidateHash = scryptSync(candidate, Buffer.from(saltHex, "hex"), 64);
+    const expectedHash = Buffer.from(hashHex, "hex");
+    return expectedHash.length === candidateHash.length && timingSafeEqual(candidateHash, expectedHash);
+  } catch {
+    return false;
+  }
+}
+
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
@@ -50,32 +75,42 @@ export const appRouter = router({
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "O acesso administrativo ainda não está configurado." });
       }
 
-      const attempt = await getAdminLoginAttempt(ADMIN_LOGIN_KEY);
+      const normalizedUsername = input.username.trim().toLowerCase();
+      const teamAccount = await getTeamAccountByUsername(normalizedUsername);
+      const loginKey = teamAccount ? `team-account:${teamAccount.id}` : normalizedUsername === ENV.adminLoginUsername.toLowerCase() ? ADMIN_LOGIN_KEY : `unknown:${normalizedUsername}`;
+      const attempt = await getAdminLoginAttempt(loginKey);
       if (attempt?.lockedUntil && attempt.lockedUntil > new Date()) {
         throw new TRPCError({ code: "TOO_MANY_REQUESTS", message: "Demasiadas tentativas. Tente novamente dentro de alguns minutos." });
       }
 
-      const credentialsAreValid = sameSecret(input.username, ENV.adminLoginUsername) && sameSecret(input.password, ENV.adminLoginPassword);
+      const isPrimaryAdmin = sameSecret(input.username, ENV.adminLoginUsername) && sameSecret(input.password, ENV.adminLoginPassword);
+      const isTeamAccount = Boolean(teamAccount?.isActive && verifyPassword(input.password, teamAccount.passwordHash));
+      const credentialsAreValid = isPrimaryAdmin || isTeamAccount;
       if (!credentialsAreValid) {
-        const failed = await recordFailedAdminLogin(ADMIN_LOGIN_KEY, MAX_FAILED_LOGIN_ATTEMPTS, LOGIN_LOCK_DURATION_MS);
+        const failed = await recordFailedAdminLogin(loginKey, MAX_FAILED_LOGIN_ATTEMPTS, LOGIN_LOCK_DURATION_MS);
         const message = failed.lockedUntil
           ? "Demasiadas tentativas. Tente novamente dentro de alguns minutos."
           : "Utilizador ou palavra-passe incorrectos.";
         throw new TRPCError({ code: failed.lockedUntil ? "TOO_MANY_REQUESTS" : "BAD_REQUEST", message });
       }
 
-      await clearAdminLoginAttempts(ADMIN_LOGIN_KEY);
-      await upsertUser({
-        openId: PASSWORD_ADMIN_OPEN_ID,
-        name: "Administração Lactus",
-        loginMethod: "password",
-        role: "admin",
-        lastSignedIn: new Date(),
-      });
+      await clearAdminLoginAttempts(loginKey);
+      const accountOpenId = isTeamAccount ? teamAccount!.openId : PASSWORD_ADMIN_OPEN_ID;
+      const accountName = isTeamAccount ? (teamAccount!.name ?? teamAccount!.username ?? "Equipa Lactus") : ENV.adminLoginUsername;
+      if (!isTeamAccount) {
+        await upsertUser({
+          openId: PASSWORD_ADMIN_OPEN_ID,
+          name: "Administração Lactus",
+          loginMethod: "password",
+          role: "admin",
+          isActive: true,
+          lastSignedIn: new Date(),
+        });
+      }
 
-      const sessionToken = await sdk.createSessionToken(PASSWORD_ADMIN_OPEN_ID, {
+      const sessionToken = await sdk.createSessionToken(accountOpenId, {
         expiresInMs: ADMIN_SESSION_MAX_AGE_MS,
-        name: ENV.adminLoginUsername,
+        name: accountName,
       });
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.cookie(ADMIN_SESSION_COOKIE, sessionToken, { ...cookieOptions, maxAge: ADMIN_SESSION_MAX_AGE_MS });
@@ -88,6 +123,30 @@ export const appRouter = router({
       return {
         success: true,
       } as const;
+    }),
+  }),
+  team: router({
+    list: adminProcedure.query(async () => ({ accounts: await listTeamAccounts() })),
+    create: adminProcedure.input(teamAccountInput).mutation(async ({ input }) => {
+      if (input.username === ENV.adminLoginUsername.toLowerCase()) {
+        throw new TRPCError({ code: "CONFLICT", message: "Este nome de utilizador está reservado para a conta principal." });
+      }
+      const existing = await getTeamAccountByUsername(input.username);
+      if (existing) {
+        throw new TRPCError({ code: "CONFLICT", message: "Este nome de utilizador já está em uso." });
+      }
+      const id = await createTeamAccount({
+        openId: `team_${randomUUID()}`,
+        name: input.name,
+        email: input.email,
+        username: input.username,
+        passwordHash: hashPassword(input.password),
+      });
+      return { success: true, id } as const;
+    }),
+    setActive: adminProcedure.input(z.object({ id: z.number().int().positive(), isActive: z.boolean() })).mutation(async ({ input }) => {
+      await setTeamAccountActive(input.id, input.isActive);
+      return { success: true } as const;
     }),
   }),
   partnership: router({

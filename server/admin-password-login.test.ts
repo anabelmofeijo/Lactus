@@ -3,6 +3,8 @@ import { appRouter } from "./routers";
 import type { TrpcContext } from "./_core/context";
 import { clearAdminLoginAttempts } from "./db";
 
+const INVALID_LOGIN_KEY = "unknown:utilizador-invalido";
+
 type CookieCall = { name: string; value: string; options: Record<string, unknown> };
 
 function createUnauthenticatedContext(): { ctx: TrpcContext; cookies: CookieCall[] } {
@@ -55,7 +57,7 @@ describe("auth.passwordLogin", () => {
       .rejects.toMatchObject({ code: "BAD_REQUEST" });
     expect(cookies).toHaveLength(0);
 
-    await clearAdminLoginAttempts("primary-admin");
+    await clearAdminLoginAttempts(INVALID_LOGIN_KEY);
   });
 
   it("bloqueia novas tentativas depois de cinco credenciais inválidas", async () => {
@@ -71,7 +73,7 @@ describe("auth.passwordLogin", () => {
       await expect(caller.auth.passwordLogin({ username: "utilizador-invalido", password: "credencial-invalida" }))
         .rejects.toMatchObject({ code: "TOO_MANY_REQUESTS" });
     } finally {
-      await clearAdminLoginAttempts("primary-admin");
+      await clearAdminLoginAttempts(INVALID_LOGIN_KEY);
     }
   });
 });

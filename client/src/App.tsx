@@ -7,6 +7,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import PartnershipAdmin from "./pages/PartnershipAdmin";
+import TeamManagement from "./pages/TeamManagement";
 import Moments from "./pages/Moments";
 import Partnership from "./pages/Partnership";
 
@@ -18,6 +19,7 @@ function Router() {
       <Route path={"/momentos"} component={Moments} />
       <Route path={"/parceria"} component={Partnership} />
       <Route path={"/gestao-parcerias"} component={PartnershipAdmin} />
+      <Route path={"/gestao-equipa"} component={TeamManagement} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
